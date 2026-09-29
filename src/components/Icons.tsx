@@ -16,6 +16,9 @@ import {
   X,
   ChevronRight,
   Star,
+  User,
+  ArrowRight,
+  Zap,
 } from "lucide-react";
 
 export const ServiceIcons = {
@@ -46,4 +49,7 @@ export {
   X,
   ChevronRight,
   Star,
+  User,
+  ArrowRight,
+  Zap,
 };

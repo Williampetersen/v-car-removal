@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { PrimaryButton } from "../Buttons";
 import { site } from "@/lib/site";
@@ -15,6 +16,41 @@ const item = {
   hidden: { opacity: 0, y: 16 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easing } },
 };
+
+// Rotates through the vehicle conditions we accept — reinforces the "any
+// condition" claim instead of just decorating the headline.
+const CONDITIONS = ["Old Car", "Damaged Car", "Unwanted Car", "Written-Off Car", "Scrap Car"];
+
+function RotatingCondition() {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setIndex((i) => (i + 1) % CONDITIONS.length);
+    }, 2200);
+    return () => clearTimeout(id);
+  }, [index]);
+
+  return (
+    <span className="relative flex h-[1.2em] w-full items-center justify-center overflow-hidden">
+      {CONDITIONS.map((label, i) => (
+        <motion.span
+          key={label}
+          className="absolute whitespace-nowrap rounded-lg bg-brand px-1.5 text-ink"
+          initial={{ y: "100%", opacity: 0 }}
+          animate={
+            index === i
+              ? { y: "0%", opacity: 1 }
+              : { y: index > i ? "-120%" : "120%", opacity: 0 }
+          }
+          transition={{ type: "spring", stiffness: 55, damping: 14 }}
+        >
+          {label}
+        </motion.span>
+      ))}
+    </span>
+  );
+}
 
 export function HeroContent() {
   return (
@@ -34,13 +70,11 @@ export function HeroContent() {
 
         <motion.h1
           variants={item}
-          className="font-display text-balance mt-3 max-w-xl text-2xl font-extrabold leading-tight text-ink [text-shadow:0_2px_14px_rgba(255,255,255,0.9)] sm:text-3xl lg:text-4xl"
+          className="font-display text-balance mt-3 max-w-xl text-2xl font-extrabold leading-tight text-white [text-shadow:0_2px_20px_rgba(0,0,0,0.35)] sm:text-3xl lg:text-4xl"
         >
-          Top Cash For Your Car,{" "}
-          <span className="whitespace-nowrap rounded-lg bg-brand px-1.5 text-ink">
-            Up To {site.cashOfferMax}
-          </span>
-          !
+          <span className="block">Top Cash For Your</span>
+          <RotatingCondition />
+          <span className="mt-1 block">Up To {site.cashOfferMax}!</span>
         </motion.h1>
       </div>
 

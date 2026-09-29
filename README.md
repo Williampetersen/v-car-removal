@@ -25,6 +25,10 @@ stay inactive until configured:
   domain.
 - `NEXT_PUBLIC_GA_ID` — Google Analytics 4 measurement ID.
 - `NEXT_PUBLIC_META_PIXEL_ID` — Meta (Facebook) Pixel ID.
+- `NEXT_PUBLIC_GSC_VERIFICATION` — the meta-tag content string from Google
+  Search Console (Settings → Ownership verification → HTML tag). Required to
+  verify the site in Search Console and submit the sitemap — without this,
+  Google won't reliably discover or index the location/service pages.
 
 ## Where content lives
 

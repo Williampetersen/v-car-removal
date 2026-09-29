@@ -11,7 +11,7 @@ export function Footer() {
 
   return (
     <footer className="bg-ink text-zinc-300">
-      <Container className="grid grid-cols-1 gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
+      <Container className="grid grid-cols-1 gap-x-10 gap-y-14 py-20 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Image
             src="/images/logo/logo.png"
@@ -36,15 +36,15 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+          <h3 className="font-display text-xs font-bold uppercase tracking-[0.15em] text-brand">
             Services
           </h3>
-          <ul className="mt-4 space-y-3 text-sm">
+          <ul className="mt-5 space-y-3.5 text-sm">
             {services.map((s) => (
               <li key={s.slug}>
                 <Link
                   href={`/services/${s.slug}`}
-                  className="text-zinc-400 transition-colors hover:text-brand"
+                  className="text-zinc-400 transition-colors hover:text-white"
                 >
                   {s.name}
                 </Link>
@@ -54,32 +54,31 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+          <h3 className="font-display text-xs font-bold uppercase tracking-[0.15em] text-brand">
             Service Areas
           </h3>
-          <ul className="mt-4 space-y-3 text-sm">
+          <div className="mt-5 flex flex-wrap gap-2">
             {allLocations.map((l) => (
-              <li key={l.slug}>
-                <Link
-                  href={`/locations/${l.slug}`}
-                  className="text-zinc-400 transition-colors hover:text-brand"
-                >
-                  {l.name}
-                </Link>
-              </li>
+              <Link
+                key={l.slug}
+                href={`/locations/${l.slug}`}
+                className="rounded-full border border-white/10 px-3 py-1.5 text-xs font-medium text-zinc-400 transition-colors hover:border-brand/50 hover:text-white"
+              >
+                {l.name}
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
 
         <div>
-          <h3 className="font-display text-sm font-bold uppercase tracking-wider text-white">
+          <h3 className="font-display text-xs font-bold uppercase tracking-[0.15em] text-brand">
             Get In Touch
           </h3>
-          <ul className="mt-4 space-y-3 text-sm">
+          <ul className="mt-5 space-y-4 text-sm">
             <li>
               <a
                 href={site.phoneHref}
-                className="flex items-center gap-2 text-zinc-400 transition-colors hover:text-brand"
+                className="flex items-center gap-2.5 text-zinc-400 transition-colors hover:text-white"
               >
                 <PhoneCall className="h-4 w-4 shrink-0" aria-hidden />
                 {site.phoneDisplay}
@@ -88,13 +87,13 @@ export function Footer() {
             <li>
               <a
                 href={`mailto:${site.email}`}
-                className="flex items-center gap-2 text-zinc-400 transition-colors hover:text-brand"
+                className="flex items-center gap-2.5 text-zinc-400 transition-colors hover:text-white"
               >
                 <Mail className="h-4 w-4 shrink-0" aria-hidden />
                 {site.email}
               </a>
             </li>
-            <li className="flex items-start gap-2 text-zinc-400">
+            <li className="flex items-start gap-2.5 leading-relaxed text-zinc-400">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
               {site.areasSummary}
             </li>

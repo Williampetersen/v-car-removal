@@ -2,12 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { Container } from "./Container";
 import { MobileNav } from "./MobileNav";
+import { HeaderPhoneBadge } from "./HeaderPhoneBadge";
 import { PhoneCall } from "./Icons";
 import { NAV_LINKS, site } from "@/lib/site";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-ink/5 bg-white/90 backdrop-blur-md">
+    <header className="sticky top-0 z-40 border-b border-ink/5 bg-white">
       <Container className="flex min-h-16 items-center justify-between gap-4 py-3 sm:h-20">
         <Link href="/" className="flex shrink-0 items-center">
           <Image
@@ -33,13 +34,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          <a
-            href={site.phoneHref}
-            className="hidden items-center gap-2 whitespace-nowrap rounded-full border border-ink/15 px-4 py-2.5 text-xs font-bold text-ink-soft transition-colors hover:border-ink hover:text-ink md:inline-flex lg:text-sm"
-          >
-            <PhoneCall className="h-3.5 w-3.5" aria-hidden />
-            {site.phoneDisplay}
-          </a>
+          <HeaderPhoneBadge />
           <Link
             href="/contact"
             className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-brand px-4 py-2.5 text-xs font-bold text-ink transition-all hover:-translate-y-0.5 hover:bg-brand-dark sm:px-5 sm:text-sm"

@@ -39,22 +39,26 @@ export function WhyChooseUs() {
           />
         </FadeIn>
         <Stagger className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {reasons.map((reason) => (
+          {reasons.map((reason, index) => (
             <StaggerItem
               key={reason.title}
-              className="flex gap-3 rounded-2xl border border-ink/8 bg-zinc-50 p-5 transition-transform hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-3xl border border-ink/8 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-cash/40 hover:shadow-lg hover:shadow-cash/10"
             >
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-cash/15 text-cash-dark">
+              <span
+                className="font-display pointer-events-none absolute -right-2 -top-4 text-7xl font-bold text-ink/[0.04] transition-colors group-hover:text-cash/10"
+                aria-hidden
+              >
+                0{index + 1}
+              </span>
+              <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-cash/10 text-cash-dark ring-1 ring-cash/15 transition-all group-hover:scale-110 group-hover:bg-cash/20">
                 <CheckCircle2 className="h-5 w-5" aria-hidden />
               </span>
-              <div>
-                <h3 className="font-display text-base font-bold text-ink">
-                  {reason.title}
-                </h3>
-                <p className="mt-1 text-sm leading-relaxed text-zinc-600">
-                  {reason.description}
-                </p>
-              </div>
+              <h3 className="font-display mt-5 text-lg font-bold text-ink">
+                {reason.title}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                {reason.description}
+              </p>
             </StaggerItem>
           ))}
         </Stagger>

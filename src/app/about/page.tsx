@@ -4,7 +4,16 @@ import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CtaBand } from "@/components/CtaBand";
-import { ShieldCheck, Truck, Recycle, BadgeDollarSign, MapPin } from "@/components/Icons";
+import {
+  ShieldCheck,
+  Truck,
+  Recycle,
+  BadgeDollarSign,
+  MapPin,
+  PhoneCall,
+  Clock,
+  ArrowRight,
+} from "@/components/Icons";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
@@ -51,6 +60,8 @@ export default function AboutPage() {
         eyebrow="About Us"
         title="Local car removal, done the right way"
         description="V Car Removal helps people across Brisbane and South East Queensland turn unwanted vehicles into cash, quickly and without hassle."
+        image="/images/gallery/car-removal-1.jpg"
+        imageAlt="Vehicle loaded on a V Car Removal tow truck"
       />
 
       <section className="py-20 sm:py-28">
@@ -86,9 +97,9 @@ export default function AboutPage() {
             {values.map(({ icon: Icon, title, description }) => (
               <StaggerItem
                 key={title}
-                className="rounded-3xl border border-ink/8 bg-zinc-50 p-6"
+                className="group rounded-3xl border border-ink/8 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-ink/20 hover:shadow-lg"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-ink text-brand">
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/10 text-brand-dark ring-1 ring-brand/15 transition-all group-hover:scale-110 group-hover:bg-brand/20">
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
                 <h3 className="font-display mt-4 text-base font-bold text-ink">
@@ -105,14 +116,41 @@ export default function AboutPage() {
 
       <section className="pb-20 sm:pb-28">
         <Container>
-          <FadeIn className="relative h-72 w-full overflow-hidden rounded-3xl sm:h-96">
+          <FadeIn className="group relative h-80 w-full overflow-hidden rounded-3xl bg-ink shadow-xl shadow-ink/10 sm:h-96">
             <Image
               src="/images/gallery/car-removal-2.jpg"
               alt="V Car Removal tow truck loading a vehicle for removal"
               fill
-              className="object-cover"
+              className="object-cover object-center transition-transform duration-1000 group-hover:scale-105"
               sizes="(min-width: 1024px) 1024px, 100vw"
             />
+            <div
+              className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-ink/10"
+              aria-hidden
+            />
+            <div className="absolute inset-0 flex flex-col justify-center p-8 sm:p-12">
+              <span className="inline-flex w-fit items-center rounded-full bg-white/10 px-3.5 py-1 text-xs font-bold uppercase tracking-wider text-white ring-1 ring-white/20">
+                On the job
+              </span>
+              <p className="font-display mt-4 max-w-md text-2xl font-bold leading-tight text-white sm:text-4xl">
+                From your driveway to cash in hand, same day.
+              </p>
+              <dl className="mt-8 grid max-w-md grid-cols-3 gap-4 border-t border-white/15 pt-6">
+                {[
+                  { value: site.cashOfferMax, label: "Top cash offer" },
+                  { value: "$0", label: "Towing cost" },
+                  { value: "Same day", label: "Pickup available" },
+                ].map((stat) => (
+                  <div key={stat.label}>
+                    <dt className="sr-only">{stat.label}</dt>
+                    <dd className="font-display text-xl font-bold text-white sm:text-2xl">
+                      {stat.value}
+                    </dd>
+                    <dd className="mt-0.5 text-xs text-zinc-300">{stat.label}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </FadeIn>
         </Container>
       </section>
@@ -122,31 +160,70 @@ export default function AboutPage() {
           <FadeIn>
             <SectionHeading eyebrow="Visit Us" title="Our location" align="center" />
           </FadeIn>
-          <Stagger className="mx-auto mt-10 grid max-w-md grid-cols-1 gap-6">
-            {site.depots.map((depot) => (
-              <StaggerItem
-                key={depot.name}
-                className="rounded-3xl border border-ink/8 bg-white p-7 text-center"
-              >
-                <div className="relative mx-auto h-11 w-28">
+          {site.depots.map((depot) => (
+            <FadeIn
+              key={depot.name}
+              className="mx-auto mt-10 grid max-w-5xl grid-cols-1 overflow-hidden rounded-3xl border border-ink/8 bg-white shadow-xl shadow-ink/5 lg:grid-cols-2"
+            >
+              <div className="flex flex-col justify-center gap-6 p-8 sm:p-10">
+                <div className="relative h-10 w-28">
                   <Image
                     src={depot.logo}
                     alt={depot.name}
                     fill
-                    className="object-contain"
+                    className="object-contain object-left"
                     sizes="112px"
                   />
                 </div>
-                <h3 className="font-display mt-4 text-lg font-bold text-ink">
-                  {depot.name}
-                </h3>
-                <p className="mt-2 flex items-center justify-center gap-1.5 text-sm text-zinc-600">
-                  <MapPin className="h-4 w-4 shrink-0 text-brand-dark" aria-hidden />
-                  {depot.address}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
+                <ul className="space-y-4 text-sm text-zinc-600">
+                  <li className="flex items-start gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
+                      <MapPin className="h-4 w-4" aria-hidden />
+                    </span>
+                    <span className="pt-2 font-semibold text-ink">{depot.address}</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
+                      <PhoneCall className="h-4 w-4" aria-hidden />
+                    </span>
+                    <a href={site.phoneHref} className="pt-2 font-semibold text-ink hover:text-brand-dark">
+                      {site.phoneDisplay}
+                    </a>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
+                      <Clock className="h-4 w-4" aria-hidden />
+                    </span>
+                    <span className="pt-2">
+                      {site.hours.map((h) => (
+                        <span key={h.days} className="block">
+                          <span className="font-semibold text-ink">{h.days}:</span> {h.time}
+                        </span>
+                      ))}
+                    </span>
+                  </li>
+                </ul>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${depot.mapQuery}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex w-fit items-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-bold text-ink transition-all hover:-translate-y-0.5 hover:bg-brand-dark"
+                >
+                  Get directions
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
+                </a>
+              </div>
+              <div className="relative min-h-72 bg-zinc-100 lg:min-h-full">
+                <iframe
+                  title={`Map showing ${depot.name} at ${depot.address}`}
+                  src={`https://www.google.com/maps?q=${depot.mapQuery}&output=embed`}
+                  className="absolute inset-0 h-full w-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </FadeIn>
+          ))}
         </Container>
       </section>
 

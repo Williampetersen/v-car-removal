@@ -34,6 +34,24 @@ const nextConfig: NextConfig = {
         destination: "/contact",
         permanent: true,
       },
+      {
+        // Old post-submit "thank you" page from the WordPress quote form.
+        source: "/thanks",
+        destination: "/contact",
+        permanent: true,
+      },
+      {
+        // Old WordPress QLD locations overview page.
+        source: "/qld-2",
+        destination: "/locations",
+        permanent: true,
+      },
+      {
+        // Stray leftover test page from the old site.
+        source: "/test",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
 };
