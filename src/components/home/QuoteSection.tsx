@@ -1,6 +1,6 @@
 import { Container } from "../Container";
 import { ContactForm } from "../ContactForm";
-import { CheckCircle2 } from "../Icons";
+import { CheckCircle2, Zap } from "../Icons";
 import { FadeIn } from "../motion/FadeIn";
 import { Stagger, StaggerItem } from "../motion/Stagger";
 
@@ -51,10 +51,18 @@ export function QuoteSection() {
         </FadeIn>
 
         <FadeIn className="rounded-3xl border border-ink/8 bg-white p-7 shadow-xl sm:p-9">
-          <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
-            Get Cash Offer Now
-          </h3>
-          <div className="mt-5">
+          <div className="flex items-center gap-3">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
+              <Zap className="h-5 w-5" aria-hidden />
+            </span>
+            <div>
+              <h3 className="font-display text-lg font-bold text-ink sm:text-xl">
+                Get Cash Offer Now
+              </h3>
+              <p className="text-xs text-zinc-500">Takes about 60 seconds</p>
+            </div>
+          </div>
+          <div className="mt-6">
             <ContactForm variant="light" />
           </div>
         </FadeIn>

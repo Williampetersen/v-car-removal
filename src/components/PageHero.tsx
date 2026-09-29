@@ -45,15 +45,25 @@ export function PageHero({
         </FadeIn>
 
         {image && (
-          <div className="relative mx-auto hidden aspect-[4/5] w-full max-w-xs overflow-hidden rounded-3xl border border-ink/8 bg-zinc-50 lg:block">
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              className="object-cover object-left-top"
-              sizes="320px"
-              priority
+          <div className="relative mx-auto hidden w-full max-w-md lg:block">
+            <div
+              className="absolute inset-0 translate-x-4 translate-y-4 rounded-3xl bg-brand/25"
+              aria-hidden
             />
+            <div className="group relative aspect-[4/3] overflow-hidden rounded-3xl bg-zinc-50 shadow-2xl shadow-ink/15 ring-1 ring-ink/5">
+              <Image
+                src={image}
+                alt={imageAlt}
+                fill
+                className="object-cover object-center transition-transform duration-700 group-hover:scale-105"
+                sizes="(min-width: 1024px) 448px, 100vw"
+                priority
+              />
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent"
+                aria-hidden
+              />
+            </div>
           </div>
         )}
       </Container>

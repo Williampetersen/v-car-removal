@@ -112,12 +112,15 @@ export function locationSchema(location: Location) {
     "@type": "Service",
     serviceType: "Cash for cars and car removal",
     name: `Cash For Cars ${location.name} | ${site.name}`,
-    description: `Free car removal and top cash offers in ${location.name} and surrounding ${location.region} suburbs.`,
+    description: `Free removal and top cash offers for scrap, damaged, wrecked and written-off cars in ${location.name} and surrounding ${location.region} suburbs.`,
     url: `${site.url}/locations/${location.slug}`,
-    areaServed: {
-      "@type": "Place",
-      name: location.name,
-    },
+    areaServed: [
+      { "@type": "Place", name: location.name },
+      ...location.suburbs.map((suburb) => ({
+        "@type": "Place" as const,
+        name: suburb,
+      })),
+    ],
     provider: {
       "@id": `${site.url}/#organization`,
     },

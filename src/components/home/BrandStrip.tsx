@@ -23,10 +23,10 @@ export function BrandStrip() {
         </p>
       </Container>
       <div className="mt-6 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <div className="flex w-max animate-[brand-scroll_36s_linear_infinite] items-center gap-12">
+        <div className="flex w-max animate-[brand-scroll_36s_linear_infinite] items-center gap-14">
           {[...brands, ...brands].map((src, i) => (
-            <div key={i} className="relative h-10 w-10 shrink-0 opacity-70 grayscale">
-              <Image src={src} alt="" fill className="object-contain" sizes="40px" />
+            <div key={i} className="relative h-9 w-24 shrink-0 opacity-80 grayscale">
+              <Image src={src} alt="" fill className="object-contain" sizes="96px" />
             </div>
           ))}
         </div>

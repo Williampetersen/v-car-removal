@@ -3,6 +3,7 @@ export type Location = {
   name: string;
   region: string;
   heroImage?: string;
+  suburbs: string[];
 };
 
 export type Region = {
@@ -45,6 +46,110 @@ const areaNames: Record<(typeof areaSlugs)[number], string> = {
   toowoomba: "Toowoomba",
 };
 
+// Real suburb names within (or immediately around) each service area. Used to
+// give every location page unique, locally-specific content instead of a
+// templated paragraph with only the area name swapped in — and to pick up
+// long-tail "cash for cars <suburb>" searches without creating a separate
+// thin page per suburb.
+const areaSuburbs: Record<(typeof areaSlugs)[number], string[]> = {
+  brisbane: [
+    "Sherwood",
+    "Chelmer",
+    "Graceville",
+    "Indooroopilly",
+    "Toowong",
+    "St Lucia",
+    "West End",
+    "Woolloongabba",
+    "Coorparoo",
+    "Annerley",
+    "Fairfield",
+    "Yeronga",
+  ],
+  ipswich: [
+    "Booval",
+    "Bundamba",
+    "Riverview",
+    "Goodna",
+    "Redbank",
+    "Redbank Plains",
+    "Springfield",
+    "Springfield Lakes",
+    "Yamanto",
+    "Raceview",
+    "Brassall",
+  ],
+  caboolture: [
+    "Morayfield",
+    "Burpengary",
+    "Narangba",
+    "Deception Bay",
+    "Wamuran",
+    "Elimbah",
+    "Upper Caboolture",
+  ],
+  "gold-coast": [
+    "Southport",
+    "Surfers Paradise",
+    "Broadbeach",
+    "Robina",
+    "Nerang",
+    "Coomera",
+    "Burleigh Heads",
+    "Currumbin",
+    "Palm Beach",
+    "Ashmore",
+  ],
+  logan: [
+    "Beenleigh",
+    "Loganholme",
+    "Springwood",
+    "Shailer Park",
+    "Marsden",
+    "Woodridge",
+    "Browns Plains",
+    "Jimboomba",
+  ],
+  "moreton-bay": [
+    "Redcliffe",
+    "Kallangur",
+    "Petrie",
+    "North Lakes",
+    "Strathpine",
+    "Scarborough",
+    "Bribie Island",
+  ],
+  redlands: [
+    "Cleveland",
+    "Capalaba",
+    "Victoria Point",
+    "Wellington Point",
+    "Alexandra Hills",
+    "Thornlands",
+    "Redland Bay",
+    "Mount Cotton",
+  ],
+  "sunshine-coast": [
+    "Maroochydore",
+    "Caloundra",
+    "Nambour",
+    "Mooloolaba",
+    "Buderim",
+    "Noosa",
+    "Coolum Beach",
+    "Kawana",
+  ],
+  toowoomba: [
+    "Highfields",
+    "Harristown",
+    "Rangeville",
+    "Newtown",
+    "Harlaxton",
+    "Wilsonton",
+    "Glenvale",
+  ],
+};
+
 export const regions: Region[] = [
   {
     slug: "south-east-queensland",
@@ -56,6 +161,7 @@ export const regions: Region[] = [
       name: areaNames[slug],
       region: "South East Queensland",
       heroImage: galleryImages[i % galleryImages.length],
+      suburbs: areaSuburbs[slug],
     })),
   },
 ];

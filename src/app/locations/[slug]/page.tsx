@@ -29,9 +29,10 @@ export async function generateMetadata(
   const { slug } = await props.params;
   const location = getLocationBySlug(slug);
   if (!location) return {};
+  const suburbSample = location.suburbs.slice(0, 3).join(", ");
   return {
     title: `Cash For Cars ${location.name}`,
-    description: `Sell your car for cash in ${location.name}, ${location.region}. Free same-day towing, no-obligation quotes, and cash paid on pickup, no matter the condition.`,
+    description: `Sell your car for cash in ${location.name} and nearby ${suburbSample} — running, damaged, wrecked or written-off. Free same-day towing, no-obligation quotes, cash paid on pickup.`,
     alternates: {
       canonical: `${site.url}/locations/${slug}`,
     },
@@ -68,7 +69,7 @@ export default async function LocationDetailPage(
       <PageHero
         eyebrow={location.region}
         title={`Cash For Cars in ${location.name}`}
-        description={`Get a free quote and same-day, no-cost vehicle removal in ${location.name} and surrounding suburbs. Any make, model or condition.`}
+        description={`Get a free quote and same-day, no-cost vehicle removal in ${location.name} and surrounding suburbs — scrap, damaged, wrecked or written-off cars included.`}
         image={location.heroImage}
         imageAlt={`${site.name} tow truck servicing ${location.name}`}
       >
@@ -85,11 +86,16 @@ export default async function LocationDetailPage(
               Trusted car removal for {location.name} locals
             </h2>
             <p className="mt-4 text-base leading-relaxed text-zinc-600">
-              Whether your vehicle is old, damaged or simply unwanted, our
-              team provides fast, fair quotes and free towing anywhere in{" "}
-              {location.name} and the wider {location.region} area. Book a
-              pickup time that suits you and get paid cash the moment we
-              arrive.
+              Whether your vehicle is old, damaged, wrecked, written-off or
+              simply unwanted, our team provides fast, fair quotes and free
+              towing anywhere in {location.name} and the wider{" "}
+              {location.region} area. Got a scrap car that&apos;s no longer
+              roadworthy? Our{" "}
+              <Link href="/services/scrap-car-removal" className="font-semibold text-brand-dark underline-offset-2 hover:underline">
+                scrap car removal service
+              </Link>{" "}
+              covers {location.name} too — book a pickup time that suits you
+              and get paid cash the moment we arrive.
             </p>
             {region && (
               <p className="mt-4 text-base leading-relaxed text-zinc-600">
@@ -111,6 +117,7 @@ export default async function LocationDetailPage(
                 `Free towing anywhere in ${location.name}`,
                 "Same-day and next-day pickup available",
                 "Cash paid on the spot, no waiting",
+                "Scrap, wrecked and written-off vehicles welcome",
                 "All makes, models and conditions accepted",
               ].map((point) => (
                 <li key={point} className="flex items-start gap-3">
@@ -146,6 +153,35 @@ export default async function LocationDetailPage(
           </aside>
         </Container>
       </section>
+
+      {location.suburbs.length > 0 && (
+        <section className="py-20 sm:py-28">
+          <Container>
+            <FadeIn>
+              <h2 className="font-display text-2xl font-bold text-ink">
+                Suburbs we cover in {location.name}
+              </h2>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-zinc-600">
+                Our tow trucks are on the road across {location.name} every
+                day, including {location.suburbs.slice(0, -1).join(", ")} and{" "}
+                {location.suburbs[location.suburbs.length - 1]}. Don&apos;t
+                see your suburb listed? Call us — if you&apos;re near{" "}
+                {location.name}, we can almost certainly still help.
+              </p>
+            </FadeIn>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {location.suburbs.map((suburb) => (
+                <span
+                  key={suburb}
+                  className="rounded-full border border-ink/8 bg-zinc-50 px-3.5 py-1.5 text-xs font-semibold text-ink-soft"
+                >
+                  {suburb}
+                </span>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       <section className="bg-zinc-50 py-20 sm:py-28">
         <Container>

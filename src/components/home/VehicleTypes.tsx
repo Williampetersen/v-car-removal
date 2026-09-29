@@ -53,8 +53,12 @@ export function VehicleTypes() {
           {vehicles.map((vehicle) => (
             <StaggerItem
               key={vehicle.name}
-              className="rounded-3xl border border-ink/8 bg-zinc-50 p-5 text-center transition-transform hover:-translate-y-1"
+              className="group relative overflow-hidden rounded-3xl border border-ink/8 bg-zinc-50 p-5 text-center transition-all hover:-translate-y-1 hover:border-brand/40 hover:shadow-xl hover:shadow-brand/10"
             >
+              <div
+                className="pointer-events-none absolute left-1/2 top-6 -z-10 h-24 w-24 -translate-x-1/2 rounded-full bg-brand/20 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
+                aria-hidden
+              />
               <div className="relative mx-auto h-20 w-full">
                 <Image
                   src={vehicle.image}
