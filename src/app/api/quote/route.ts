@@ -12,6 +12,10 @@ const REQUIRED_FIELDS = [
   "carYear",
 ] as const;
 
+const MAX_FIELD_LENGTH = 200;
+const MAX_NOTE_LENGTH = 2000;
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 type QuotePayload = Record<(typeof REQUIRED_FIELDS)[number], string> & {
   note?: string;
   honeypot?: string;
@@ -43,16 +47,37 @@ export async function POST(request: Request) {
   }
 
   for (const field of REQUIRED_FIELDS) {
-    if (!body[field] || !String(body[field]).trim()) {
+    const value = body[field];
+    if (typeof value !== "string" || !value.trim()) {
       return NextResponse.json(
         { ok: false, error: `Missing required field: ${field}` },
         { status: 400 }
       );
     }
+    if (value.length > MAX_FIELD_LENGTH) {
+      return NextResponse.json(
+        { ok: false, error: `Field too long: ${field}` },
+        { status: 400 }
+      );
+    }
+  }
+
+  if (body.note !== undefined && (typeof body.note !== "string" || body.note.length > MAX_NOTE_LENGTH)) {
+    return NextResponse.json(
+      { ok: false, error: "Extra details are too long." },
+      { status: 400 }
+    );
   }
 
   const { name, phone, email, suburb, postalCode, carModel, carYear, note } =
     body as QuotePayload;
+
+  if (!EMAIL_PATTERN.test(email.trim())) {
+    return NextResponse.json(
+      { ok: false, error: "Please enter a valid email address." },
+      { status: 400 }
+    );
+  }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
@@ -75,8 +100,8 @@ export async function POST(request: Request) {
     const { error } = await resend.emails.send({
       from,
       to,
-      replyTo: email,
-      subject: `New quote request — ${name} — ${carModel} (${carYear})`,
+      replyTo: email.trim(),
+      subject: `New quote request — ${name} — ${carModel} (${carYear})`.replace(/[\r\n]+/g, " "),
       html: `
         <h2>New quote request</h2>
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>

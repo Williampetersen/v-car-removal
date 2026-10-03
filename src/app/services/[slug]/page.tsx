@@ -12,6 +12,7 @@ import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/JsonLd";
 import { services, getServiceBySlug } from "@/lib/services";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 import { site } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -24,13 +25,11 @@ export async function generateMetadata(
   const { slug } = await props.params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
-  return {
+  return pageMetadata({
     title: service.name,
     description: service.description,
-    alternates: {
-      canonical: `${site.url}/services/${slug}`,
-    },
-  };
+    path: `/services/${slug}`,
+  });
 }
 
 export default async function ServiceDetailPage(

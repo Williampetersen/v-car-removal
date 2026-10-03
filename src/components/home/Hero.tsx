@@ -4,7 +4,7 @@ import { HeroContent } from "./HeroContent";
 
 export function Hero() {
   return (
-    <section className="relative isolate flex min-h-[520px] flex-col overflow-hidden bg-white sm:min-h-[640px]">
+    <section className="relative isolate flex min-h-[460px] flex-col overflow-hidden bg-ink sm:min-h-[640px]">
       <Image
         src="/images/hero/hero.png"
         alt="Aerial view of the V Car Removal wrecking yard"

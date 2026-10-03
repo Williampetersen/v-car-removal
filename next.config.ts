@@ -18,9 +18,21 @@ const nextConfig: NextConfig = {
       "toowoomba",
     ];
 
+    const titleCase = (slug: string) =>
+      slug
+        .split("-")
+        .map((part) => part[0].toUpperCase() + part.slice(1))
+        .join("-");
+
     return [
       ...locationSlugs.map((slug) => ({
         source: `/cash-for-cars-${slug}`,
+        destination: `/locations/${slug}`,
+        permanent: true,
+      })),
+      // The old site's menu linked capitalised URLs, and path matching is case-sensitive.
+      ...locationSlugs.map((slug) => ({
+        source: `/Cash-For-Cars-${titleCase(slug)}`,
         destination: `/locations/${slug}`,
         permanent: true,
       })),

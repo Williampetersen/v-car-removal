@@ -25,7 +25,7 @@ export default function PrivacyPolicyPage() {
         <Container className="max-w-3xl">
           <div className="space-y-8 text-base leading-relaxed text-zinc-600">
             <p>
-              {site.name} (ABN: {site.abn}, &ldquo;we&rdquo;, &ldquo;us&rdquo;) respects your
+              {site.name} ({site.abn ? `ABN: ${site.abn}, ` : ""}&ldquo;we&rdquo;, &ldquo;us&rdquo;) respects your
               privacy and is committed to handling personal information in
               accordance with the Australian Privacy Principles under the
               Privacy Act 1988 (Cth). This policy explains what we collect,

@@ -65,6 +65,17 @@ function openingHoursSpecification() {
     });
 }
 
+function postalAddress(depot: (typeof site.depots)[number]) {
+  return {
+    "@type": "PostalAddress",
+    streetAddress: depot.streetAddress,
+    addressLocality: depot.locality,
+    addressRegion: depot.region,
+    postalCode: depot.postalCode,
+    addressCountry: "AU",
+  };
+}
+
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
@@ -74,18 +85,15 @@ export function organizationSchema() {
     url: site.url,
     image: `${site.url}/images/logo/logo.png`,
     logo: `${site.url}/images/logo/logo.png`,
-    telephone: site.phoneDisplay,
+    telephone: site.phoneHref.replace("tel:", ""),
     email: site.email,
     priceRange: "$$",
     areaServed: site.areasSummary,
+    address: postalAddress(site.depots[0]),
     location: site.depots.map((depot) => ({
       "@type": "Place",
       name: depot.name,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: depot.address,
-        addressCountry: "AU",
-      },
+      address: postalAddress(depot),
     })),
     openingHoursSpecification: openingHoursSpecification(),
   };

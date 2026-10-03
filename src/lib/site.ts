@@ -16,11 +16,11 @@ export const site = {
   areasSummary:
     "Brisbane, Ipswich, Caboolture, Gold Coast, Logan, Moreton Bay, Redlands, Sunshine Coast & Toowoomba",
   url: "https://vcarremoval.com.au",
-  // ABN not published on the WordPress site — add the real one before relying on the legal pages.
-  abn: "Add your ABN here",
-  // Real rating/count aren't available yet; leave null rather than guessing so the
-  // reviews badge shows a generic "read our reviews" link instead of invented numbers.
-  googleRating: 4.8,
+  // ABN not published on the WordPress site — set the real one to show it on the legal pages.
+  abn: null as string | null,
+  // Leave null until copied from the real Google Business Profile; showing an
+  // unverified rating risks breaching Australian Consumer Law.
+  googleRating: null as number | null,
   googleReviewCount: null as number | null,
   googleReviewsUrl:
     "https://www.google.com/maps/search/?api=1&query=V+Car+Removal+Brisbane+reviews",
@@ -28,6 +28,10 @@ export const site = {
     {
       name: "V Car Removal",
       address: "451 Sherwood Rd, Sherwood QLD 4075",
+      streetAddress: "451 Sherwood Rd",
+      locality: "Sherwood",
+      region: "QLD",
+      postalCode: "4075",
       mapQuery: "451+Sherwood+Rd+Sherwood+QLD+4075",
       logo: "/images/logo/logo.png",
     },

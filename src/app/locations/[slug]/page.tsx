@@ -18,6 +18,7 @@ import {
 import { services } from "@/lib/services";
 import { site } from "@/lib/site";
 import { locationSchema, breadcrumbSchema } from "@/lib/schema";
+import { pageMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() {
   return allLocations.map((loc) => ({ slug: loc.slug }));
@@ -30,13 +31,11 @@ export async function generateMetadata(
   const location = getLocationBySlug(slug);
   if (!location) return {};
   const suburbSample = location.suburbs.slice(0, 3).join(", ");
-  return {
+  return pageMetadata({
     title: `Cash For Cars ${location.name}`,
     description: `Sell your car for cash in ${location.name} and nearby ${suburbSample} — running, damaged, wrecked or written-off. Free same-day towing, no-obligation quotes, cash paid on pickup.`,
-    alternates: {
-      canonical: `${site.url}/locations/${slug}`,
-    },
-  };
+    path: `/locations/${slug}`,
+  });
 }
 
 export default async function LocationDetailPage(
