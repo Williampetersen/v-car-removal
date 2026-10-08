@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
 import { CtaBand } from "@/components/CtaBand";
+import { PrimaryButton, CallButton } from "@/components/Buttons";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CheckCircle2, ServiceIcons } from "@/components/Icons";
 import { FadeIn } from "@/components/motion/FadeIn";
@@ -59,29 +59,29 @@ export default async function ServiceDetailPage(
     <>
       <JsonLd data={serviceSchema(service)} />
       <JsonLd data={breadcrumbSchema(breadcrumbItems)} />
-      <PageHero eyebrow="Service" title={service.name} description={service.description} />
-
-      <section className="pt-20 sm:pt-28">
-        <Container>
-          <FadeIn className="relative h-64 w-full overflow-hidden rounded-3xl bg-zinc-50 sm:h-80">
-            <Image
-              src={service.image}
-              alt={service.name}
-              fill
-              className="object-contain p-6"
-              sizes="(min-width: 1024px) 1024px, 100vw"
-            />
-          </FadeIn>
-        </Container>
-      </section>
+      <PageHero
+        eyebrow="Service"
+        title={service.name}
+        description={service.description}
+        crumbs={[
+          { name: "Home", href: "/" },
+          { name: "Services", href: "/services" },
+          { name: service.name },
+        ]}
+      >
+        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <PrimaryButton href="#quote">Get a free quote</PrimaryButton>
+          <CallButton />
+        </div>
+      </PageHero>
 
       <section className="py-20 sm:py-28">
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-3">
           <FadeIn className="lg:col-span-2">
-            <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-ink text-brand">
+            <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-ink text-brand">
               <Icon className="h-7 w-7" aria-hidden />
             </span>
-            <h2 className="font-display mt-6 text-2xl font-bold text-ink">
+            <h2 className="heading-xl mt-6 text-4xl text-ink">
               What&apos;s included
             </h2>
             <ul className="mt-6 space-y-4">
@@ -105,8 +105,8 @@ export default async function ServiceDetailPage(
             </p>
           </FadeIn>
 
-          <aside className="rounded-3xl border border-ink/8 bg-zinc-50 p-7 lg:sticky lg:top-28 lg:h-fit">
-            <h3 className="font-display text-lg font-bold text-ink">
+          <aside className="rounded-2xl border border-ink/10 bg-cream p-7 lg:sticky lg:top-28 lg:h-fit">
+            <h3 className="heading-xl text-3xl text-ink">
               Explore other services
             </h3>
             <div className="mt-5 flex flex-col gap-3">
@@ -114,7 +114,7 @@ export default async function ServiceDetailPage(
                 <Link
                   key={s.slug}
                   href={`/services/${s.slug}`}
-                  className="rounded-2xl border border-ink/8 bg-white px-4 py-3 text-sm font-semibold text-ink-soft transition-colors hover:border-brand hover:text-ink"
+                  className="rounded-2xl border border-ink/10 bg-white px-4 py-3 text-sm font-semibold text-ink-soft transition-colors hover:border-brand hover:text-ink"
                 >
                   {s.name}
                 </Link>
@@ -124,10 +124,10 @@ export default async function ServiceDetailPage(
         </Container>
       </section>
 
-      <section className="bg-zinc-50 py-20 sm:py-28">
+      <section className="bg-cream py-20 sm:py-28">
         <Container>
           <FadeIn>
-            <h2 className="font-display text-2xl font-bold text-ink">
+            <h2 className="heading-xl text-4xl text-ink">
               Other services you might need
             </h2>
           </FadeIn>

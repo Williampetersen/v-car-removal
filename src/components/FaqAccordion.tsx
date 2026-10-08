@@ -1,5 +1,4 @@
 import { Faq } from "@/lib/faqs";
-import { ChevronRight } from "./Icons";
 
 // Native <details> accordion: no client JavaScript and the full answers stay in the HTML for search/AI crawlers.
 export function FaqAccordion({
@@ -13,23 +12,26 @@ export function FaqAccordion({
 }) {
   const Heading = `h${headingLevel}` as "h2" | "h3";
   return (
-    <div className="divide-y divide-ink/8 rounded-3xl border border-ink/8 bg-white">
+    <div className="space-y-3">
       {items.map((item, index) => (
         <details
           key={item.question}
-          className="group"
+          className="group rounded-xl border border-ink/10 bg-white open:border-ink open:shadow-[0_5px_0_0_var(--brand)]"
           open={openFirst && index === 0}
         >
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 [&::-webkit-details-marker]:hidden">
-            <Heading className="font-display text-base font-bold text-ink sm:text-lg">
+          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 sm:px-6 sm:py-5">
+            <Heading className="font-display text-xl leading-tight text-ink sm:text-2xl">
               {item.question}
             </Heading>
-            <ChevronRight
-              className="h-5 w-5 shrink-0 text-ink-soft transition-transform group-open:rotate-90 group-open:text-link"
+            <span
               aria-hidden
-            />
+              className="relative h-8 w-8 shrink-0 rounded-full bg-ink text-brand transition-colors group-open:bg-brand group-open:text-ink"
+            >
+              <span className="absolute left-1/2 top-1/2 h-0.5 w-3.5 -translate-x-1/2 -translate-y-1/2 bg-current" />
+              <span className="absolute left-1/2 top-1/2 h-3.5 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-current transition-opacity group-open:opacity-0" />
+            </span>
           </summary>
-          <div className="px-6 pb-6 text-sm leading-relaxed text-zinc-600 sm:text-base">
+          <div className="px-5 pb-5 text-base leading-relaxed text-zinc-600 sm:px-6 sm:pb-6">
             {item.answer}
           </div>
         </details>

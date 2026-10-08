@@ -29,7 +29,7 @@ export default function ThanksPage() {
       </PageHero>
       <section className="pb-20">
         <Container className="max-w-xl">
-          <div className="rounded-3xl border border-ink/8 bg-zinc-50 p-7">
+          <div className="rounded-2xl border border-ink/10 bg-cream p-7">
             <NapBlock />
           </div>
         </Container>

@@ -1,79 +1,58 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
 import { CtaBand } from "@/components/CtaBand";
-import { MapPin } from "@/components/Icons";
-import { regions, locationPath } from "@/lib/locations";
-import { site } from "@/lib/site";
+import { ServiceAreas } from "@/components/home/ServiceAreas";
+import { QuickAnswer } from "@/components/QuickAnswer";
 import { LastUpdated } from "@/components/LastUpdated";
+import { JsonLd } from "@/components/JsonLd";
+import { site } from "@/lib/site";
+import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+
+const title = "Car Removal Service Areas in South East QLD";
+const description =
+  "We buy cars and remove them free in Brisbane, Ipswich, Caboolture, Gold Coast, Logan, Moreton Bay, Redlands, Sunshine Coast and Toowoomba.";
 
 export const metadata: Metadata = {
-  title: "Car Removal Service Areas in South East QLD",
-  description: `We buy cars and remove them free in Brisbane, Ipswich, Caboolture, Gold Coast, Logan, Moreton Bay, Redlands, Sunshine Coast and Toowoomba.`,
+  title,
+  description,
   alternates: {
     canonical: `${site.url}/locations`,
   },
+  openGraph: { title, description, url: `${site.url}/locations`, type: "website" },
 };
 
 export default function LocationsPage() {
   return (
     <>
+      <JsonLd data={webPageSchema({ path: "/locations", name: title, description })} />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Locations", path: "/locations" },
+        ])}
+      />
       <PageHero
-        eyebrow="Service Locations"
+        eyebrow="Service areas"
         title="Find your nearest car removal service"
         description="We service a wide area across South East Queensland. Select your area below, or call us to check if we cover your suburb."
+        crumbs={[{ name: "Home", href: "/" }, { name: "Locations" }]}
       />
-      <section className="py-20 sm:py-28">
-        <Container className="space-y-14">
-          {regions.map((region) => (
-            <div key={region.slug} id={region.slug}>
-              <div className="flex items-center gap-3">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-brand">
-                  <MapPin className="h-5 w-5" aria-hidden />
-                </span>
-                <div>
-                  <h2 className="font-display text-2xl font-bold text-ink">
-                    {region.name}
-                  </h2>
-                  <p className="text-sm text-zinc-600">{region.blurb}</p>
-                </div>
-              </div>
-              <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-                {region.locations.map((loc) => (
-                  <Link
-                    key={loc.slug}
-                    href={locationPath(loc.slug)}
-                    className="group overflow-hidden rounded-2xl border border-ink/8 bg-zinc-50 transition-colors hover:border-brand"
-                  >
-                    {loc.heroImage && (
-                      <div className="relative h-24 w-full overflow-hidden bg-zinc-100">
-                        <Image
-                          src={loc.heroImage}
-                          alt={`Cash for cars ${loc.name}`}
-                          fill
-                          className="object-cover object-[50%_20%] transition-transform group-hover:scale-105"
-                          sizes="240px"
-                        />
-                      </div>
-                    )}
-                    <div className="p-5">
-                      <p className="font-display font-bold text-ink">
-                        {loc.name}
-                      </p>
-                      <p className="mt-1 text-xs font-semibold uppercase tracking-wide text-zinc-500">
-                        {loc.region}
-                      </p>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ))}
+      <section className="bg-white pt-14">
+        <Container className="max-w-4xl">
+          <QuickAnswer title="Where we collect">
+            <p>
+              We collect from Brisbane, Ipswich, Caboolture, the Gold Coast,
+              Logan, Moreton Bay, Redlands, the Sunshine Coast and Toowoomba,
+              working from our depot at {site.address.street},{" "}
+              {site.address.suburb} {site.address.state}{" "}
+              {site.address.postcode}. Towing is free anywhere in these areas.
+            </p>
+          </QuickAnswer>
         </Container>
       </section>
-      <section className="pb-10">
+      <ServiceAreas />
+      <section className="bg-cream pb-10">
         <Container>
           <LastUpdated />
         </Container>

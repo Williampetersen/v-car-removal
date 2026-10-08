@@ -121,8 +121,37 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
         eyebrow={`${location.name}, ${location.region}`}
         title={`Cash For Cars ${location.name}`}
         description={`Free car removal and a cash offer for your car, ute, van, 4WD or motorbike in ${location.name}, in any condition.`}
-        image={location.heroImage}
-        imageAlt={`${site.name} tow truck collecting a car in ${location.name}`}
+        aside={
+          <div className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm sm:p-7">
+            <p className="font-display text-sm uppercase tracking-[0.18em] text-brand">
+              Pickup in {location.name}
+            </p>
+            <dl className="mt-4 divide-y divide-white/10">
+              {[
+                ["From our depot", `about ${location.distanceKm} km`],
+                ["Towing", "Free"],
+                ["Quote", "Before we send a truck"],
+                ["Payment", "Cash or bank transfer"],
+              ].map(([k, v]) => (
+                <div key={k} className="flex items-center justify-between gap-4 py-3">
+                  <dt className="text-sm text-zinc-300">{k}</dt>
+                  <dd className="text-right text-base font-semibold text-white">{v}</dd>
+                </div>
+              ))}
+            </dl>
+            <a
+              href={site.phoneHref}
+              className="heading-xl mt-3 block text-4xl text-brand hover:text-white"
+            >
+              {site.phoneDisplay}
+            </a>
+          </div>
+        }
+        crumbs={[
+          { name: "Home", href: "/" },
+          { name: "Locations", href: "/locations" },
+          { name: `Cash for cars ${location.name}` },
+        ]}
       >
         <div className="mt-8 flex flex-col gap-4 sm:flex-row">
           <PrimaryButton href="#quote">Get Your Free Quote</PrimaryButton>
@@ -130,7 +159,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
         </div>
       </PageHero>
 
-      <section className="pb-12">
+      <section className="bg-white pt-12 pb-4">
         <Container className="max-w-4xl">
           <QuickAnswer title={`Selling a car in ${location.name}: the short answer`}>
             <p>
@@ -154,10 +183,10 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
         </Container>
       </section>
 
-      <section className="py-12 sm:py-16">
+      <section className="bg-white py-12 sm:py-16">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+            <h2 className="heading-xl text-4xl text-ink sm:text-5xl">
               Car removal in {location.name}
             </h2>
             <div className="mt-5 space-y-4 text-base leading-relaxed text-zinc-700">
@@ -167,7 +196,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
               <p>{location.access}</p>
             </div>
 
-            <h2 className="font-display mt-12 text-2xl font-bold text-ink sm:text-3xl">
+            <h2 className="heading-xl mt-12 text-4xl text-ink sm:text-5xl">
               Suburbs we collect from in {location.name}
             </h2>
             <p className="mt-3 text-base text-zinc-700">
@@ -177,7 +206,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
               {location.suburbs.map((s) => (
                 <li
                   key={s}
-                  className="rounded-full border border-ink/10 bg-zinc-50 px-3.5 py-1.5 text-sm font-medium text-ink-soft"
+                  className="rounded-lg border border-ink/15 bg-cream px-3.5 py-1.5 text-sm font-medium text-ink-soft"
                 >
                   {s}
                 </li>
@@ -189,7 +218,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
             </p>
           </div>
 
-          <aside className="h-fit rounded-3xl border border-ink/8 bg-zinc-50 p-7 lg:sticky lg:top-28">
+          <aside className="h-fit rounded-2xl border border-ink/10 bg-cream p-7 lg:sticky lg:top-28">
             <NapBlock />
             <Link
               href="/locations"
@@ -201,21 +230,21 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
         </Container>
       </section>
 
-      <section className="bg-zinc-50 py-14 sm:py-20">
+      <section className="bg-cream py-14 sm:py-20">
         <Container>
-          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+          <h2 className="heading-xl text-4xl text-ink sm:text-5xl">
             How selling your car in {location.name} works
           </h2>
           <ol className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((step, i) => (
               <li
                 key={step.title}
-                className="rounded-3xl border border-ink/8 bg-white p-6"
+                className="rounded-2xl border border-ink/10 bg-white p-6"
               >
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-ink text-sm font-bold text-brand">
+                <span className="heading-xl flex h-11 w-11 items-center justify-center rounded-lg bg-ink text-2xl text-brand">
                   {i + 1}
                 </span>
-                <h3 className="font-display mt-4 text-base font-bold text-ink">
+                <h3 className="heading-xl mt-4 text-3xl text-ink">
                   {step.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-600">
@@ -227,9 +256,9 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
         </Container>
       </section>
 
-      <section className="py-14 sm:py-20">
+      <section className="bg-white py-14 sm:py-20">
         <Container>
-          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+          <h2 className="heading-xl text-4xl text-ink sm:text-5xl">
             Services available in {location.name}
           </h2>
           <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -240,9 +269,9 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
         </Container>
       </section>
 
-      <section className="bg-zinc-50 py-14 sm:py-20">
+      <section className="bg-cream py-14 sm:py-20">
         <Container className="max-w-3xl">
-          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+          <h2 className="heading-xl text-4xl text-ink sm:text-5xl">
             Cash for cars {location.name}: your questions answered
           </h2>
           <div className="mt-8">
@@ -252,9 +281,9 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
       </section>
 
       {nearby.length > 0 && (
-        <section className="py-14">
+        <section className="bg-white py-14">
           <Container>
-            <h2 className="font-display text-xl font-bold text-ink">
+            <h2 className="heading-xl text-3xl text-ink">
               Nearby areas we service
             </h2>
             <ul className="mt-5 flex flex-wrap gap-3">
@@ -262,7 +291,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
                 <li key={l.slug}>
                   <Link
                     href={locationPath(l.slug)}
-                    className="inline-block rounded-full border border-ink/10 bg-white px-4 py-2 text-sm font-semibold text-ink-soft transition-colors hover:border-brand hover:text-ink"
+                    className="font-display inline-block rounded-lg border border-ink/20 bg-white px-4 py-2 text-lg uppercase tracking-wide text-ink-soft transition-colors hover:border-ink hover:bg-ink hover:text-white"
                   >
                     Cash for cars {l.name}
                   </Link>

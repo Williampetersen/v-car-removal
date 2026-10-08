@@ -14,50 +14,56 @@ export function MobileNav() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open menu"
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink"
+        aria-expanded={open}
+        className="flex h-11 w-11 items-center justify-center rounded-lg bg-ink text-white"
       >
         <Menu className="h-5 w-5" aria-hidden />
       </button>
 
       {open && (
-        <div className="fixed inset-0 z-50 flex">
-          <div
-            className="absolute inset-0 bg-ink/60 backdrop-blur-sm"
-            onClick={() => setOpen(false)}
-          />
-          <div className="relative ml-auto flex h-full w-full max-w-xs flex-col bg-white p-6 shadow-2xl">
-            <div className="flex items-center justify-between">
-              <span className="font-display text-lg font-bold text-ink">
-                Menu
-              </span>
-              <button
-                type="button"
+        <div
+          className="fixed inset-0 z-50 flex flex-col bg-ink text-white"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+        >
+          <div className="flex h-16 items-center justify-between px-5">
+            <span className="heading-xl text-3xl">Menu</span>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
+              className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10"
+            >
+              <X className="h-5 w-5" aria-hidden />
+            </button>
+          </div>
+          <div className="stripe" aria-hidden />
+          <nav aria-label="Mobile" className="flex flex-1 flex-col gap-1 overflow-y-auto px-5 py-6">
+            {NAV_LINKS.map((link) => (
+              <Link
+                prefetch={false}
+                key={link.href}
+                href={link.href}
                 onClick={() => setOpen(false)}
-                aria-label="Close menu"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-ink/10 text-ink"
+                className="heading-xl rounded-lg px-3 py-3 text-4xl hover:bg-white/10"
               >
-                <X className="h-5 w-5" aria-hidden />
-              </button>
-            </div>
-            <nav className="mt-8 flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
-                <Link prefetch={false}
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="rounded-xl px-3 py-3 text-lg font-semibold text-ink-soft hover:bg-zinc-100"
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="space-y-3 border-t border-white/10 p-5">
             <a
               href={site.phoneHref}
-              className="mt-8 flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-base font-bold text-ink"
+              className="font-display flex items-center justify-center gap-2 rounded-lg bg-brand py-4 text-xl uppercase tracking-wide text-ink"
             >
               <PhoneCall className="h-5 w-5" aria-hidden />
               Call {site.phoneDisplay}
             </a>
+            <p className="text-center text-sm text-zinc-400">
+              {site.address.street}, {site.address.suburb} {site.address.state}{" "}
+              {site.address.postcode}
+            </p>
           </div>
         </div>
       )}

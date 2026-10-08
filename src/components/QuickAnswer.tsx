@@ -11,9 +11,10 @@ export function QuickAnswer({
   return (
     <aside
       aria-label={title}
-      className="rounded-3xl border border-brand/40 bg-brand/10 p-6 sm:p-8"
+      className="relative overflow-hidden rounded-2xl border border-ink/10 bg-cream p-6 pl-8 sm:p-8 sm:pl-10"
     >
-      <p className="font-display text-sm font-bold uppercase tracking-wider text-ink-soft">
+      <span className="absolute inset-y-0 left-0 w-2 bg-brand" aria-hidden />
+      <p className="font-display text-sm uppercase tracking-[0.18em] text-link">
         {title}
       </p>
       <div className="mt-3 space-y-3 text-base leading-relaxed text-ink">

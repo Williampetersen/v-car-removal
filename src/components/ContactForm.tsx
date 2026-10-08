@@ -1,29 +1,55 @@
 "use client";
 
-import { FormEvent, useId, useState } from "react";
+import { FormEvent, useId, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { site } from "@/lib/site";
 
 const currentYear = new Date().getFullYear();
 const carYears = Array.from({ length: currentYear - 1989 }, (_, i) => currentYear - i);
 
+/**
+ * Two-step quote form (car details, then contact details). Both steps stay in the DOM so the
+ * browser validates and autofills normally. Posts to /api/quote and continues to /thanks.
+ */
 export function ContactForm({
   variant = "light",
 }: {
-  variant?: "light" | "glass";
+  variant?: "light" | "dark" | "glass";
 }) {
-  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
-    "idle"
-  );
   const uid = useId();
   const router = useRouter();
-  const isGlass = variant === "glass";
+  const formRef = useRef<HTMLFormElement>(null);
+  const stepOneRef = useRef<HTMLDivElement>(null);
+  const [step, setStep] = useState<1 | 2>(1);
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+  const dark = variant !== "light";
+
+  const field = dark
+    ? "w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-base text-white placeholder:text-zinc-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40"
+    : "w-full rounded-lg border border-ink/20 bg-white px-4 py-3 text-base text-ink placeholder:text-zinc-400 focus:border-ink focus:outline-none focus:ring-2 focus:ring-brand/50";
+  const label = dark
+    ? "font-display text-sm uppercase tracking-wider text-zinc-300"
+    : "font-display text-sm uppercase tracking-wider text-ink-soft";
+
+  function goNext() {
+    const inputs = stepOneRef.current?.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
+      "input, select"
+    );
+    if (inputs) {
+      for (const el of inputs) {
+        if (!el.reportValidity()) return;
+      }
+    }
+    setStep(2);
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const currentForm = event.currentTarget;
-    const form = new FormData(currentForm);
-
+    if (step === 1) {
+      goNext();
+      return;
+    }
+    const form = new FormData(event.currentTarget);
     setStatus("sending");
 
     const payload = {
@@ -46,10 +72,8 @@ export function ContactForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-
       if (!response.ok) throw new Error("Request failed");
-
-      currentForm.reset();
+      formRef.current?.reset();
       // Thank-you page fires the GA4 / Google Ads / Meta conversion events.
       router.push("/thanks");
     } catch {
@@ -57,196 +81,226 @@ export function ContactForm({
     }
   }
 
-  const fieldClasses = isGlass
-    ? "w-full rounded-xl border border-white/25 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/60 backdrop-blur-sm transition-colors focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40"
-    : "w-full rounded-xl border border-ink/12 bg-white px-4 py-3 text-sm text-ink placeholder:text-zinc-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/30";
-
-  const labelClasses = isGlass
-    ? "sr-only"
-    : "text-sm font-semibold text-ink-soft";
-
-  const gridClasses = isGlass
-    ? "grid grid-cols-1 gap-3"
-    : "grid grid-cols-1 gap-5 sm:grid-cols-2";
-
-  const fields: Array<{
-    id: string;
-    label: string;
-    span?: boolean;
-    node: React.ReactNode;
-  }> = [
-    {
-      id: "your-name",
-      label: "Your name",
-      node: (
-        <input
-          id={`${uid}-your-name`}
-          name="your-name"
-          type="text"
-          required
-          className={fieldClasses}
-          placeholder="Your Name"
-        />
-      ),
-    },
-    {
-      id: "your-phone",
-      label: "Your phone number",
-      node: (
-        <input
-          id={`${uid}-your-phone`}
-          name="your-phone"
-          type="tel"
-          required
-          className={fieldClasses}
-          placeholder="Your Phone Number"
-        />
-      ),
-    },
-    {
-      id: "your-email",
-      label: "Email address",
-      span: true,
-      node: (
-        <input
-          id={`${uid}-your-email`}
-          name="your-email"
-          type="email"
-          required
-          className={fieldClasses}
-          placeholder="Email Address"
-        />
-      ),
-    },
-    {
-      id: "suburb",
-      label: "Suburb",
-      node: (
-        <input
-          id={`${uid}-suburb`}
-          name="suburb"
-          type="text"
-          required
-          className={fieldClasses}
-          placeholder="Suburb"
-        />
-      ),
-    },
-    {
-      id: "postal-code",
-      label: "Postal code",
-      node: (
-        <input
-          id={`${uid}-postal-code`}
-          name="postal-code"
-          type="text"
-          required
-          inputMode="numeric"
-          className={fieldClasses}
-          placeholder="Postal Code"
-        />
-      ),
-    },
-    {
-      id: "car-model",
-      label: "Car brand / model",
-      node: (
-        <input
-          id={`${uid}-car-model`}
-          name="car-model"
-          type="text"
-          required
-          className={fieldClasses}
-          placeholder="Car Brand / Model"
-        />
-      ),
-    },
-    {
-      id: "car-year",
-      label: "Car year",
-      node: (
-        <select
-          id={`${uid}-car-year`}
-          name="car-year"
-          required
-          defaultValue=""
-          className={`${fieldClasses} ${isGlass ? "[&>option]:text-ink" : ""}`}
-        >
-          <option value="" disabled>
-            Car Year
-          </option>
-          {carYears.map((year) => (
-            <option key={year} value={year}>
-              {year}
-            </option>
-          ))}
-        </select>
-      ),
-    },
-    {
-      id: "your-note",
-      label: "Extra details",
-      span: true,
-      node: (
-        <textarea
-          id={`${uid}-your-note`}
-          name="your-note"
-          rows={isGlass ? 2 : 4}
-          className={fieldClasses}
-          placeholder="Extra details (condition, location notes, special requests)"
-        />
-      ),
-    },
-  ];
+  const id = (name: string) => `${uid}-${name}`;
 
   return (
-    <form onSubmit={handleSubmit} className={gridClasses}>
-      {fields.map((field) => (
-        <div key={field.id} className={!isGlass && field.span ? "sm:col-span-2" : undefined}>
-          <label htmlFor={`${uid}-${field.id}`} className={labelClasses}>
-            {field.label}
-          </label>
-          <div className={isGlass ? undefined : "mt-2"}>{field.node}</div>
-        </div>
-      ))}
+    <form ref={formRef} onSubmit={handleSubmit} noValidate={false} className="space-y-5">
+      <ol
+        className="flex items-center gap-3"
+        aria-label={`Step ${step} of 2`}
+      >
+        {["Your car", "Your details"].map((name, i) => {
+          const active = step === i + 1;
+          const done = step > i + 1;
+          return (
+            <li key={name} className="flex flex-1 items-center gap-2">
+              <span
+                className={`font-display flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm ${
+                  active || done
+                    ? "bg-brand text-ink"
+                    : dark
+                      ? "bg-white/15 text-zinc-300"
+                      : "bg-ink/10 text-ink-soft"
+                }`}
+              >
+                {i + 1}
+              </span>
+              <span
+                className={`font-display text-sm uppercase tracking-wider ${
+                  dark ? "text-zinc-200" : "text-ink-soft"
+                }`}
+              >
+                {name}
+              </span>
+              {i === 0 && (
+                <span
+                  aria-hidden
+                  className={`h-0.5 flex-1 ${done ? "bg-brand" : dark ? "bg-white/15" : "bg-ink/10"}`}
+                />
+              )}
+            </li>
+          );
+        })}
+      </ol>
 
-      <div className="hidden" aria-hidden="true">
-        <label htmlFor={`${uid}-company`}>Leave this field empty</label>
-        <input
-          id={`${uid}-company`}
-          name="company"
-          type="text"
-          tabIndex={-1}
-          autoComplete="off"
-        />
+      <div ref={stepOneRef} hidden={step !== 1} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div className="sm:col-span-2">
+          <label htmlFor={id("car-model")} className={label}>
+            Car make &amp; model
+          </label>
+          <input
+            id={id("car-model")}
+            name="car-model"
+            type="text"
+            required
+            maxLength={120}
+            autoComplete="off"
+            className={`${field} mt-1.5`}
+            placeholder="e.g. Toyota Corolla"
+          />
+        </div>
+        <div>
+          <label htmlFor={id("car-year")} className={label}>
+            Year
+          </label>
+          <select
+            id={id("car-year")}
+            name="car-year"
+            required
+            defaultValue=""
+            className={`${field} mt-1.5 ${dark ? "[&>option]:text-ink" : ""}`}
+          >
+            <option value="" disabled>
+              Select year
+            </option>
+            {carYears.map((year) => (
+              <option key={year} value={year}>
+                {year}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label htmlFor={id("suburb")} className={label}>
+            Pickup suburb
+          </label>
+          <input
+            id={id("suburb")}
+            name="suburb"
+            type="text"
+            required
+            maxLength={80}
+            autoComplete="address-level2"
+            className={`${field} mt-1.5`}
+            placeholder="e.g. Sherwood"
+          />
+        </div>
+        <div className="sm:col-span-2">
+          <label htmlFor={id("postal-code")} className={label}>
+            Postcode
+          </label>
+          <input
+            id={id("postal-code")}
+            name="postal-code"
+            type="text"
+            required
+            inputMode="numeric"
+            pattern="[0-9]{4}"
+            maxLength={4}
+            autoComplete="postal-code"
+            className={`${field} mt-1.5`}
+            placeholder="4075"
+          />
+        </div>
+        <button
+          type="button"
+          onClick={goNext}
+          className="font-display sm:col-span-2 rounded-lg bg-brand px-6 py-3.5 text-lg uppercase tracking-wide text-ink shadow-[0_5px_0_0_#a63a05] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d35]"
+        >
+          Next: your details
+        </button>
       </div>
 
-      <div className={isGlass ? undefined : "sm:col-span-2"}>
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          className={`rounded-full bg-brand px-6 py-3.5 text-base font-bold text-ink transition-all hover:-translate-y-0.5 hover:bg-brand-dark disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 ${isGlass ? "w-full" : "w-full sm:w-auto"}`}
-        >
-          {status === "sending" ? "Sending…" : "Get Cash Offer Now"}
-        </button>
-        {status === "sent" && (
-          <p
-            className={`mt-3 text-sm font-medium ${isGlass ? "text-white" : "text-cash-dark"}`}
+      <div hidden={step !== 2} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div>
+          <label htmlFor={id("your-name")} className={label}>
+            Your name
+          </label>
+          <input
+            id={id("your-name")}
+            name="your-name"
+            type="text"
+            required
+            maxLength={100}
+            autoComplete="name"
+            className={`${field} mt-1.5`}
+          />
+        </div>
+        <div>
+          <label htmlFor={id("your-phone")} className={label}>
+            Phone
+          </label>
+          <input
+            id={id("your-phone")}
+            name="your-phone"
+            type="tel"
+            required
+            maxLength={30}
+            autoComplete="tel"
+            className={`${field} mt-1.5`}
+            placeholder="04xx xxx xxx"
+          />
+        </div>
+        <div className="sm:col-span-2">
+          <label htmlFor={id("your-email")} className={label}>
+            Email
+          </label>
+          <input
+            id={id("your-email")}
+            name="your-email"
+            type="email"
+            required
+            maxLength={160}
+            autoComplete="email"
+            className={`${field} mt-1.5`}
+          />
+        </div>
+        <div className="sm:col-span-2">
+          <label htmlFor={id("your-note")} className={label}>
+            Anything we should know? (optional)
+          </label>
+          <textarea
+            id={id("your-note")}
+            name="your-note"
+            rows={3}
+            maxLength={2000}
+            className={`${field} mt-1.5`}
+            placeholder="Condition, keys, access to the car"
+          />
+        </div>
+
+        <div className="hidden" aria-hidden="true">
+          <label htmlFor={id("company")}>Leave this field empty</label>
+          <input
+            id={id("company")}
+            name="company"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
+        <div className="flex gap-3 sm:col-span-2">
+          <button
+            type="button"
+            onClick={() => setStep(1)}
+            className={`font-display rounded-lg border-2 px-5 py-3.5 text-lg uppercase tracking-wide ${
+              dark
+                ? "border-white/25 text-white hover:border-white"
+                : "border-ink/20 text-ink hover:border-ink"
+            }`}
           >
-            Thanks — your request is in. We&apos;ll call or email you back
-            with a cash offer shortly.
-          </p>
-        )}
+            Back
+          </button>
+          <button
+            type="submit"
+            disabled={status === "sending"}
+            className="font-display flex-1 rounded-lg bg-brand px-6 py-3.5 text-lg uppercase tracking-wide text-ink shadow-[0_5px_0_0_#a63a05] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d35] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+          >
+            {status === "sending" ? "Sending…" : "Get my cash offer"}
+          </button>
+        </div>
         {status === "error" && (
           <p
-            className={`mt-3 text-sm font-medium ${isGlass ? "text-white" : "text-red-600"}`}
+            role="alert"
+            className={`text-sm font-medium sm:col-span-2 ${dark ? "text-red-300" : "text-red-700"}`}
           >
             Something went wrong sending your request. Please call{" "}
-            <a href={site.phoneHref} className="underline">
+            <a href={site.phoneHref} className="font-bold underline">
               {site.phoneDisplay}
             </a>{" "}
             or email{" "}
-            <a href={`mailto:${site.email}`} className="underline">
+            <a href={`mailto:${site.email}`} className="font-bold underline">
               {site.email}
             </a>{" "}
             instead.

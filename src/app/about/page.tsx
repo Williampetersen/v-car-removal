@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { CtaBand } from "@/components/CtaBand";
-import { ShieldCheck, Truck, Recycle, BadgeDollarSign, MapPin } from "@/components/Icons";
+import { ShieldCheck, Truck, Recycle, BadgeDollarSign } from "@/components/Icons";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
 import { JsonLd } from "@/components/JsonLd";
 import { LastUpdated } from "@/components/LastUpdated";
-import { NapBlock } from "@/components/NapBlock";
+import { VisitUs } from "@/components/home/VisitUs";
 import { webPageSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -104,12 +103,12 @@ export default function AboutPage() {
             {values.map(({ icon: Icon, title, description }) => (
               <StaggerItem
                 key={title}
-                className="rounded-3xl border border-ink/8 bg-zinc-50 p-6"
+                className="rounded-2xl border border-ink/10 bg-cream p-6"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-ink text-brand">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
-                <h3 className="font-display mt-4 text-base font-bold text-ink">
+                <h3 className="heading-xl mt-4 text-2xl text-ink">
                   {title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-600">
@@ -121,63 +120,14 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="pb-20 sm:pb-28">
+      <VisitUs />
+
+      <section className="bg-white pb-10">
         <Container>
-          <FadeIn className="relative h-72 w-full overflow-hidden rounded-3xl sm:h-96">
-            <Image
-              src="/images/gallery/car-removal-2.jpg"
-              alt="V Car Removal tow truck loading a vehicle for removal"
-              fill
-              className="object-cover"
-              sizes="(min-width: 1024px) 1024px, 100vw"
-            />
-          </FadeIn>
+          <LastUpdated />
         </Container>
       </section>
 
-      <section className="bg-zinc-50 py-20 sm:py-28">
-        <Container>
-          <FadeIn>
-            <SectionHeading eyebrow="Visit Us" title="Our location" align="center" />
-          </FadeIn>
-          <Stagger className="mx-auto mt-10 grid max-w-md grid-cols-1 gap-6">
-            {site.depots.map((depot) => (
-              <StaggerItem
-                key={depot.name}
-                className="rounded-3xl border border-ink/8 bg-white p-7 text-center"
-              >
-                <div className="relative mx-auto h-11 w-28">
-                  <Image
-                    src={depot.logo}
-                    alt={depot.name}
-                    fill
-                    className="object-contain"
-                    sizes="112px"
-                  />
-                </div>
-                <h3 className="font-display mt-4 text-lg font-bold text-ink">
-                  {depot.name}
-                </h3>
-                <p className="mt-2 flex items-center justify-center gap-1.5 text-sm text-zinc-600">
-                  <MapPin className="h-4 w-4 shrink-0 text-link" aria-hidden />
-                  {depot.address}
-                </p>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </Container>
-      </section>
-
-      <section className="pb-10">
-        <Container className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-          <div className="rounded-3xl border border-ink/8 bg-zinc-50 p-7">
-            <NapBlock />
-          </div>
-          <div className="flex items-end">
-            <LastUpdated />
-          </div>
-        </Container>
-      </section>
 
       <CtaBand />
     </>

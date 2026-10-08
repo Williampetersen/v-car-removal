@@ -2,15 +2,17 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #0a0a0c;
+  --foreground: #0c0e13;
 
-  --brand: #fb923c;
-  --brand-dark: #f97316;
-  --link: #b45309;
-  --ink: #0a0a0c;
-  --ink-soft: #18181b;
-  --cash: #10b981;
-  --cash-dark: #059669;
+  /* V Car Removal: black wordmark + high-visibility orange */
+  --brand: #ff6b1a;
+  --brand-dark: #e85a0c;
+  --link: #c2410c; /* orange for text on light backgrounds (AA contrast) */
+  --ink: #0c0e13;
+  --ink-soft: #1c2029;
+  --cream: #f7f4ef;
+  --cash: #16a34a;
+  --cash-dark: #15803d;
 }
 
 @theme inline {
@@ -21,44 +23,74 @@
   --color-link: var(--link);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
+  --color-cream: var(--cream);
   --color-cash: var(--cash);
   --color-cash-dark: var(--cash-dark);
   --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: var(--font-sans);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* Condensed display face (echoes the logo wordmark). One 700 weight keeps the font payload small. */
 .font-display {
-  font-family: var(--font-sans);
+  font-family: var(--font-display-face), "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.005em;
 }
 
-.bg-grid {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 40px 40px;
+.heading-xl {
+  font-family: var(--font-display-face), "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: 0.005em;
+  text-wrap: balance;
 }
 
 .text-balance {
   text-wrap: balance;
 }
 
-@keyframes brand-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+/* Hazard-stripe accent bar */
+.stripe {
+  height: 6px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--brand) 0 12px,
+    var(--ink) 12px 24px
+  );
+}
+
+/* Diagonal section edge */
+.cut-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), 0 100%);
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Native <details> marker off + smooth caret */
+summary::-webkit-details-marker {
+  display: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-\[brand-scroll_36s_linear_infinite\] {
-    animation: none;
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
   }
 }

@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
-import { QuoteSection } from "@/components/home/QuoteSection";
-import { TrustBadges } from "@/components/home/TrustBadges";
-import { GoogleReviews } from "@/components/home/GoogleReviews";
-import { BrandStrip } from "@/components/home/BrandStrip";
-import { ServicesSection } from "@/components/home/ServicesSection";
-import { VehicleTypes } from "@/components/home/VehicleTypes";
-import { ProcessSteps } from "@/components/home/ProcessSteps";
-import { WhyChooseUs } from "@/components/home/WhyChooseUs";
+import { StatsStrip } from "@/components/home/StatsStrip";
+import { VehiclesWeBuy } from "@/components/home/VehiclesWeBuy";
+import { HowItWorks } from "@/components/home/HowItWorks";
+import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { AnyCondition } from "@/components/home/AnyCondition";
+import { WhyUs } from "@/components/home/WhyUs";
 import { ServiceAreas } from "@/components/home/ServiceAreas";
+import { VisitUs } from "@/components/home/VisitUs";
 import { CtaBand } from "@/components/CtaBand";
 import { QuickAnswer } from "@/components/QuickAnswer";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { LastUpdated } from "@/components/LastUpdated";
+import { SectionHeading } from "@/components/SectionHeading";
 import { Container } from "@/components/Container";
 import { JsonLd } from "@/components/JsonLd";
 import { faqs } from "@/lib/faqs";
@@ -30,12 +30,14 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const homeFaqs = faqs.slice(0, 8);
   return (
     <>
       <JsonLd data={webPageSchema({ path: "/", name: title, description })} />
-      <JsonLd data={faqSchema(faqs.slice(0, 8))} />
+      <JsonLd data={faqSchema(homeFaqs)} />
       <Hero />
-      <section className="py-10">
+      <StatsStrip />
+      <section className="bg-white py-14 sm:py-20">
         <Container className="max-w-4xl">
           <QuickAnswer title="Who we are and what we do">
             <p>
@@ -56,28 +58,28 @@ export default function Home() {
           </QuickAnswer>
         </Container>
       </section>
-      <QuoteSection />
-      <TrustBadges />
-      <GoogleReviews />
-      <BrandStrip />
-      <ServicesSection />
-      <VehicleTypes />
-      <ProcessSteps />
-      <WhyChooseUs />
+      <VehiclesWeBuy />
+      <HowItWorks />
+      <AnyCondition />
+      <ServicesGrid />
+      <WhyUs />
       <ServiceAreas />
-      <section className="bg-zinc-50 py-16 sm:py-24">
-        <Container className="max-w-3xl">
-          <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
-            Cash for cars in Brisbane: common questions
-          </h2>
-          <div className="mt-8">
-            <FaqAccordion items={faqs.slice(0, 8)} />
+      <section className="bg-white py-16 sm:py-24">
+        <Container className="grid grid-cols-1 gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <SectionHeading
+              eyebrow="FAQ"
+              title="Cash for cars in Brisbane: your questions"
+              description="Straight answers on price, pickup, paperwork and payment."
+            />
+            <div className="mt-6">
+              <LastUpdated />
+            </div>
           </div>
-          <div className="mt-6">
-            <LastUpdated />
-          </div>
+          <FaqAccordion items={homeFaqs} />
         </Container>
       </section>
+      <VisitUs />
       <CtaBand />
     </>
   );

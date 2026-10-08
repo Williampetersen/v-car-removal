@@ -34,7 +34,7 @@ export default function GetAQuotePage() {
         title="Get a free quote for your car"
         description="Tell us the make, model, year and suburb. We reply with a cash offer before we send a truck."
       />
-      <section className="pb-20">
+      <section className="bg-white py-14 sm:py-16">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-5">
           <div className="space-y-8 lg:col-span-3">
             <QuickAnswer title="How it works">
@@ -51,8 +51,8 @@ export default function GetAQuotePage() {
                 Sunshine Coast and Toowoomba.
               </p>
             </QuickAnswer>
-            <div className="rounded-3xl border border-ink/8 bg-zinc-50 p-7 sm:p-10">
-              <h2 className="font-display text-2xl font-bold text-ink">
+            <div className="rounded-2xl border border-ink/10 bg-cream p-7 sm:p-10">
+              <h2 className="heading-xl text-4xl text-ink">
                 Your vehicle details
               </h2>
               <div className="mt-6">
@@ -61,7 +61,7 @@ export default function GetAQuotePage() {
             </div>
           </div>
           <div className="space-y-6 lg:col-span-2">
-            <div className="rounded-3xl border border-ink/8 bg-white p-7">
+            <div className="rounded-2xl border border-ink/10 bg-white p-7">
               <NapBlock />
             </div>
             <LastUpdated />

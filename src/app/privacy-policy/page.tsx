@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
             </p>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Information we collect
               </h2>
               <p className="mt-3">
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 How we use your information
               </h2>
               <p className="mt-3">We use your information to:</p>
@@ -68,7 +68,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Cookies and analytics
               </h2>
               <p className="mt-3">
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Data storage and security
               </h2>
               <p className="mt-3">
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Access and correction
               </h2>
               <p className="mt-3">
@@ -107,7 +107,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Contact us
               </h2>
               <p className="mt-3">

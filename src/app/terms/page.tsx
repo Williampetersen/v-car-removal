@@ -32,7 +32,7 @@ export default function TermsPage() {
             </p>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Quotes are estimates
               </h2>
               <p className="mt-3">
@@ -47,7 +47,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Ownership and paperwork
               </h2>
               <p className="mt-3">
@@ -61,7 +61,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Free removal service
               </h2>
               <p className="mt-3">
@@ -73,7 +73,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Website content
               </h2>
               <p className="mt-3">
@@ -87,7 +87,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Limitation of liability
               </h2>
               <p className="mt-3">
@@ -100,7 +100,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Governing law
               </h2>
               <p className="mt-3">
@@ -110,7 +110,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="font-display text-xl font-bold text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Contact us
               </h2>
               <p className="mt-3">

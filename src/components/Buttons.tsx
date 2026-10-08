@@ -10,11 +10,14 @@ type ButtonProps = {
   external?: boolean;
 };
 
+const base =
+  "font-display inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-lg uppercase tracking-wide transition-all active:translate-y-px";
+
 export function PrimaryButton({ href, children, className = "" }: ButtonProps) {
   return (
     <Link
       href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-base font-bold text-ink shadow-[0_8px_24px_-6px_rgba(251,146,60,0.6)] transition-all hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-[0_12px_28px_-6px_rgba(251,146,60,0.7)] active:translate-y-0 ${className}`}
+      className={`${base} bg-brand text-ink shadow-[0_6px_0_0_#a63a05] hover:-translate-y-0.5 hover:bg-[#ff7d35] hover:shadow-[0_8px_0_0_#a63a05] active:shadow-[0_3px_0_0_#a63a05] ${className}`}
     >
       {children}
     </Link>
@@ -25,7 +28,7 @@ export function DarkButton({ href, children, className = "" }: ButtonProps) {
   return (
     <Link
       href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-base font-bold text-white transition-all hover:-translate-y-0.5 hover:bg-ink-soft active:translate-y-0 ${className}`}
+      className={`${base} bg-ink text-white hover:bg-ink-soft ${className}`}
     >
       {children}
     </Link>
@@ -36,7 +39,7 @@ export function GhostButton({ href, children, className = "" }: ButtonProps) {
   return (
     <Link
       href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink/15 px-6 py-3.5 text-base font-bold text-ink transition-all hover:-translate-y-0.5 hover:border-ink active:translate-y-0 ${className}`}
+      className={`${base} border-2 border-ink/20 text-ink hover:border-ink ${className}`}
     >
       {children}
     </Link>
@@ -52,15 +55,15 @@ export function CallButton({
 }) {
   const variantClasses =
     variant === "onDark"
-      ? "border-2 border-white/20 bg-white/10 text-white hover:bg-white/15"
-      : "bg-ink text-white hover:bg-ink-soft";
+      ? "border-2 border-white/25 text-white hover:border-white hover:bg-white/10"
+      : "border-2 border-ink text-ink hover:bg-ink hover:text-white";
 
   return (
     <a
       href={site.phoneHref}
-      className={`inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold transition-all hover:-translate-y-0.5 active:translate-y-0 ${variantClasses} ${className}`}
+      className={`${base} ${variantClasses} ${className}`}
     >
-      <PhoneCall className="h-5 w-5 text-brand" aria-hidden />
+      <PhoneCall className="h-5 w-5" aria-hidden />
       Call {site.phoneDisplay}
     </a>
   );

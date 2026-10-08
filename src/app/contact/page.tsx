@@ -40,13 +40,13 @@ export default function ContactPage() {
         eyebrow="Contact Us"
         title="Contact V Car Removal Brisbane"
         description="Tell us about your vehicle and we'll get back to you with a fair cash offer, or call us directly for an instant quote."
-        image="/images/gallery/car-removal-hero.jpg"
+        crumbs={[{ name: "Home", href: "/" }, { name: "Contact" }]}
       />
 
       <section className="py-20 sm:py-28">
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-5">
-          <FadeIn className="rounded-3xl border border-ink/8 bg-zinc-50 p-7 sm:p-10 lg:col-span-3">
-            <h2 className="font-display text-2xl font-bold text-ink">
+          <FadeIn className="rounded-2xl border border-ink/10 bg-cream p-7 sm:p-10 lg:col-span-3">
+            <h2 className="heading-xl text-4xl text-ink">
               Get Cash Offer Now
             </h2>
             <p className="mt-2 text-sm text-zinc-600">
@@ -59,11 +59,11 @@ export default function ContactPage() {
           </FadeIn>
 
           <Stagger className="space-y-5 lg:col-span-2">
-            <StaggerItem className="rounded-3xl border border-ink/8 bg-white p-7">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-brand">
+            <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                 <PhoneCall className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="font-display mt-4 text-lg font-bold text-ink">
+              <h3 className="heading-xl mt-4 text-3xl text-ink">
                 Call us
               </h3>
               <div className="mt-2 space-y-1 text-sm text-zinc-600">
@@ -73,11 +73,11 @@ export default function ContactPage() {
               </div>
             </StaggerItem>
 
-            <StaggerItem className="rounded-3xl border border-ink/8 bg-white p-7">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-brand">
+            <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                 <Mail className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="font-display mt-4 text-lg font-bold text-ink">
+              <h3 className="heading-xl mt-4 text-3xl text-ink">
                 Email us
               </h3>
               <a
@@ -88,11 +88,11 @@ export default function ContactPage() {
               </a>
             </StaggerItem>
 
-            <StaggerItem className="rounded-3xl border border-ink/8 bg-white p-7">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-brand">
+            <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                 <Clock className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="font-display mt-4 text-lg font-bold text-ink">
+              <h3 className="heading-xl mt-4 text-3xl text-ink">
                 Hours
               </h3>
               <div className="mt-2 space-y-1 text-sm text-zinc-600">
@@ -104,18 +104,18 @@ export default function ContactPage() {
               </div>
             </StaggerItem>
 
-            <StaggerItem className="rounded-3xl border border-ink/8 bg-white p-7">
-              <span className="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-brand">
+            <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                 <MapPin className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="font-display mt-4 text-lg font-bold text-ink">
+              <h3 className="heading-xl mt-4 text-3xl text-ink">
                 Service area
               </h3>
               <p className="mt-2 text-sm text-zinc-600">{site.areasSummary}</p>
             </StaggerItem>
 
-            <StaggerItem className="rounded-3xl border border-ink/8 bg-white p-7">
-              <h3 className="font-display text-lg font-bold text-ink">
+            <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
+              <h3 className="heading-xl text-3xl text-ink">
                 Visit us
               </h3>
               <div className="mt-4 space-y-4">

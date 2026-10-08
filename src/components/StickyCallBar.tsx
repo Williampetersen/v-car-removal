@@ -2,21 +2,23 @@ import Link from "next/link";
 import { PhoneCall, BadgeDollarSign } from "./Icons";
 import { site } from "@/lib/site";
 
+/** Mobile-only sticky bar: click-to-call and quote on every page. */
 export function StickyCallBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 flex border-t border-ink/10 bg-white/95 backdrop-blur-md shadow-[0_-4px_20px_-4px_rgba(0,0,0,0.15)] lg:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-ink/10 bg-ink p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_-8px_rgba(0,0,0,0.4)] lg:hidden">
       <a
         href={site.phoneHref}
-        className="flex flex-1 items-center justify-center gap-2 bg-ink py-3.5 text-sm font-bold text-white"
+        className="font-display flex items-center justify-center gap-2 rounded-lg border-2 border-white/25 py-3 text-lg uppercase tracking-wide text-white"
       >
-        <PhoneCall className="h-4 w-4 text-brand" aria-hidden />
+        <PhoneCall className="h-5 w-5 text-brand" aria-hidden />
         Call Now
       </a>
-      <Link prefetch={false}
+      <Link
+        prefetch={false}
         href="/get-a-quote"
-        className="flex flex-1 items-center justify-center gap-2 bg-brand py-3.5 text-sm font-bold text-ink"
+        className="font-display flex items-center justify-center gap-2 rounded-lg bg-brand py-3 text-lg uppercase tracking-wide text-ink"
       >
-        <BadgeDollarSign className="h-4 w-4" aria-hidden />
+        <BadgeDollarSign className="h-5 w-5" aria-hidden />
         Free Quote
       </Link>
     </div>

@@ -23,7 +23,7 @@ export default async function Image() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#0a0a0c",
+          background: "#0c0e13",
           padding: "72px",
         }}
       >
@@ -48,7 +48,7 @@ export default async function Image() {
               display: "flex",
               marginTop: 28,
               fontSize: 32,
-              color: "#fb923c",
+              color: "#ff6b1a",
               fontWeight: 600,
             }}
           >
