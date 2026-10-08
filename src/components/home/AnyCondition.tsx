@@ -17,7 +17,7 @@ export function AnyCondition() {
   return (
     <section className="bg-white py-16 sm:py-24">
       <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 lg:order-2">
+        <div className="reveal relative aspect-[4/3] overflow-hidden rounded-2xl border border-ink/10 lg:order-2">
           <Image
             src="/images/gallery/car-removal-hero.jpg"
             alt="Accident-damaged red car strapped onto a tow truck"

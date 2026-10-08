@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-// Plain wrapper: scroll animations were removed because they delayed Largest Contentful Paint.
+// Scroll reveal is applied by the Effects script (below-the-fold only), so it never delays first paint.
 export function FadeIn({
   children,
   className = "",
@@ -10,5 +10,5 @@ export function FadeIn({
   delay?: number;
   y?: number;
 }) {
-  return <div className={className}>{children}</div>;
+  return <div className={`reveal ${className}`}>{children}</div>;
 }

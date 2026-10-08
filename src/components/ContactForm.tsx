@@ -123,7 +123,7 @@ export function ContactForm({
         })}
       </ol>
 
-      <div ref={stepOneRef} hidden={step !== 1} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div ref={stepOneRef} hidden={step !== 1} className="step-panel grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label htmlFor={id("car-model")} className={label}>
             Car make &amp; model
@@ -195,13 +195,14 @@ export function ContactForm({
         <button
           type="button"
           onClick={goNext}
-          className="font-display sm:col-span-2 rounded-lg bg-brand px-6 py-3.5 text-lg uppercase tracking-wide text-ink shadow-[0_5px_0_0_#a63a05] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d35]"
+          data-ripple
+          className="font-display shine relative sm:col-span-2 rounded-lg bg-brand px-6 py-3.5 text-lg uppercase tracking-wide text-ink shadow-[0_5px_0_0_#a63a05] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d35]"
         >
           Next: your details
         </button>
       </div>
 
-      <div hidden={step !== 2} className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <div hidden={step !== 2} className="step-panel grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <label htmlFor={id("your-name")} className={label}>
             Your name
@@ -285,7 +286,8 @@ export function ContactForm({
           <button
             type="submit"
             disabled={status === "sending"}
-            className="font-display flex-1 rounded-lg bg-brand px-6 py-3.5 text-lg uppercase tracking-wide text-ink shadow-[0_5px_0_0_#a63a05] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d35] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+            data-ripple
+            className="font-display shine relative flex-1 rounded-lg bg-brand px-6 py-3.5 text-lg uppercase tracking-wide text-ink shadow-[0_5px_0_0_#a63a05] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d35] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
           >
             {status === "sending" ? "Sending…" : "Get my cash offer"}
           </button>

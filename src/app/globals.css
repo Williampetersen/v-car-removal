@@ -94,3 +94,314 @@ summary::-webkit-details-marker {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ===================== Live motion layer ===================== */
+/* All motion is transform/opacity only, and switched off for reduced-motion users. */
+
+/* Hero: slow "camera move" over the photo (Ken Burns) */
+@keyframes kenburns {
+  0% { transform: scale(1.06) translate3d(0, 0, 0); }
+  100% { transform: scale(1.2) translate3d(-2.5%, -2%, 0); }
+}
+.kenburns {
+  animation: kenburns 26s ease-in-out infinite alternate;
+}
+
+/* Hero: sweeping light beams */
+@keyframes beam {
+  0% { transform: translateX(-60%) skewX(-18deg); opacity: 0; }
+  20% { opacity: 0.55; }
+  60% { opacity: 0.25; }
+  100% { transform: translateX(160%) skewX(-18deg); opacity: 0; }
+}
+.beam {
+  animation: beam 9s ease-in-out infinite;
+}
+
+/* Hero: floating sparks */
+@keyframes spark {
+  0% { transform: translate3d(0, 0, 0) scale(0.6); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: translate3d(var(--dx, 20px), -110vh, 0) scale(1); opacity: 0; }
+}
+.spark {
+  position: absolute;
+  bottom: -10px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, #ffb27a 0%, #ff6b1a 55%, transparent 70%);
+  animation: spark var(--dur, 12s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Hero: tow truck driving across a moving road */
+@keyframes drive {
+  0% { transform: translateX(-30vw); }
+  100% { transform: translateX(110vw); }
+}
+@keyframes road {
+  to { transform: translate3d(-64px, 0, 0); }
+}
+@keyframes wheel {
+  to { transform: rotate(360deg); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1.5px); }
+}
+@keyframes beacon {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0.15; }
+}
+.truck-lane {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 6.5rem;
+  pointer-events: none;
+}
+.truck-lane::before {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1.75rem;
+  background: linear-gradient(to bottom, #15181f, #0c0e13);
+}
+.truck-lane::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: calc(1.75rem - 14px);
+  width: calc(100% + 64px);
+  height: 3px;
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.55) 0 32px, transparent 32px 64px);
+  animation: road 1.1s linear infinite;
+}
+.truck {
+  position: absolute;
+  bottom: 1.2rem;
+  left: 0;
+  width: clamp(190px, 26vw, 330px);
+  animation: drive 18s linear infinite;
+  animation-delay: 1.5s;
+  z-index: 1;
+}
+.truck svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  animation: bob 0.45s ease-in-out infinite;
+}
+.wheel {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: wheel 0.6s linear infinite;
+}
+.beacon {
+  animation: beacon 0.9s steps(1) infinite;
+}
+
+/* Rotating "We buy ..." words (CSS only) */
+@keyframes words {
+  0%, 14% { transform: translateY(0); }
+  18%, 32% { transform: translateY(-1.25em); }
+  36%, 50% { transform: translateY(-2.5em); }
+  54%, 68% { transform: translateY(-3.75em); }
+  72%, 86% { transform: translateY(-5em); }
+  90%, 100% { transform: translateY(-6.25em); }
+}
+.words-window {
+  display: inline-block;
+  height: 1.25em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.words-list {
+  display: block;
+  animation: words 11s cubic-bezier(0.7, 0, 0.2, 1) infinite;
+}
+.words-list > span {
+  display: block;
+  height: 1.25em;
+}
+
+/* Ticker strips */
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--speed, 40s) linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Calls to action */
+@keyframes ring {
+  0% { transform: scale(1); opacity: 0.75; }
+  70%, 100% { transform: scale(1.22, 1.55); opacity: 0; }
+}
+.pulse-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  border: 2px solid var(--brand);
+  pointer-events: none;
+  animation: ring 2.2s ease-out infinite;
+}
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.7; }
+  80%, 100% { transform: scale(2.4); opacity: 0; }
+}
+.ping::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.shine::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+}
+.shine:hover::after {
+  transform: translateX(120%);
+}
+.ripple-dot {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.55);
+  transform: scale(0);
+  animation: ripple 0.6s ease-out forwards;
+  pointer-events: none;
+}
+@keyframes ripple {
+  to { transform: scale(1); opacity: 0; }
+}
+
+/* Cursor-reactive cards (set by the Effects script) */
+[data-tilt] {
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px));
+  transition: transform 0.25s ease-out, box-shadow 0.25s, border-color 0.25s;
+}
+[data-tilt][data-tilting] {
+  transition: transform 0.06s linear, box-shadow 0.25s, border-color 0.25s;
+}
+
+/* Scroll reveal: content is visible by default; the script hides only below-the-fold items.
+   Uses the independent `translate` property so it composes with the tilt `transform`. */
+.reveal {
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.reveal[data-tilt] {
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    transform 0.25s ease-out,
+    box-shadow 0.25s,
+    border-color 0.25s;
+}
+.reveal[data-tilt][data-tilting] {
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    transform 0.06s linear,
+    box-shadow 0.25s,
+    border-color 0.25s;
+}
+html.fx .reveal[data-r="hide"] {
+  opacity: 0;
+  translate: 0 28px;
+}
+html.fx .reveal[data-r="hide-left"] {
+  opacity: 0;
+  translate: -32px 0;
+}
+html.fx .reveal[data-r="show"] {
+  opacity: 1;
+  translate: 0 0;
+}
+
+/* Header + scroll progress */
+#scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 3px;
+  z-index: 60;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, var(--brand), #ffb27a);
+  pointer-events: none;
+}
+header[data-scrolled="true"] {
+  box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.35);
+}
+
+/* Animated nav underline */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: 0.2rem;
+  height: 3px;
+  background: var(--brand);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Form step + FAQ open animations */
+@keyframes step-in {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: none; }
+}
+.step-panel:not([hidden]) {
+  animation: step-in 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+@keyframes faq-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: none; }
+}
+details[open] > .faq-body {
+  animation: faq-in 0.3s ease;
+}
+
+/* Floating call button (desktop) */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+.float-y {
+  animation: float-y 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kenburns, .beam, .spark, .truck, .truck svg, .wheel, .beacon, .words-list,
+  .marquee-track, .pulse-ring, .ping::before, .float-y, .truck-lane::after {
+    animation: none !important;
+  }
+  .truck { transform: translateX(62vw); }
+  .words-list { transform: none; }
+  html.fx .reveal[data-r] { opacity: 1 !important; translate: none !important; }
+}

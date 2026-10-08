@@ -45,10 +45,12 @@ export function VehiclesWeBuy() {
           description="Running, damaged, old, unregistered or scrap. Tell us what you have and we quote before we send a truck."
         />
         <ul className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-6">
-          {vehicles.map((v) => (
+          {vehicles.map((v, i) => (
             <li
               key={v.name}
-              className="group overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all hover:-translate-y-1 hover:border-ink hover:shadow-[0_8px_0_0_var(--brand)]"
+              data-tilt
+              style={{ ["--d" as string]: `${i * 70}ms` }}
+              className="reveal group overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all hover:-translate-y-1 hover:border-ink hover:shadow-[0_8px_0_0_var(--brand)]"
             >
               <div className="relative h-32 bg-white sm:h-40">
                 <Image

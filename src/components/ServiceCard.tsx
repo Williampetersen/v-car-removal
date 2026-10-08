@@ -7,8 +7,10 @@ export function ServiceCard({ service }: { service: Service }) {
 
   return (
     <Link
+      prefetch={false}
+      data-tilt
       href={`/services/${service.slug}`}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white p-7 transition-all hover:-translate-y-1 hover:border-ink hover:shadow-[0_10px_0_0_var(--brand)]"
+      className="reveal group relative flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white p-7 transition-all hover:-translate-y-1 hover:border-ink hover:shadow-[0_10px_0_0_var(--brand)]"
     >
       <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-ink text-brand transition-colors group-hover:bg-brand group-hover:text-ink">
         <Icon className="h-7 w-7" aria-hidden />

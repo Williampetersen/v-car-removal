@@ -33,7 +33,7 @@ export function Header() {
         </Container>
       </div>
 
-      <header className="sticky top-0 z-40 border-b border-ink/10 bg-white/95 backdrop-blur">
+      <header data-header className="sticky top-0 z-40 border-b border-ink/10 bg-white">
         <Container className="flex h-16 items-center justify-between gap-4 sm:h-20">
           <Link
             prefetch={false}
@@ -57,7 +57,7 @@ export function Header() {
                 prefetch={false}
                 key={link.href}
                 href={link.href}
-                className="font-display rounded-md px-3 py-2 text-lg uppercase tracking-wide text-ink-soft transition-colors hover:bg-ink hover:text-white"
+                className="nav-link font-display px-3 py-2 text-lg uppercase tracking-wide text-ink-soft transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
@@ -72,13 +72,18 @@ export function Header() {
               <PhoneCall className="h-5 w-5 text-link" aria-hidden />
               {site.phoneDisplay}
             </a>
-            <Link
-              prefetch={false}
-              href="/get-a-quote"
-              className="font-display inline-flex items-center rounded-lg bg-brand px-4 py-2.5 text-base uppercase tracking-wide text-ink shadow-[0_4px_0_0_#a63a05] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d35] sm:px-5 sm:text-lg"
-            >
-              Free Quote
-            </Link>
+            <span className="relative inline-flex">
+              <span className="pulse-ring" aria-hidden />
+              <Link
+                prefetch={false}
+                href="/get-a-quote"
+                data-ripple
+                data-magnetic
+                className="font-display shine relative inline-flex items-center rounded-lg bg-brand px-4 py-2.5 text-base uppercase tracking-wide text-ink transition-transform hover:bg-[#ff7d35] active:scale-95 sm:px-5 sm:text-lg"
+              >
+                Free Quote
+              </Link>
+            </span>
             <MobileNav />
           </div>
         </Container>

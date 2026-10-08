@@ -122,7 +122,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
         title={`Cash For Cars ${location.name}`}
         description={`Free car removal and a cash offer for your car, ute, van, 4WD or motorbike in ${location.name}, in any condition.`}
         aside={
-          <div className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-sm sm:p-7">
+          <div className="rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-7">
             <p className="font-display text-sm uppercase tracking-[0.18em] text-brand">
               Pickup in {location.name}
             </p>

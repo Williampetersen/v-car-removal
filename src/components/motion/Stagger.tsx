@@ -17,5 +17,5 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
-  return <div className={className}>{children}</div>;
+  return <div className={`reveal ${className}`}>{children}</div>;
 }

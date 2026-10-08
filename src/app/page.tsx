@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { StatsStrip } from "@/components/home/StatsStrip";
+import { Ticker } from "@/components/home/Ticker";
 import { VehiclesWeBuy } from "@/components/home/VehiclesWeBuy";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { ServicesGrid } from "@/components/home/ServicesGrid";
@@ -36,9 +37,10 @@ export default function Home() {
       <JsonLd data={webPageSchema({ path: "/", name: title, description })} />
       <JsonLd data={faqSchema(homeFaqs)} />
       <Hero />
+      <Ticker />
       <StatsStrip />
       <section className="bg-white py-14 sm:py-20">
-        <Container className="max-w-4xl">
+        <Container className="reveal max-w-4xl">
           <QuickAnswer title="Who we are and what we do">
             <p>
               <strong>{site.name}</strong> is a Brisbane car removal and

@@ -21,10 +21,15 @@ export function ServiceAreas() {
         </div>
 
         <ul className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {allLocations.map((loc) => (
-            <li key={loc.slug}>
+          {allLocations.map((loc, i) => (
+            <li
+              key={loc.slug}
+              className="reveal"
+              style={{ ["--d" as string]: `${(i % 3) * 90}ms` }}
+            >
               <Link
                 prefetch={false}
+                data-tilt
                 href={locationPath(loc.slug)}
                 className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6 transition-all hover:-translate-y-1 hover:border-ink hover:shadow-[0_8px_0_0_var(--brand)]"
               >

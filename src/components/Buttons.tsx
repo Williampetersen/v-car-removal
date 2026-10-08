@@ -11,12 +11,14 @@ type ButtonProps = {
 };
 
 const base =
-  "font-display inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-lg uppercase tracking-wide transition-all active:translate-y-px";
+  "font-display shine inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-lg uppercase tracking-wide transition-all active:translate-y-px active:scale-[0.97]";
 
 export function PrimaryButton({ href, children, className = "" }: ButtonProps) {
   return (
     <Link
       href={href}
+      data-ripple
+      data-magnetic
       className={`${base} bg-brand text-ink shadow-[0_6px_0_0_#a63a05] hover:-translate-y-0.5 hover:bg-[#ff7d35] hover:shadow-[0_8px_0_0_#a63a05] active:shadow-[0_3px_0_0_#a63a05] ${className}`}
     >
       {children}
@@ -28,6 +30,7 @@ export function DarkButton({ href, children, className = "" }: ButtonProps) {
   return (
     <Link
       href={href}
+      data-ripple
       className={`${base} bg-ink text-white hover:bg-ink-soft ${className}`}
     >
       {children}
@@ -39,6 +42,7 @@ export function GhostButton({ href, children, className = "" }: ButtonProps) {
   return (
     <Link
       href={href}
+      data-ripple
       className={`${base} border-2 border-ink/20 text-ink hover:border-ink ${className}`}
     >
       {children}
@@ -61,6 +65,7 @@ export function CallButton({
   return (
     <a
       href={site.phoneHref}
+      data-ripple
       className={`${base} ${variantClasses} ${className}`}
     >
       <PhoneCall className="h-5 w-5" aria-hidden />

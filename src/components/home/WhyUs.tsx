@@ -41,10 +41,12 @@ export function WhyUs() {
           description="A fair price, a fast pickup and payment when we collect, without the runaround."
         />
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {reasons.map(({ icon: Icon, title, description }) => (
+          {reasons.map(({ icon: Icon, title, description }, i) => (
             <div
               key={title}
-              className="rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:border-brand/60"
+              data-tilt
+              style={{ ["--d" as string]: `${i * 100}ms` }}
+              className="reveal rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:border-brand/60"
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand text-ink">
                 <Icon className="h-6 w-6" aria-hidden />

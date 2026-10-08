@@ -38,10 +38,12 @@ export function HowItWorks() {
           align="center"
         />
         <ol className="relative mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map((step) => (
+          {steps.map((step, i) => (
             <li
               key={step.number}
-              className="relative overflow-hidden rounded-2xl border border-ink/10 bg-white p-7"
+              data-tilt
+              style={{ ["--d" as string]: `${i * 120}ms` }}
+              className="reveal relative overflow-hidden rounded-2xl border border-ink/10 bg-white p-7"
             >
               <span className="heading-xl relative text-5xl text-link">
                 {step.number}

@@ -51,7 +51,7 @@ export function CtaBand({
             {site.phoneDisplay}
           </a>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm sm:p-8">
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8">
           <h3 className="heading-xl text-3xl">Get your free quote</h3>
           <div className="mt-5">
             <ContactForm variant="dark" />

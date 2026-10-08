@@ -31,7 +31,7 @@ export function FaqAccordion({
               <span className="absolute left-1/2 top-1/2 h-3.5 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-current transition-opacity group-open:opacity-0" />
             </span>
           </summary>
-          <div className="px-5 pb-5 text-base leading-relaxed text-zinc-600 sm:px-6 sm:pb-6">
+          <div className="faq-body px-5 pb-5 text-base leading-relaxed text-zinc-600 sm:px-6 sm:pb-6">
             {item.answer}
           </div>
         </details>
