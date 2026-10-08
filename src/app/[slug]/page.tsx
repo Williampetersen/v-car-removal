@@ -291,7 +291,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
                 <li key={l.slug}>
                   <Link
                     href={locationPath(l.slug)}
-                    className="font-display inline-block rounded-xl border border-ink/20 bg-white px-4 py-2 text-base text-ink-soft transition-colors hover:border-sky-400 hover:bg-ink hover:text-white"
+                    className="font-display inline-block rounded-xl border border-ink/20 bg-white px-4 py-2 text-base text-ink-soft transition-colors hover:border-sky-400 hover:bg-sky-50 hover:text-link"
                   >
                     Cash for cars {l.name}
                   </Link>
