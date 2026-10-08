@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "jetcarre",
+    "url": "",
+    "description": "",
+    "link": "https://vcarremoval.com.au/author/jetcarre/",
+    "slug": "jetcarre",
+    "avatar_urls": {
+      "24": "https://secure.gravatar.com/avatar/fabb671d4f44f2991b1e0ecbe7c51d7a3ac997dc1b02d7a00c1d656edc0b1c9b?s=24&d=mm&r=g",
+      "48": "https://secure.gravatar.com/avatar/fabb671d4f44f2991b1e0ecbe7c51d7a3ac997dc1b02d7a00c1d656edc0b1c9b?s=48&d=mm&r=g",
+      "96": "https://secure.gravatar.com/avatar/fabb671d4f44f2991b1e0ecbe7c51d7a3ac997dc1b02d7a00c1d656edc0b1c9b?s=96&d=mm&r=g"
+    },
+    "meta": [],
+    "yoast_head": null,
+    "yoast_head_json": null,
+    "_links": {
+      "self": [
+        {
+          "href": "https://vcarremoval.com.au/wp-json/wp/v2/users/1",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://vcarremoval.com.au/wp-json/wp/v2/users"
+        }
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "name": "William",
+    "url": "",
+    "description": "",
+    "link": "https://vcarremoval.com.au/author/william/",
+    "slug": "william",
+    "avatar_urls": {
+      "24": "https://secure.gravatar.com/avatar/dd7914ee23c7b1612fc7b785026d2a2f3b1a2f058655e4eeca8e8dfe089cc3e1?s=24&d=mm&r=g",
+      "48": "https://secure.gravatar.com/avatar/dd7914ee23c7b1612fc7b785026d2a2f3b1a2f058655e4eeca8e8dfe089cc3e1?s=48&d=mm&r=g",
+      "96": "https://secure.gravatar.com/avatar/dd7914ee23c7b1612fc7b785026d2a2f3b1a2f058655e4eeca8e8dfe089cc3e1?s=96&d=mm&r=g"
+    },
+    "meta": [],
+    "yoast_head": null,
+    "yoast_head_json": null,
+    "_links": {
+      "self": [
+        {
+          "href": "https://vcarremoval.com.au/wp-json/wp/v2/users/2",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://vcarremoval.com.au/wp-json/wp/v2/users"
+        }
+      ]
+    }
+  }
+]
