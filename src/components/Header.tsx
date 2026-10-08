@@ -8,25 +8,25 @@ import { NAV_LINKS, site } from "@/lib/site";
 export function Header() {
   return (
     <>
-      <div className="hidden bg-ink text-[13px] text-slate-300 md:block">
+      <div className="hidden border-b border-sky-100 bg-sky-50 text-[13px] text-slate-600 md:block">
         <Container className="flex h-10 items-center justify-between">
           <p className="flex items-center gap-2">
-            <Clock className="h-3.5 w-3.5 text-brand" aria-hidden />
+            <Clock className="h-3.5 w-3.5 text-sky-600" aria-hidden />
             Mon–Fri 6:30am–5pm · Sat 7am–2pm · Sun closed
           </p>
           <div className="flex items-center gap-6">
             <a
               href={`mailto:${site.email}`}
-              className="flex items-center gap-2 hover:text-white"
+              className="flex items-center gap-2 hover:text-link"
             >
-              <Mail className="h-3.5 w-3.5 text-brand" aria-hidden />
+              <Mail className="h-3.5 w-3.5 text-sky-600" aria-hidden />
               {site.email}
             </a>
             <a
               href={site.phoneHref}
-              className="flex items-center gap-2 font-bold text-white"
+              className="flex items-center gap-2 font-bold text-slate-900"
             >
-              <PhoneCall className="h-3.5 w-3.5 text-brand" aria-hidden />
+              <PhoneCall className="h-3.5 w-3.5 text-sky-600" aria-hidden />
               {site.phoneDisplay}
             </a>
           </div>

@@ -12,7 +12,7 @@ export function ServiceCard({ service }: { service: Service }) {
       href={`/services/${service.slug}`}
       className="reveal group relative flex h-full flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white p-7 transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:shadow-sky-500/20"
     >
-      <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-ink text-brand transition-colors group-hover:bg-brand group-hover:text-ink">
+      <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-sky-100 text-sky-700 transition-colors group-hover:bg-sky-400 group-hover:text-slate-900">
         <Icon className="h-7 w-7" aria-hidden />
       </span>
       <h3 className="heading-xl mt-5 text-2xl text-ink">{service.name}</h3>

@@ -14,21 +14,21 @@ export function CtaBand({
   return (
     <section
       id="quote"
-      className="relative scroll-mt-24 overflow-hidden bg-ink py-16 text-white sm:py-24"
+      className="relative scroll-mt-24 overflow-hidden border-t border-slate-200 bg-gradient-to-br from-sky-50 via-white to-indigo-50 py-16 text-slate-900 sm:py-24"
     >
       <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden />
       <div
-        className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-brand/30 blur-[110px]"
+        className="pointer-events-none absolute -left-32 -top-32 h-96 w-96 rounded-full bg-sky-200/60 blur-3xl"
         aria-hidden
       />
       <Container className="relative grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
         <div>
-          <p className="font-display inline-flex items-center gap-2 text-sm text-brand">
-            <span aria-hidden className="h-0.5 w-8 bg-brand" />
+          <p className="font-display inline-flex items-center gap-2 text-sm text-link">
+            <span aria-hidden className="h-0.5 w-8 bg-sky-500" />
             Free quote
           </p>
           <h2 className="heading-xl mt-3 text-4xl sm:text-5xl">{title}</h2>
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-600">
             {description}
           </p>
           <ul className="mt-7 space-y-3">
@@ -37,24 +37,24 @@ export function CtaBand({
               "A price before we send a truck",
               "Paid when we collect, cash or bank transfer",
             ].map((point) => (
-              <li key={point} className="flex items-center gap-3 text-base text-slate-100">
-                <CheckCircle2 className="h-5 w-5 shrink-0 text-brand" aria-hidden />
+              <li key={point} className="flex items-center gap-3 text-base text-slate-800">
+                <CheckCircle2 className="h-5 w-5 shrink-0 text-sky-600" aria-hidden />
                 {point}
               </li>
             ))}
           </ul>
           <a
             href={site.phoneHref}
-            className="font-display mt-8 inline-flex items-center gap-3 text-3xl text-white hover:text-brand"
+            className="font-display mt-8 inline-flex items-center gap-3 text-2xl text-slate-900 hover:text-link"
           >
-            <PhoneCall className="h-7 w-7 text-brand" aria-hidden />
+            <PhoneCall className="h-6 w-6 text-sky-600" aria-hidden />
             {site.phoneDisplay}
           </a>
         </div>
-        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8">
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl shadow-sky-900/10 sm:p-8">
           <h3 className="heading-xl text-2xl">Get your free quote</h3>
           <div className="mt-5">
-            <ContactForm variant="dark" />
+            <ContactForm variant="light" />
           </div>
         </div>
       </Container>

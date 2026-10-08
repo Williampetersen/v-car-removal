@@ -3,13 +3,13 @@ import { PrimaryButton, CallButton } from "@/components/Buttons";
 
 export default function NotFound() {
   return (
-    <section className="flex min-h-[70vh] items-center bg-ink">
+    <section className="flex min-h-[70vh] items-center bg-gradient-to-b from-sky-50 to-white">
       <Container className="flex flex-col items-center py-24 text-center">
-        <p className="heading-xl text-8xl leading-none text-brand">404</p>
-        <h1 className="heading-xl mt-4 text-4xl text-white">
+        <p className="heading-xl text-8xl leading-none text-sky-500">404</p>
+        <h1 className="heading-xl mt-4 text-4xl text-slate-900">
           This page has driven off
         </h1>
-        <p className="mt-4 max-w-md text-slate-400">
+        <p className="mt-4 max-w-md text-slate-600">
           The page you&apos;re looking for doesn&apos;t exist. Let&apos;s get
           you back on the road.
         </p>

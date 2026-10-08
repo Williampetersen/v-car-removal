@@ -35,7 +35,7 @@ export function OpenNow() {
   }, []);
 
   const dot =
-    open === null ? "text-slate-400" : open ? "text-emerald-400" : "text-amber-400";
+    open === null ? "text-slate-400" : open ? "text-emerald-500" : "text-indigo-400";
   const label =
     open === null
       ? "Free quotes, fast replies"
@@ -44,7 +44,7 @@ export function OpenNow() {
         : "Closed now: send a quote, we reply when we open";
 
   return (
-    <p className="inline-flex min-h-8 items-center gap-2.5 rounded-full border border-white/15 bg-ink/70 px-3.5 py-1.5 text-sm font-medium text-white">
+    <p className="inline-flex min-h-8 items-center gap-2.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-sm font-medium text-slate-700 shadow-sm">
       <span className={`relative flex h-2.5 w-2.5 ${dot}`} aria-hidden>
         <span className={`ping absolute inset-0 rounded-full ${open === null ? "hidden" : ""}`} />
         <span className="relative h-2.5 w-2.5 rounded-full bg-current" />

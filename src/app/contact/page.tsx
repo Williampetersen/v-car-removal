@@ -60,7 +60,7 @@ export default function ContactPage() {
 
           <Stagger className="space-y-5 lg:col-span-2">
             <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
                 <PhoneCall className="h-5 w-5" aria-hidden />
               </span>
               <h3 className="heading-xl mt-4 text-2xl text-ink">
@@ -74,7 +74,7 @@ export default function ContactPage() {
             </StaggerItem>
 
             <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
                 <Mail className="h-5 w-5" aria-hidden />
               </span>
               <h3 className="heading-xl mt-4 text-2xl text-ink">
@@ -89,7 +89,7 @@ export default function ContactPage() {
             </StaggerItem>
 
             <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
                 <Clock className="h-5 w-5" aria-hidden />
               </span>
               <h3 className="heading-xl mt-4 text-2xl text-ink">
@@ -105,7 +105,7 @@ export default function ContactPage() {
             </StaggerItem>
 
             <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
+              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
                 <MapPin className="h-5 w-5" aria-hidden />
               </span>
               <h3 className="heading-xl mt-4 text-2xl text-ink">

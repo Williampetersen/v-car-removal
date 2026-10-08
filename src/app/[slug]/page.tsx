@@ -122,11 +122,11 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
         title={`Cash For Cars ${location.name}`}
         description={`Free car removal and a cash offer for your car, ute, van, 4WD or motorbike in ${location.name}, in any condition.`}
         aside={
-          <div className="rounded-2xl border border-white/15 bg-white/5 p-6 sm:p-7">
-            <p className="font-display text-sm text-brand">
+          <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-xl shadow-sky-900/10 sm:p-7">
+            <p className="font-display text-sm text-link">
               Pickup in {location.name}
             </p>
-            <dl className="mt-4 divide-y divide-white/10">
+            <dl className="mt-4 divide-y divide-slate-200">
               {[
                 ["From our depot", `about ${location.distanceKm} km`],
                 ["Towing", "Free"],
@@ -134,14 +134,14 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
                 ["Payment", "Cash or bank transfer"],
               ].map(([k, v]) => (
                 <div key={k} className="flex items-center justify-between gap-4 py-3">
-                  <dt className="text-sm text-slate-300">{k}</dt>
-                  <dd className="text-right text-base font-semibold text-white">{v}</dd>
+                  <dt className="text-sm text-slate-500">{k}</dt>
+                  <dd className="text-right text-base font-semibold text-slate-900">{v}</dd>
                 </div>
               ))}
             </dl>
             <a
               href={site.phoneHref}
-              className="heading-xl mt-3 block text-3xl text-brand hover:text-white"
+              className="heading-xl mt-3 block text-3xl text-link hover:text-slate-900"
             >
               {site.phoneDisplay}
             </a>
@@ -241,7 +241,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
                 key={step.title}
                 className="rounded-2xl border border-ink/10 bg-white p-6"
               >
-                <span className="heading-xl flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-xl text-brand">
+                <span className="heading-xl flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-xl text-sky-700">
                   {i + 1}
                 </span>
                 <h3 className="heading-xl mt-4 text-2xl text-ink">

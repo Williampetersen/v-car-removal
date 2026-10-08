@@ -23,10 +23,14 @@ export function PageHero({
   aside?: ReactNode;
 }) {
   return (
-    <section className="relative isolate overflow-hidden bg-ink text-white">
+    <section className="relative isolate overflow-hidden bg-gradient-to-b from-sky-50 via-white to-white text-slate-900">
       <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden />
       <div
-        className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brand/25 blur-[100px]"
+        className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-sky-200/60 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -bottom-24 left-1/4 h-72 w-72 rounded-full bg-indigo-200/40 blur-3xl"
         aria-hidden
       />
       <Container
@@ -36,16 +40,16 @@ export function PageHero({
       >
         <div>
           {crumbs && (
-            <nav aria-label="Breadcrumb" className="mb-5 text-sm text-slate-400">
+            <nav aria-label="Breadcrumb" className="mb-5 text-sm text-slate-500">
               <ol className="flex flex-wrap items-center gap-2">
                 {crumbs.map((c, i) => (
                   <li key={c.name} className="flex items-center gap-2">
                     {c.href ? (
-                      <Link href={c.href} className="hover:text-white">
+                      <Link href={c.href} className="hover:text-link">
                         {c.name}
                       </Link>
                     ) : (
-                      <span className="text-slate-200">{c.name}</span>
+                      <span className="text-slate-800">{c.name}</span>
                     )}
                     {i < crumbs.length - 1 && <span aria-hidden>/</span>}
                   </li>
@@ -54,8 +58,8 @@ export function PageHero({
             </nav>
           )}
           {eyebrow && (
-            <p className="font-display inline-flex items-center gap-2 text-sm text-brand">
-              <span aria-hidden className="h-0.5 w-8 bg-brand" />
+            <p className="font-display inline-flex items-center gap-2 text-sm text-link">
+              <span aria-hidden className="h-0.5 w-8 bg-sky-500" />
               {eyebrow}
             </p>
           )}
@@ -63,7 +67,7 @@ export function PageHero({
             {title}
           </h1>
           {description && (
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-600">
               {description}
             </p>
           )}
@@ -73,7 +77,7 @@ export function PageHero({
         {aside && <div>{aside}</div>}
 
         {image && (
-          <div className="relative mx-auto hidden aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl border border-white/10 lg:block">
+          <div className="relative mx-auto hidden aspect-[4/3] w-full max-w-md overflow-hidden rounded-3xl border border-slate-200 shadow-xl shadow-sky-900/10 lg:block">
             <Image
               src={image}
               alt={imageAlt}
@@ -82,7 +86,6 @@ export function PageHero({
               sizes="448px"
               priority
             />
-            <div className="absolute inset-x-0 bottom-0 h-1.5 bg-brand" aria-hidden />
           </div>
         )}
       </Container>

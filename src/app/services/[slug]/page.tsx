@@ -78,7 +78,7 @@ export default async function ServiceDetailPage(
       <section className="py-20 sm:py-28">
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-3">
           <FadeIn className="lg:col-span-2">
-            <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-ink text-brand">
+            <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
               <Icon className="h-7 w-7" aria-hidden />
             </span>
             <h2 className="heading-xl mt-6 text-3xl text-ink">

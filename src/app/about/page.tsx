@@ -105,7 +105,7 @@ export default function AboutPage() {
                 key={title}
                 className="rounded-2xl border border-ink/10 bg-cream p-6"
               >
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-sky-700">
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
                 <h3 className="heading-xl mt-4 text-xl text-ink">

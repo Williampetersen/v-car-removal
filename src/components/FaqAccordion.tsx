@@ -25,7 +25,7 @@ export function FaqAccordion({
             </Heading>
             <span
               aria-hidden
-              className="relative h-8 w-8 shrink-0 rounded-full bg-ink text-brand transition-colors group-open:bg-brand group-open:text-ink"
+              className="relative h-8 w-8 shrink-0 rounded-full bg-sky-100 text-sky-700 transition-colors group-open:bg-brand group-open:text-ink"
             >
               <span className="absolute left-1/2 top-1/2 h-0.5 w-3.5 -translate-x-1/2 -translate-y-1/2 bg-current" />
               <span className="absolute left-1/2 top-1/2 h-3.5 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-current transition-opacity group-open:opacity-0" />

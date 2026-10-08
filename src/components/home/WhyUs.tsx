@@ -31,11 +31,10 @@ const reasons = [
 
 export function WhyUs() {
   return (
-    <section className="relative overflow-hidden bg-ink py-16 text-white sm:py-24">
+    <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 to-indigo-50/60 py-16 sm:py-24">
       <div className="dot-grid pointer-events-none absolute inset-0" aria-hidden />
       <Container className="relative">
         <SectionHeading
-          tone="dark"
           eyebrow="Why V Car Removal"
           title="Straightforward car removal, done right"
           description="A fair price, a fast pickup and payment when we collect, without the runaround."
@@ -46,13 +45,13 @@ export function WhyUs() {
               key={title}
               data-tilt
               style={{ ["--d" as string]: `${i * 100}ms` }}
-              className="reveal rounded-2xl border border-white/10 bg-white/5 p-6 transition-colors hover:border-brand/60"
+              className="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-sky-300"
             >
-              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand text-ink">
+              <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-indigo-500 text-white shadow-lg shadow-sky-500/30">
                 <Icon className="h-6 w-6" aria-hidden />
               </span>
-              <h3 className="heading-xl mt-5 text-2xl">{title}</h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-slate-300">
+              <h3 className="heading-xl mt-5 text-xl">{title}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-slate-600">
                 {description}
               </p>
             </div>

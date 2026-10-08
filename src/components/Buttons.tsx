@@ -31,7 +31,7 @@ export function DarkButton({ href, children, className = "" }: ButtonProps) {
     <Link
       href={href}
       data-ripple
-      className={`${base} bg-ink text-white hover:bg-ink-soft ${className}`}
+      className={`${base} bg-sky-700 text-white hover:bg-sky-800 ${className}`}
     >
       {children}
     </Link>
@@ -52,15 +52,15 @@ export function GhostButton({ href, children, className = "" }: ButtonProps) {
 
 export function CallButton({
   className = "",
-  variant = "onDark",
+  variant = "onLight",
 }: {
   className?: string;
   variant?: "onDark" | "onLight";
 }) {
   const variantClasses =
     variant === "onDark"
-      ? "border-2 border-white/25 text-white hover:border-white hover:bg-white/10"
-      : "border-2 border-ink text-ink hover:bg-ink hover:text-white";
+      ? "border-2 border-white/40 text-white hover:border-white hover:bg-white/10"
+      : "border-2 border-slate-300 bg-white text-slate-900 hover:border-sky-400 hover:bg-sky-50";
 
   return (
     <a
