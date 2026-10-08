@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 import { site } from "@/lib/site";
 
 const currentYear = new Date().getFullYear();
@@ -14,19 +15,13 @@ export function ContactForm({
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+  const router = useRouter();
   const isGlass = variant === "glass";
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const currentForm = event.currentTarget;
     const form = new FormData(currentForm);
-
-    // Honeypot: real visitors never see or fill this field.
-    if (String(form.get("company") ?? "").trim()) {
-      setStatus("sent");
-      currentForm.reset();
-      return;
-    }
 
     setStatus("sending");
 
@@ -39,6 +34,9 @@ export function ContactForm({
       carModel: String(form.get("car-model") ?? ""),
       carYear: String(form.get("car-year") ?? ""),
       note: String(form.get("your-note") ?? ""),
+      // Honeypot: real visitors never see or fill this field; the server drops the request.
+      honeypot: String(form.get("company") ?? ""),
+      page: window.location.pathname,
     };
 
     try {
@@ -50,8 +48,9 @@ export function ContactForm({
 
       if (!response.ok) throw new Error("Request failed");
 
-      setStatus("sent");
       currentForm.reset();
+      // Thank-you page fires the GA4 / Google Ads / Meta conversion events.
+      router.push("/thanks");
     } catch {
       setStatus("error");
     }

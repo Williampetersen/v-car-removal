@@ -41,7 +41,7 @@ export function Header() {
             {site.phoneDisplay}
           </a>
           <Link
-            href="/contact"
+            href="/get-a-quote"
             className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-brand px-4 py-2.5 text-xs font-bold text-ink transition-all hover:-translate-y-0.5 hover:bg-brand-dark sm:px-5 sm:text-sm"
           >
             <PhoneCall className="h-3.5 w-3.5 sm:hidden" aria-hidden />

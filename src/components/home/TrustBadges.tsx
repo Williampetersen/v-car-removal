@@ -5,8 +5,8 @@ import { Stagger, StaggerItem } from "../motion/Stagger";
 const badges = [
   { icon: Truck, label: "Free Same-Day Towing" },
   { icon: BadgeDollarSign, label: "Cash On The Spot" },
-  { icon: ShieldCheck, label: "Licensed & Insured" },
-  { icon: Clock, label: "7 Days A Week" },
+  { icon: ShieldCheck, label: "Any Vehicle, Any Condition" },
+  { icon: Clock, label: "Mon–Sat Pickups" },
 ];
 
 export function TrustBadges() {

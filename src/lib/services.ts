@@ -36,7 +36,7 @@ export const services: Service[] = [
     slug: "free-car-removal",
     name: "Free Car Removal",
     shortDescription:
-      "Free towing anywhere across Brisbane and South East Queensland, seven days a week.",
+      "Free towing anywhere across Brisbane and South East Queensland, Monday to Saturday.",
     description:
       "Our fully equipped tow trucks come to your home, office or roadside location and remove your vehicle at no cost to you, no matter where you are in our service area.",
     bullets: [

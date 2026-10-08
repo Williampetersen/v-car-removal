@@ -13,7 +13,7 @@ export function StickyCallBar() {
         Call Now
       </a>
       <Link
-        href="/contact"
+        href="/get-a-quote"
         className="flex flex-1 items-center justify-center gap-2 bg-brand py-3.5 text-sm font-bold text-ink"
       >
         <BadgeDollarSign className="h-4 w-4" aria-hidden />

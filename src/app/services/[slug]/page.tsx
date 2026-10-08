@@ -10,6 +10,7 @@ import { CheckCircle2, ServiceIcons } from "@/components/Icons";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/JsonLd";
+import { LastUpdated } from "@/components/LastUpdated";
 import { services, getServiceBySlug } from "@/lib/services";
 import { serviceSchema, breadcrumbSchema } from "@/lib/schema";
 import { site } from "@/lib/site";
@@ -25,10 +26,16 @@ export async function generateMetadata(
   const service = getServiceBySlug(slug);
   if (!service) return {};
   return {
-    title: service.name,
-    description: service.description,
+    title: `${service.name} Brisbane | Free Pickup, Any Condition`,
+    description: `${service.shortDescription} Free towing across ${site.areasSummary.split(",").slice(0, 4).join(",")} and more. Call ${site.phoneDisplay}.`.slice(0, 160),
     alternates: {
       canonical: `${site.url}/services/${slug}`,
+    },
+    openGraph: {
+      title: `${service.name} Brisbane`,
+      description: service.shortDescription,
+      url: `${site.url}/services/${slug}`,
+      type: "website",
     },
   };
 }
@@ -131,6 +138,12 @@ export default async function ServiceDetailPage(
               </StaggerItem>
             ))}
           </Stagger>
+        </Container>
+      </section>
+
+      <section className="pb-10">
+        <Container>
+          <LastUpdated />
         </Container>
       </section>
 

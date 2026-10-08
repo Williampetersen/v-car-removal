@@ -4,7 +4,7 @@ import { SectionHeading } from "../SectionHeading";
 import { PrimaryButton } from "../Buttons";
 import { FadeIn } from "../motion/FadeIn";
 import { Stagger, StaggerItem } from "../motion/Stagger";
-import { regions } from "@/lib/locations";
+import { regions, locationPath } from "@/lib/locations";
 import { MapPin } from "../Icons";
 
 export function ServiceAreas() {
@@ -41,7 +41,7 @@ export function ServiceAreas() {
                 {region.locations.map((loc) => (
                   <Link
                     key={loc.slug}
-                    href={`/locations/${loc.slug}`}
+                    href={locationPath(loc.slug)}
                     className="rounded-full border border-ink/10 bg-zinc-50 px-3.5 py-1.5 text-xs font-semibold text-ink-soft transition-colors hover:border-brand hover:text-ink"
                   >
                     {loc.name}

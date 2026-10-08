@@ -8,10 +8,14 @@ import { ShieldCheck, Truck, Recycle, BadgeDollarSign, MapPin } from "@/componen
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { LastUpdated } from "@/components/LastUpdated";
+import { NapBlock } from "@/components/NapBlock";
+import { webPageSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "About Us",
-  description: `Learn about ${site.name}, your trusted local car removal and cash-for-cars service across Brisbane and South East Queensland.`,
+  title: "About V Car Removal Brisbane | Local Car Buyers & Removal",
+  description: `${site.name} buys cars for cash and removes them free from our Sherwood depot, serving Brisbane and South East Queensland. Hours, address and how we work.`,
   alternates: {
     canonical: `${site.url}/about`,
   },
@@ -47,10 +51,24 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      <JsonLd
+        data={webPageSchema({
+          path: "/about",
+          name: "About V Car Removal Brisbane",
+          description: `About ${site.name}.`,
+          type: "AboutPage",
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ])}
+      />
       <PageHero
         eyebrow="About Us"
-        title="Local car removal, done the right way"
-        description="V Car Removal helps people across Brisbane and South East Queensland turn unwanted vehicles into cash, quickly and without hassle."
+        title="About V Car Removal Brisbane"
+        description="V Car Removal Brisbane helps people across Brisbane and South East Queensland turn unwanted vehicles into cash, quickly and without hassle."
       />
 
       <section className="py-20 sm:py-28">
@@ -63,8 +81,8 @@ export default function AboutPage() {
             <div className="mt-6 space-y-4 text-base leading-relaxed text-zinc-600">
               <p>
                 We specialise in fast, reliable and hassle-free car removal,
-                with years of experience helping locals turn old, unwanted or
-                damaged vehicles into top cash — up to {site.cashOfferMax}{" "}
+                helping locals turn old, unwanted or
+                damaged vehicles into cash — up to {site.cashOfferMax}{" "}
                 depending on your vehicle.
               </p>
               <p>
@@ -147,6 +165,17 @@ export default function AboutPage() {
               </StaggerItem>
             ))}
           </Stagger>
+        </Container>
+      </section>
+
+      <section className="pb-10">
+        <Container className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="rounded-3xl border border-ink/8 bg-zinc-50 p-7">
+            <NapBlock />
+          </div>
+          <div className="flex items-end">
+            <LastUpdated />
+          </div>
         </Container>
       </section>
 

@@ -1,5 +1,5 @@
 import { site } from "./site";
-import type { Location } from "./locations";
+import { allLocations, locationPath, type Location } from "./locations";
 import type { Service } from "./services";
 import type { Faq } from "./faqs";
 
@@ -65,29 +65,93 @@ function openingHoursSpecification() {
     });
 }
 
+const orgId = `${site.url}/#organization`;
+
+function areaServedList() {
+  return allLocations.map((l) => ({
+    "@type": "City",
+    name: l.name,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: l.geo.latitude,
+      longitude: l.geo.longitude,
+    },
+  }));
+}
+
+/** LocalBusiness (AutoWrecker) with the exact NAP used across the site. */
 export function organizationSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "AutomotiveBusiness",
-    "@id": `${site.url}/#organization`,
+    "@type": ["AutoWrecker", "LocalBusiness"],
+    "@id": orgId,
     name: site.name,
     url: site.url,
-    image: `${site.url}/images/logo/logo.png`,
+    image: `${site.url}/images/gallery/car-removal-hero.jpg`,
     logo: `${site.url}/images/logo/logo.png`,
-    telephone: site.phoneDisplay,
+    description: site.description,
+    telephone: site.phoneE164,
     email: site.email,
     priceRange: "$$",
-    areaServed: site.areasSummary,
-    location: site.depots.map((depot) => ({
-      "@type": "Place",
-      name: depot.name,
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: depot.address,
-        addressCountry: "AU",
-      },
-    })),
+    currenciesAccepted: "AUD",
+    paymentAccepted: "Cash, Bank transfer",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: site.address.street,
+      addressLocality: site.address.suburb,
+      addressRegion: site.address.state,
+      postalCode: site.address.postcode,
+      addressCountry: site.address.country,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: site.geo.latitude,
+      longitude: site.geo.longitude,
+    },
+    hasMap: `https://www.google.com/maps/search/?api=1&query=${site.depots[0].mapQuery}`,
+    areaServed: areaServedList(),
     openingHoursSpecification: openingHoursSpecification(),
+    contactPoint: {
+      "@type": "ContactPoint",
+      telephone: site.phoneE164,
+      email: site.email,
+      contactType: "customer service",
+      areaServed: "AU-QLD",
+      availableLanguage: "English",
+    },
+  };
+}
+
+export function websiteSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.url}/#website`,
+    url: site.url,
+    name: site.name,
+    inLanguage: "en-AU",
+    publisher: { "@id": orgId },
+  };
+}
+
+/** WebPage node with a last-modified date, linked to the site and business. */
+export function webPageSchema(opts: {
+  path: string;
+  name: string;
+  description: string;
+  type?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": opts.type ?? "WebPage",
+    "@id": `${site.url}${opts.path}#webpage`,
+    url: `${site.url}${opts.path}`,
+    name: opts.name,
+    description: opts.description,
+    inLanguage: "en-AU",
+    isPartOf: { "@id": `${site.url}/#website` },
+    about: { "@id": orgId },
+    dateModified: site.lastUpdated,
   };
 }
 
@@ -99,10 +163,8 @@ export function serviceSchema(service: Service) {
     name: `${service.name} | ${site.name}`,
     description: service.description,
     url: `${site.url}/services/${service.slug}`,
-    areaServed: site.areasSummary,
-    provider: {
-      "@id": `${site.url}/#organization`,
-    },
+    areaServed: areaServedList(),
+    provider: { "@id": orgId },
   };
 }
 
@@ -110,17 +172,20 @@ export function locationSchema(location: Location) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    serviceType: "Cash for cars and car removal",
+    serviceType: "Cash for cars and free car removal",
     name: `Cash For Cars ${location.name} | ${site.name}`,
-    description: `Free car removal and top cash offers in ${location.name} and surrounding ${location.region} suburbs.`,
-    url: `${site.url}/locations/${location.slug}`,
+    description: `Free car removal and cash offers in ${location.name} and surrounding ${location.region} suburbs.`,
+    url: `${site.url}${locationPath(location.slug)}`,
     areaServed: {
-      "@type": "Place",
+      "@type": "City",
       name: location.name,
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: location.geo.latitude,
+        longitude: location.geo.longitude,
+      },
     },
-    provider: {
-      "@id": `${site.url}/#organization`,
-    },
+    provider: { "@id": orgId },
   };
 }
 

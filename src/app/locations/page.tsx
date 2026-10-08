@@ -5,12 +5,13 @@ import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
 import { CtaBand } from "@/components/CtaBand";
 import { MapPin } from "@/components/Icons";
-import { regions } from "@/lib/locations";
+import { regions, locationPath } from "@/lib/locations";
 import { site } from "@/lib/site";
+import { LastUpdated } from "@/components/LastUpdated";
 
 export const metadata: Metadata = {
-  title: "Service Locations",
-  description: `${site.name} provides free car removal and top cash offers across ${site.areasSummary}.`,
+  title: "Car Removal Service Areas: Brisbane, Ipswich, Gold Coast & More",
+  description: `${site.name} buys cars and removes them free across ${site.areasSummary}. Find your area and call ${site.phoneDisplay}.`,
   alternates: {
     canonical: `${site.url}/locations`,
   },
@@ -43,7 +44,7 @@ export default function LocationsPage() {
                 {region.locations.map((loc) => (
                   <Link
                     key={loc.slug}
-                    href={`/locations/${loc.slug}`}
+                    href={locationPath(loc.slug)}
                     className="group overflow-hidden rounded-2xl border border-ink/8 bg-zinc-50 transition-colors hover:border-brand"
                   >
                     {loc.heroImage && (
@@ -70,6 +71,11 @@ export default function LocationsPage() {
               </div>
             </div>
           ))}
+        </Container>
+      </section>
+      <section className="pb-10">
+        <Container>
+          <LastUpdated />
         </Container>
       </section>
       <CtaBand />

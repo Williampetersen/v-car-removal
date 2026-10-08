@@ -9,7 +9,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Our Services",
-  description: `Cash for cars, free car removal, scrap car removal, truck and van removal, and licensed car wrecking across ${site.areasSummary}.`,
+  description: `Cash for cars, free car removal, scrap car removal, truck and van removal, and car recycling across ${site.areasSummary}.`,
   alternates: {
     canonical: `${site.url}/services`,
   },

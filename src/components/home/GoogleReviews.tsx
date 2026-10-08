@@ -2,9 +2,8 @@ import { Container } from "../Container";
 import { Star } from "../Icons";
 import { site } from "@/lib/site";
 
+// No rating or review count is shown: the old site only had a static badge image that could not be verified.
 export function GoogleReviews() {
-  const hasRating = site.googleRating !== null;
-
   return (
     <section className="border-b border-ink/5 bg-white py-8">
       <Container className="flex flex-col items-center justify-center gap-3 text-center sm:flex-row sm:justify-between sm:text-left">
@@ -14,14 +13,10 @@ export function GoogleReviews() {
           </span>
           <div>
             <p className="font-display text-sm font-bold text-ink">
-              {hasRating
-                ? site.googleReviewCount
-                  ? `${site.googleRating} / 5 from ${site.googleReviewCount}+ Google reviews`
-                  : `${site.googleRating} / 5 on Google reviews`
-                : "Rated by real customers on Google"}
+              See what customers say about us on Google
             </p>
             <p className="text-xs text-zinc-500">
-              See what locals say about our service.
+              Read reviews for {site.name} on Google Maps.
             </p>
           </div>
         </div>

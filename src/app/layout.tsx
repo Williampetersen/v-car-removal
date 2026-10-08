@@ -8,7 +8,7 @@ import { StickyCallBar } from "@/components/StickyCallBar";
 import { JsonLd } from "@/components/JsonLd";
 import { MetaPixel } from "@/components/MetaPixel";
 import { site } from "@/lib/site";
-import { organizationSchema } from "@/lib/schema";
+import { organizationSchema, websiteSchema } from "@/lib/schema";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,12 +25,14 @@ export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
     default: `${site.name} | ${site.tagline}`,
-    template: `%s | ${site.name}`,
+    template: `%s | ${site.shortName}`,
   },
   description: site.description,
   alternates: {
-    canonical: site.url,
+    canonical: "./",
   },
+  applicationName: site.name,
+  formatDetection: { telephone: false },
   openGraph: {
     title: `${site.name} | ${site.tagline}`,
     description: site.description,
@@ -56,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col bg-white text-ink">
         <JsonLd data={organizationSchema()} />
+        <JsonLd data={websiteSchema()} />
         <Header />
         <main className="flex-1 pb-16 lg:pb-0">{children}</main>
         <Footer />

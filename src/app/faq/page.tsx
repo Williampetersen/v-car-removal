@@ -7,11 +7,12 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { JsonLd } from "@/components/JsonLd";
 import { faqs } from "@/lib/faqs";
 import { site } from "@/lib/site";
+import { LastUpdated } from "@/components/LastUpdated";
 import { faqSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
-  description: `Answers to common questions about ${site.name}'s cash-for-cars and free car removal service.`,
+  title: "Cash For Cars FAQ: Pricing, Pickup, Paperwork & Payment",
+  description: `How much you get for your car, how fast we collect, what paperwork you need and when you are paid. Answers from ${site.name}.`,
   alternates: {
     canonical: `${site.url}/faq`,
   },
@@ -31,6 +32,9 @@ export default function FaqPage() {
           <FadeIn>
             <FaqAccordion items={faqs} />
           </FadeIn>
+          <div className="mt-6">
+            <LastUpdated />
+          </div>
         </Container>
       </section>
       <CtaBand />

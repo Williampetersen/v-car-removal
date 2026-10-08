@@ -4,7 +4,7 @@ import { Container } from "./Container";
 import { Mail, PhoneCall, MapPin, Clock } from "./Icons";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { allLocations } from "@/lib/locations";
+import { allLocations, locationPath } from "@/lib/locations";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -61,7 +61,7 @@ export function Footer() {
             {allLocations.map((l) => (
               <li key={l.slug}>
                 <Link
-                  href={`/locations/${l.slug}`}
+                  href={locationPath(l.slug)}
                   className="text-zinc-400 transition-colors hover:text-brand"
                 >
                   {l.name}
@@ -96,7 +96,12 @@ export function Footer() {
             </li>
             <li className="flex items-start gap-2 text-zinc-400">
               <MapPin className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
-              {site.areasSummary}
+              <address className="not-italic">
+                {site.name}
+                <br />
+                {site.address.street}, {site.address.suburb} {site.address.state}{" "}
+                {site.address.postcode}
+              </address>
             </li>
           </ul>
         </div>
@@ -110,6 +115,9 @@ export function Footer() {
           <div className="flex gap-6">
             <Link href="/faq" className="hover:text-zinc-300">
               FAQ
+            </Link>
+            <Link href="/get-a-quote" className="hover:text-zinc-300">
+              Get a Quote
             </Link>
             <Link href="/contact" className="hover:text-zinc-300">
               Contact

@@ -7,10 +7,13 @@ import { PhoneCall, Mail, Clock, MapPin } from "@/components/Icons";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
+import { JsonLd } from "@/components/JsonLd";
+import { webPageSchema, breadcrumbSchema } from "@/lib/schema";
+import { LastUpdated } from "@/components/LastUpdated";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
-  description: `Get a free quote from ${site.name}. Call, email, or send us your vehicle details online.`,
+  title: "Contact V Car Removal Brisbane | Phone, Email & Address",
+  description: `Call ${site.phoneDisplay}, email ${site.email} or visit ${site.depots[0].address}. Free quotes for cash for cars and car removal across Brisbane and South East QLD.`,
   alternates: {
     canonical: `${site.url}/contact`,
   },
@@ -19,9 +22,23 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <JsonLd
+        data={webPageSchema({
+          path: "/contact",
+          name: "Contact V Car Removal Brisbane",
+          description: `Phone ${site.phoneDisplay}, email ${site.email}.`,
+          type: "ContactPage",
+        })}
+      />
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ])}
+      />
       <PageHero
         eyebrow="Contact Us"
-        title="Get your free, no-obligation quote"
+        title="Contact V Car Removal Brisbane"
         description="Tell us about your vehicle and we'll get back to you with a fair cash offer, or call us directly for an instant quote."
         image="/images/gallery/car-removal-hero.jpg"
       />
@@ -122,6 +139,9 @@ export default function ContactPage() {
               </div>
             </StaggerItem>
           </Stagger>
+        </Container>
+        <Container className="mt-10">
+          <LastUpdated />
         </Container>
       </section>
     </>
