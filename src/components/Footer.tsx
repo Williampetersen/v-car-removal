@@ -10,17 +10,17 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink text-zinc-300">
+    <footer className="bg-ink text-slate-300">
       <div className="stripe" aria-hidden />
       <Container className="py-14 sm:py-16">
         <div className="flex flex-col items-start justify-between gap-6 border-b border-white/10 pb-10 lg:flex-row lg:items-center">
           <div>
-            <p className="font-display text-sm uppercase tracking-[0.18em] text-brand">
+            <p className="font-display text-sm text-brand">
               Ready when you are
             </p>
             <a
               href={site.phoneHref}
-              className="heading-xl mt-2 block text-5xl text-white hover:text-brand sm:text-6xl"
+              className="heading-xl mt-2 block text-4xl text-white hover:text-brand sm:text-5xl"
             >
               {site.phoneDisplay}
             </a>
@@ -28,7 +28,7 @@ export function Footer() {
           <Link
             prefetch={false}
             href="/get-a-quote"
-            className="font-display inline-flex items-center rounded-lg bg-brand px-8 py-4 text-xl uppercase tracking-wide text-ink shadow-[0_6px_0_0_#a63a05] hover:bg-[#ff7d35]"
+            className="font-display inline-flex items-center rounded-xl bg-brand px-8 py-4 text-lg text-ink shadow-lg shadow-sky-500/30 hover:bg-sky-300"
           >
             Get a free quote
           </Link>
@@ -43,13 +43,13 @@ export function Footer() {
               height={80}
               className="h-10 w-auto brightness-0 invert"
             />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-zinc-400">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-400">
               {site.description}
             </p>
           </div>
 
           <div>
-            <h3 className="font-display text-xl uppercase tracking-wide text-white">
+            <h3 className="font-display text-lg text-white">
               Services
             </h3>
             <ul className="mt-4 space-y-2.5 text-sm">
@@ -58,7 +58,7 @@ export function Footer() {
                   <Link
                     prefetch={false}
                     href={`/services/${s.slug}`}
-                    className="text-zinc-400 transition-colors hover:text-brand"
+                    className="text-slate-400 transition-colors hover:text-brand"
                   >
                     {s.name}
                   </Link>
@@ -68,7 +68,7 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display text-xl uppercase tracking-wide text-white">
+            <h3 className="font-display text-lg text-white">
               Service areas
             </h3>
             <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm">
@@ -77,7 +77,7 @@ export function Footer() {
                   <Link
                     prefetch={false}
                     href={locationPath(l.slug)}
-                    className="text-zinc-400 transition-colors hover:text-brand"
+                    className="text-slate-400 transition-colors hover:text-brand"
                   >
                     {l.name}
                   </Link>
@@ -87,14 +87,14 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="font-display text-xl uppercase tracking-wide text-white">
+            <h3 className="font-display text-lg text-white">
               Contact
             </h3>
             <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <a
                   href={site.phoneHref}
-                  className="flex items-center gap-2 text-zinc-300 hover:text-brand"
+                  className="flex items-center gap-2 text-slate-300 hover:text-brand"
                 >
                   <PhoneCall className="h-4 w-4 shrink-0 text-brand" aria-hidden />
                   {site.phoneDisplay}
@@ -103,13 +103,13 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="flex items-center gap-2 text-zinc-300 hover:text-brand"
+                  className="flex items-center gap-2 text-slate-300 hover:text-brand"
                 >
                   <Mail className="h-4 w-4 shrink-0 text-brand" aria-hidden />
                   {site.email}
                 </a>
               </li>
-              <li className="flex items-start gap-2 text-zinc-300">
+              <li className="flex items-start gap-2 text-slate-300">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-brand" aria-hidden />
                 <address className="not-italic">
                   {site.name}
@@ -118,7 +118,7 @@ export function Footer() {
                   {site.address.state} {site.address.postcode}
                 </address>
               </li>
-              <li className="flex items-start gap-2 text-zinc-300">
+              <li className="flex items-start gap-2 text-slate-300">
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-brand" aria-hidden />
                 <span>
                   {site.hours.map((h) => (
@@ -134,7 +134,7 @@ export function Footer() {
       </Container>
 
       <div className="border-t border-white/10 py-6">
-        <Container className="flex flex-col items-center justify-between gap-3 text-xs text-zinc-400 sm:flex-row">
+        <Container className="flex flex-col items-center justify-between gap-3 text-xs text-slate-400 sm:flex-row">
           <p>
             © {year} {site.name}. All rights reserved.
           </p>

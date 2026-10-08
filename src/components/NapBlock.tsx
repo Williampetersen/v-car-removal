@@ -5,8 +5,8 @@ import { PhoneCall, Mail, MapPin, Clock } from "./Icons";
 export function NapBlock() {
   return (
     <address className="not-italic">
-      <p className="heading-xl text-3xl text-ink">{site.name}</p>
-      <ul className="mt-5 space-y-4 text-base text-zinc-700">
+      <p className="heading-xl text-2xl text-ink">{site.name}</p>
+      <ul className="mt-5 space-y-4 text-base text-slate-700">
         <li className="flex items-start gap-3">
           <MapPin className="mt-1 h-5 w-5 shrink-0 text-link" aria-hidden />
           <span>

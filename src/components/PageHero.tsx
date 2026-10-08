@@ -36,7 +36,7 @@ export function PageHero({
       >
         <div>
           {crumbs && (
-            <nav aria-label="Breadcrumb" className="mb-5 text-sm text-zinc-400">
+            <nav aria-label="Breadcrumb" className="mb-5 text-sm text-slate-400">
               <ol className="flex flex-wrap items-center gap-2">
                 {crumbs.map((c, i) => (
                   <li key={c.name} className="flex items-center gap-2">
@@ -45,7 +45,7 @@ export function PageHero({
                         {c.name}
                       </Link>
                     ) : (
-                      <span className="text-zinc-200">{c.name}</span>
+                      <span className="text-slate-200">{c.name}</span>
                     )}
                     {i < crumbs.length - 1 && <span aria-hidden>/</span>}
                   </li>
@@ -54,16 +54,16 @@ export function PageHero({
             </nav>
           )}
           {eyebrow && (
-            <p className="font-display inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] text-brand">
+            <p className="font-display inline-flex items-center gap-2 text-sm text-brand">
               <span aria-hidden className="h-0.5 w-8 bg-brand" />
               {eyebrow}
             </p>
           )}
-          <h1 className="heading-xl mt-3 max-w-3xl text-5xl sm:text-6xl lg:text-7xl">
+          <h1 className="heading-xl mt-3 max-w-3xl text-4xl sm:text-5xl lg:text-6xl">
             {title}
           </h1>
           {description && (
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-zinc-300">
+            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-slate-300">
               {description}
             </p>
           )}

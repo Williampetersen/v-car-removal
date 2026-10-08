@@ -11,7 +11,7 @@ type ButtonProps = {
 };
 
 const base =
-  "font-display shine inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3.5 text-lg uppercase tracking-wide transition-all active:translate-y-px active:scale-[0.97]";
+  "font-display shine inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-base transition-all active:translate-y-px active:scale-[0.97]";
 
 export function PrimaryButton({ href, children, className = "" }: ButtonProps) {
   return (
@@ -19,7 +19,7 @@ export function PrimaryButton({ href, children, className = "" }: ButtonProps) {
       href={href}
       data-ripple
       data-magnetic
-      className={`${base} bg-brand text-ink shadow-[0_6px_0_0_#a63a05] hover:-translate-y-0.5 hover:bg-[#ff7d35] hover:shadow-[0_8px_0_0_#a63a05] active:shadow-[0_3px_0_0_#a63a05] ${className}`}
+      className={`${base} bg-brand text-ink shadow-lg shadow-sky-500/30 hover:-translate-y-0.5 hover:bg-sky-300 hover:shadow-xl active:shadow-md ${className}`}
     >
       {children}
     </Link>

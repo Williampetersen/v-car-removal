@@ -8,7 +8,7 @@ import { NAV_LINKS, site } from "@/lib/site";
 export function Header() {
   return (
     <>
-      <div className="hidden bg-ink text-[13px] text-zinc-300 md:block">
+      <div className="hidden bg-ink text-[13px] text-slate-300 md:block">
         <Container className="flex h-10 items-center justify-between">
           <p className="flex items-center gap-2">
             <Clock className="h-3.5 w-3.5 text-brand" aria-hidden />
@@ -57,7 +57,7 @@ export function Header() {
                 prefetch={false}
                 key={link.href}
                 href={link.href}
-                className="nav-link font-display px-3 py-2 text-lg uppercase tracking-wide text-ink-soft transition-colors hover:text-ink"
+                className="nav-link font-display px-3 py-2 text-base text-ink-soft transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
@@ -67,7 +67,7 @@ export function Header() {
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href={site.phoneHref}
-              className="font-display hidden items-center gap-2 text-xl text-ink lg:inline-flex"
+              className="font-display hidden items-center gap-2 text-lg text-ink lg:inline-flex"
             >
               <PhoneCall className="h-5 w-5 text-link" aria-hidden />
               {site.phoneDisplay}
@@ -79,7 +79,7 @@ export function Header() {
                 href="/get-a-quote"
                 data-ripple
                 data-magnetic
-                className="font-display shine relative inline-flex items-center rounded-lg bg-brand px-4 py-2.5 text-base uppercase tracking-wide text-ink transition-transform hover:bg-[#ff7d35] active:scale-95 sm:px-5 sm:text-lg"
+                className="font-display shine relative inline-flex items-center rounded-xl bg-brand px-4 py-2.5 text-base text-ink transition-transform hover:bg-sky-300 active:scale-95 sm:px-5 sm:text-base"
               >
                 Free Quote
               </Link>

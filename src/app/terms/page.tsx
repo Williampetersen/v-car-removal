@@ -23,7 +23,7 @@ export default function TermsPage() {
       />
       <section className="py-16 sm:py-20">
         <Container className="max-w-3xl">
-          <div className="space-y-8 text-base leading-relaxed text-zinc-600">
+          <div className="space-y-8 text-base leading-relaxed text-slate-600">
             <p>
               These terms govern your use of the {site.name} website (
               {site.url}) and the quote and vehicle removal service we
@@ -32,7 +32,7 @@ export default function TermsPage() {
             </p>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Quotes are estimates
               </h2>
               <p className="mt-3">
@@ -47,7 +47,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Ownership and paperwork
               </h2>
               <p className="mt-3">
@@ -61,7 +61,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Free removal service
               </h2>
               <p className="mt-3">
@@ -73,7 +73,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Website content
               </h2>
               <p className="mt-3">
@@ -87,7 +87,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Limitation of liability
               </h2>
               <p className="mt-3">
@@ -100,7 +100,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Governing law
               </h2>
               <p className="mt-3">
@@ -110,7 +110,7 @@ export default function TermsPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Contact us
               </h2>
               <p className="mt-3">
@@ -125,7 +125,7 @@ export default function TermsPage() {
               </p>
             </div>
 
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-slate-500">
               This is a general template and has not been reviewed by a
               lawyer. We recommend having it checked against your specific
               business practices before relying on it.

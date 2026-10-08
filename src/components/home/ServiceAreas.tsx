@@ -31,19 +31,19 @@ export function ServiceAreas() {
                 prefetch={false}
                 data-tilt
                 href={locationPath(loc.slug)}
-                className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6 transition-all hover:-translate-y-1 hover:border-ink hover:shadow-[0_8px_0_0_var(--brand)]"
+                className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6 transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:shadow-sky-500/20"
               >
                 <span className="flex items-center gap-2 text-sm text-link">
                   <MapPin className="h-4 w-4" aria-hidden />
                   ~{loc.distanceKm} km from our depot
                 </span>
-                <span className="heading-xl mt-2 text-4xl text-ink">
+                <span className="heading-xl mt-2 text-3xl text-ink">
                   Cash for cars {loc.name}
                 </span>
-                <span className="mt-3 flex-1 text-sm leading-relaxed text-zinc-600">
+                <span className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
                   {loc.suburbs.slice(0, 4).join(", ")} and more
                 </span>
-                <span className="font-display mt-4 inline-flex items-center gap-1 text-base uppercase tracking-wide text-ink">
+                <span className="font-display mt-4 inline-flex items-center gap-1 text-base text-ink">
                   View area
                   <ChevronRight
                     className="h-4 w-4 transition-transform group-hover:translate-x-1"

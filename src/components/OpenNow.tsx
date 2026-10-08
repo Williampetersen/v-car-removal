@@ -35,7 +35,7 @@ export function OpenNow() {
   }, []);
 
   const dot =
-    open === null ? "text-zinc-400" : open ? "text-emerald-400" : "text-amber-400";
+    open === null ? "text-slate-400" : open ? "text-emerald-400" : "text-amber-400";
   const label =
     open === null
       ? "Free quotes, fast replies"

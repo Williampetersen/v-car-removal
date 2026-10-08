@@ -46,10 +46,10 @@ export default function ContactPage() {
       <section className="py-20 sm:py-28">
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-5">
           <FadeIn className="rounded-2xl border border-ink/10 bg-cream p-7 sm:p-10 lg:col-span-3">
-            <h2 className="heading-xl text-4xl text-ink">
+            <h2 className="heading-xl text-3xl text-ink">
               Get Cash Offer Now
             </h2>
-            <p className="mt-2 text-sm text-zinc-600">
+            <p className="mt-2 text-sm text-slate-600">
               Fill in your vehicle and contact details below and we&apos;ll
               get back to you with a cash offer as soon as possible.
             </p>
@@ -63,10 +63,10 @@ export default function ContactPage() {
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                 <PhoneCall className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="heading-xl mt-4 text-3xl text-ink">
+              <h3 className="heading-xl mt-4 text-2xl text-ink">
                 Call us
               </h3>
-              <div className="mt-2 space-y-1 text-sm text-zinc-600">
+              <div className="mt-2 space-y-1 text-sm text-slate-600">
                 <a href={site.phoneHref} className="block font-semibold text-ink hover:text-link">
                   {site.phoneDisplay}
                 </a>
@@ -77,7 +77,7 @@ export default function ContactPage() {
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                 <Mail className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="heading-xl mt-4 text-3xl text-ink">
+              <h3 className="heading-xl mt-4 text-2xl text-ink">
                 Email us
               </h3>
               <a
@@ -92,10 +92,10 @@ export default function ContactPage() {
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                 <Clock className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="heading-xl mt-4 text-3xl text-ink">
+              <h3 className="heading-xl mt-4 text-2xl text-ink">
                 Hours
               </h3>
-              <div className="mt-2 space-y-1 text-sm text-zinc-600">
+              <div className="mt-2 space-y-1 text-sm text-slate-600">
                 {site.hours.map((h) => (
                   <p key={h.days}>
                     {h.days}: {h.time}
@@ -108,14 +108,14 @@ export default function ContactPage() {
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                 <MapPin className="h-5 w-5" aria-hidden />
               </span>
-              <h3 className="heading-xl mt-4 text-3xl text-ink">
+              <h3 className="heading-xl mt-4 text-2xl text-ink">
                 Service area
               </h3>
-              <p className="mt-2 text-sm text-zinc-600">{site.areasSummary}</p>
+              <p className="mt-2 text-sm text-slate-600">{site.areasSummary}</p>
             </StaggerItem>
 
             <StaggerItem className="rounded-2xl border border-ink/10 bg-white p-7">
-              <h3 className="heading-xl text-3xl text-ink">
+              <h3 className="heading-xl text-2xl text-ink">
                 Visit us
               </h3>
               <div className="mt-4 space-y-4">
@@ -132,7 +132,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-ink">{depot.name}</p>
-                      <p className="text-sm text-zinc-600">{depot.address}</p>
+                      <p className="text-sm text-slate-600">{depot.address}</p>
                     </div>
                   </div>
                 ))}

@@ -51,8 +51,8 @@ export function WhyUs() {
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand text-ink">
                 <Icon className="h-6 w-6" aria-hidden />
               </span>
-              <h3 className="heading-xl mt-5 text-3xl">{title}</h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-zinc-300">
+              <h3 className="heading-xl mt-5 text-2xl">{title}</h3>
+              <p className="mt-3 text-[15px] leading-relaxed text-slate-300">
                 {description}
               </p>
             </div>

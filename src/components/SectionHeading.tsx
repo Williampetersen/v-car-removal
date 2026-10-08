@@ -18,7 +18,7 @@ export function SectionHeading({
     >
       {eyebrow && (
         <p
-          className={`font-display inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] ${
+          className={`font-display inline-flex items-center gap-2 text-sm ${
             dark ? "text-brand" : "text-link"
           }`}
         >
@@ -36,7 +36,7 @@ export function SectionHeading({
       {description && (
         <p
           className={`mt-5 text-lg leading-relaxed ${
-            dark ? "text-zinc-300" : "text-zinc-600"
+            dark ? "text-slate-300" : "text-slate-600"
           }`}
         >
           {description}

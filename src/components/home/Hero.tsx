@@ -25,17 +25,17 @@ export function Hero() {
           <div>
             <OpenNow />
           </div>
-          <p className="font-display mt-5 inline-flex items-center gap-2 text-sm uppercase tracking-[0.18em] text-brand">
+          <p className="font-display mt-5 inline-flex items-center gap-2 text-sm text-brand">
             <span aria-hidden className="h-0.5 w-8 bg-brand" />
             Brisbane car removal &amp; cash for cars
           </p>
-          <h1 className="heading-xl mt-4 text-[3.4rem] sm:text-7xl lg:text-8xl">
+          <h1 className="heading-xl mt-4 text-5xl sm:text-6xl lg:text-7xl">
             Cash for cars
-            <span className="block text-brand">we tow it free</span>
+            <span className="text-gradient block">we tow it free</span>
           </h1>
 
-          <p className="font-display mt-4 flex items-center gap-2 text-2xl uppercase tracking-wide text-white sm:text-3xl">
-            <span className="text-zinc-300">We buy</span>
+          <p className="font-display mt-4 flex items-center gap-2 text-xl text-white sm:text-3xl">
+            <span className="text-slate-300">We buy</span>
             <span className="words-window text-brand" aria-hidden>
               <span className="words-list">
                 {[...buys, buys[0]].map((w, i) => (
@@ -45,7 +45,7 @@ export function Hero() {
             </span>
           </p>
 
-          <p className="mt-5 max-w-xl text-lg leading-relaxed text-zinc-200 sm:text-xl">
+          <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-200 sm:text-xl">
             We buy {buys.join(", ")} in any condition across Brisbane and South
             East Queensland. Up to {site.cashOfferMax}, quoted before we send a
             truck.
@@ -70,7 +70,7 @@ export function Hero() {
                 href="#quote-hero"
                 data-ripple
                 data-magnetic
-                className="font-display shine relative inline-flex w-full items-center justify-center rounded-lg bg-brand px-7 py-4 text-xl uppercase tracking-wide text-ink transition-transform hover:bg-[#ff7d35] active:scale-95"
+                className="font-display shine relative inline-flex w-full items-center justify-center rounded-xl bg-brand px-7 py-4 text-lg text-ink transition-transform hover:bg-sky-300 active:scale-95"
               >
                 Get my cash offer
               </a>
@@ -84,11 +84,11 @@ export function Hero() {
           data-tilt
           className="scroll-mt-24 rounded-2xl border border-white/15 bg-ink/90 p-6 shadow-2xl sm:p-8"
         >
-          <p className="font-display text-sm uppercase tracking-[0.18em] text-brand">
+          <p className="font-display text-sm text-brand">
             Free, no-obligation
           </p>
-          <h2 className="heading-xl mt-1 text-4xl">Get your cash offer</h2>
-          <p className="mb-5 mt-2 text-sm text-zinc-300">
+          <h2 className="heading-xl mt-1 text-3xl">Get your cash offer</h2>
+          <p className="mb-5 mt-2 text-sm text-slate-300">
             Two quick steps. We reply with a price before we send a truck.
           </p>
           <ContactForm variant="dark" />

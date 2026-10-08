@@ -81,20 +81,20 @@ export default async function ServiceDetailPage(
             <span className="flex h-14 w-14 items-center justify-center rounded-xl bg-ink text-brand">
               <Icon className="h-7 w-7" aria-hidden />
             </span>
-            <h2 className="heading-xl mt-6 text-4xl text-ink">
+            <h2 className="heading-xl mt-6 text-3xl text-ink">
               What&apos;s included
             </h2>
             <ul className="mt-6 space-y-4">
               {service.bullets.map((bullet) => (
                 <li key={bullet} className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-cash-dark" aria-hidden />
-                  <span className="text-base leading-relaxed text-zinc-700">
+                  <span className="text-base leading-relaxed text-slate-700">
                     {bullet}
                   </span>
                 </li>
               ))}
             </ul>
-            <p className="mt-8 text-base leading-relaxed text-zinc-600">
+            <p className="mt-8 text-base leading-relaxed text-slate-600">
               {service.name} is available across {site.areasSummary}.{" "}
               <Link
                 href="/locations"
@@ -106,7 +106,7 @@ export default async function ServiceDetailPage(
           </FadeIn>
 
           <aside className="rounded-2xl border border-ink/10 bg-cream p-7 lg:sticky lg:top-28 lg:h-fit">
-            <h3 className="heading-xl text-3xl text-ink">
+            <h3 className="heading-xl text-2xl text-ink">
               Explore other services
             </h3>
             <div className="mt-5 flex flex-col gap-3">
@@ -127,7 +127,7 @@ export default async function ServiceDetailPage(
       <section className="bg-cream py-20 sm:py-28">
         <Container>
           <FadeIn>
-            <h2 className="heading-xl text-4xl text-ink">
+            <h2 className="heading-xl text-3xl text-ink">
               Other services you might need
             </h2>
           </FadeIn>

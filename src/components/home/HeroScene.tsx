@@ -67,7 +67,7 @@ export function HeroScene() {
   );
 }
 
-function TowTruck() {
+export function TowTruck() {
   return (
     <svg viewBox="0 0 360 130" role="presentation" focusable="false">
       {/* flatbed + chassis */}
@@ -77,20 +77,20 @@ function TowTruck() {
       <g>
         <path
           d="M52 76 C58 58 76 52 102 50 L142 48 C158 40 176 38 190 40 C204 42 214 52 222 62 L236 66 C242 68 244 72 244 76 Z"
-          fill="#ff6b1a"
+          fill="#38bdf8"
         />
-        <path d="M110 52 L140 49 C150 44 164 43 176 44 L184 58 L108 60 Z" fill="#0f1218" opacity="0.88" />
-        <path d="M186 45 C196 47 204 55 210 62 L190 62 Z" fill="#0f1218" opacity="0.88" />
-        <rect x="236" y="68" width="8" height="5" rx="1.5" fill="#ffd9a8" />
-        <circle cx="90" cy="76" r="13" fill="#0c0e13" />
+        <path d="M110 52 L140 49 C150 44 164 43 176 44 L184 58 L108 60 Z" fill="#0b1220" opacity="0.88" />
+        <path d="M186 45 C196 47 204 55 210 62 L190 62 Z" fill="#0b1220" opacity="0.88" />
+        <rect x="236" y="68" width="8" height="5" rx="1.5" fill="#e0f2fe" />
+        <circle cx="90" cy="76" r="13" fill="#0f172a" />
         <g className="wheel">
           <circle cx="90" cy="76" r="8" fill="#9aa1ad" />
-          <path d="M90 69 V83 M83 76 H97" stroke="#0c0e13" strokeWidth="2" />
+          <path d="M90 69 V83 M83 76 H97" stroke="#0f172a" strokeWidth="2" />
         </g>
-        <circle cx="204" cy="76" r="13" fill="#0c0e13" />
+        <circle cx="204" cy="76" r="13" fill="#0f172a" />
         <g className="wheel">
           <circle cx="204" cy="76" r="8" fill="#9aa1ad" />
-          <path d="M204 69 V83 M197 76 H211" stroke="#0c0e13" strokeWidth="2" />
+          <path d="M204 69 V83 M197 76 H211" stroke="#0f172a" strokeWidth="2" />
         </g>
       </g>
       {/* cab */}
@@ -98,25 +98,25 @@ function TowTruck() {
         d="M256 94 L256 56 C256 50 260 46 266 46 L296 46 C302 46 306 49 310 54 L326 74 C329 78 330 80 330 84 L330 94 Z"
         fill="#f4f5f7"
       />
-      <path d="M268 52 L296 52 C299 52 301 53 303 56 L316 74 L268 74 Z" fill="#0f1218" opacity="0.9" />
-      <rect x="256" y="84" width="74" height="8" fill="#ff6b1a" />
-      <rect x="322" y="82" width="9" height="6" rx="2" fill="#ffe08a" />
+      <path d="M268 52 L296 52 C299 52 301 53 303 56 L316 74 L268 74 Z" fill="#0b1220" opacity="0.9" />
+      <rect x="256" y="84" width="74" height="8" fill="#38bdf8" />
+      <rect x="322" y="82" width="9" height="6" rx="2" fill="#e0f2fe" />
       {/* beacon */}
       <rect x="276" y="40" width="14" height="6" rx="2" fill="#2b303b" />
-      <circle className="beacon" cx="283" cy="37" r="5" fill="#ffb300" />
+      <circle className="beacon" cx="283" cy="37" r="5" fill="#a5b4fc" />
       {/* chassis + wheels */}
       <rect x="18" y="92" width="312" height="10" rx="3" fill="#1b1f27" />
       {[56, 92, 292].map((cx) => (
         <g key={cx}>
-          <circle cx={cx} cy="104" r="17" fill="#0c0e13" />
+          <circle cx={cx} cy="104" r="17" fill="#0f172a" />
           <g className="wheel">
             <circle cx={cx} cy="104" r="10" fill="#c3c8d1" />
             <path
               d={`M${cx} 95 V113 M${cx - 9} 104 H${cx + 9} M${cx - 6.4} 97.6 L${cx + 6.4} 110.4 M${cx + 6.4} 97.6 L${cx - 6.4} 110.4`}
-              stroke="#0c0e13"
+              stroke="#0f172a"
               strokeWidth="1.6"
             />
-            <circle cx={cx} cy="104" r="2.6" fill="#0c0e13" />
+            <circle cx={cx} cy="104" r="2.6" fill="#0f172a" />
           </g>
         </g>
       ))}

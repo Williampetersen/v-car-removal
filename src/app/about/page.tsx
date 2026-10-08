@@ -77,7 +77,7 @@ export default function AboutPage() {
               eyebrow="Our Story"
               title="Making car removal simple and rewarding"
             />
-            <div className="mt-6 space-y-4 text-base leading-relaxed text-zinc-600">
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-slate-600">
               <p>
                 We specialise in fast, reliable and hassle-free car removal,
                 helping locals turn old, unwanted or
@@ -108,10 +108,10 @@ export default function AboutPage() {
                 <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-ink text-brand">
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
-                <h3 className="heading-xl mt-4 text-2xl text-ink">
+                <h3 className="heading-xl mt-4 text-xl text-ink">
                   {title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                <p className="mt-2 text-sm leading-relaxed text-slate-600">
                   {description}
                 </p>
               </StaggerItem>

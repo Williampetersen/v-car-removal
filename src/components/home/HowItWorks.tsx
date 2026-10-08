@@ -45,13 +45,13 @@ export function HowItWorks() {
               style={{ ["--d" as string]: `${i * 120}ms` }}
               className="reveal relative overflow-hidden rounded-2xl border border-ink/10 bg-white p-7"
             >
-              <span className="heading-xl relative text-5xl text-link">
+              <span className="heading-xl relative text-4xl text-link">
                 {step.number}
               </span>
-              <h3 className="heading-xl relative mt-3 text-3xl text-ink">
+              <h3 className="heading-xl relative mt-3 text-2xl text-ink">
                 {step.title}
               </h3>
-              <p className="relative mt-3 text-[15px] leading-relaxed text-zinc-600">
+              <p className="relative mt-3 text-[15px] leading-relaxed text-slate-600">
                 {step.description}
               </p>
             </li>

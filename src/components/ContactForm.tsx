@@ -25,11 +25,11 @@ export function ContactForm({
   const dark = variant !== "light";
 
   const field = dark
-    ? "w-full rounded-lg border border-white/20 bg-white/10 px-4 py-3 text-base text-white placeholder:text-zinc-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40"
-    : "w-full rounded-lg border border-ink/20 bg-white px-4 py-3 text-base text-ink placeholder:text-zinc-400 focus:border-ink focus:outline-none focus:ring-2 focus:ring-brand/50";
+    ? "w-full rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-base text-white placeholder:text-slate-400 focus:border-brand focus:outline-none focus:ring-2 focus:ring-brand/40"
+    : "w-full rounded-xl border border-ink/20 bg-white px-4 py-3 text-base text-ink placeholder:text-slate-400 focus:border-ink focus:outline-none focus:ring-2 focus:ring-brand/50";
   const label = dark
-    ? "font-display text-sm uppercase tracking-wider text-zinc-300"
-    : "font-display text-sm uppercase tracking-wider text-ink-soft";
+    ? "font-display text-sm text-slate-300"
+    : "font-display text-sm text-ink-soft";
 
   function goNext() {
     const inputs = stepOneRef.current?.querySelectorAll<HTMLInputElement | HTMLSelectElement>(
@@ -99,15 +99,15 @@ export function ContactForm({
                   active || done
                     ? "bg-brand text-ink"
                     : dark
-                      ? "bg-white/15 text-zinc-300"
+                      ? "bg-white/15 text-slate-300"
                       : "bg-ink/10 text-ink-soft"
                 }`}
               >
                 {i + 1}
               </span>
               <span
-                className={`font-display text-sm uppercase tracking-wider ${
-                  dark ? "text-zinc-200" : "text-ink-soft"
+                className={`font-display text-sm ${
+                  dark ? "text-slate-200" : "text-ink-soft"
                 }`}
               >
                 {name}
@@ -196,7 +196,7 @@ export function ContactForm({
           type="button"
           onClick={goNext}
           data-ripple
-          className="font-display shine relative sm:col-span-2 rounded-lg bg-brand px-6 py-3.5 text-lg uppercase tracking-wide text-ink shadow-[0_5px_0_0_#a63a05] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d35]"
+          className="font-display shine relative sm:col-span-2 rounded-xl bg-brand px-6 py-3.5 text-base text-ink shadow-lg shadow-sky-500/30 transition-all hover:-translate-y-0.5 hover:bg-sky-300"
         >
           Next: your details
         </button>
@@ -275,7 +275,7 @@ export function ContactForm({
           <button
             type="button"
             onClick={() => setStep(1)}
-            className={`font-display rounded-lg border-2 px-5 py-3.5 text-lg uppercase tracking-wide ${
+            className={`font-display rounded-xl border-2 px-5 py-3.5 text-base ${
               dark
                 ? "border-white/25 text-white hover:border-white"
                 : "border-ink/20 text-ink hover:border-ink"
@@ -287,7 +287,7 @@ export function ContactForm({
             type="submit"
             disabled={status === "sending"}
             data-ripple
-            className="font-display shine relative flex-1 rounded-lg bg-brand px-6 py-3.5 text-lg uppercase tracking-wide text-ink shadow-[0_5px_0_0_#a63a05] transition-all hover:-translate-y-0.5 hover:bg-[#ff7d35] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
+            className="font-display shine relative flex-1 rounded-xl bg-brand px-6 py-3.5 text-base text-ink shadow-lg shadow-sky-500/30 transition-all hover:-translate-y-0.5 hover:bg-sky-300 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
           >
             {status === "sending" ? "Sending…" : "Get my cash offer"}
           </button>

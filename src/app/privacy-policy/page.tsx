@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
       />
       <section className="py-16 sm:py-20">
         <Container className="max-w-3xl">
-          <div className="space-y-8 text-base leading-relaxed text-zinc-600">
+          <div className="space-y-8 text-base leading-relaxed text-slate-600">
             <p>
               {site.name}{site.abn ? ` (ABN: ${site.abn})` : ""} (&ldquo;we&rdquo;, &ldquo;us&rdquo;) respects your
               privacy and is committed to handling personal information in
@@ -33,7 +33,7 @@ export default function PrivacyPolicyPage() {
             </p>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Information we collect
               </h2>
               <p className="mt-3">
@@ -48,7 +48,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 How we use your information
               </h2>
               <p className="mt-3">We use your information to:</p>
@@ -68,7 +68,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Cookies and analytics
               </h2>
               <p className="mt-3">
@@ -83,7 +83,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Data storage and security
               </h2>
               <p className="mt-3">
@@ -96,7 +96,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Access and correction
               </h2>
               <p className="mt-3">
@@ -107,7 +107,7 @@ export default function PrivacyPolicyPage() {
             </div>
 
             <div>
-              <h2 className="heading-xl text-3xl text-ink">
+              <h2 className="heading-xl text-2xl text-ink">
                 Contact us
               </h2>
               <p className="mt-3">
@@ -132,7 +132,7 @@ export default function PrivacyPolicyPage() {
               </p>
             </div>
 
-            <p className="text-sm text-zinc-500">
+            <p className="text-sm text-slate-500">
               This policy is a general template and has not been reviewed by a
               lawyer. We recommend having it checked against your specific
               data practices before relying on it.

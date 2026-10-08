@@ -22,13 +22,13 @@ export function StatsStrip() {
               <dt className="sr-only">{s.label}</dt>
               <dd>
                 <span
-                  className="heading-xl block text-4xl tabular-nums text-ink sm:text-5xl"
+                  className="heading-xl block text-3xl tabular-nums text-ink sm:text-4xl"
                   data-count={"count" in s ? s.count : undefined}
                   data-prefix={"prefix" in s ? s.prefix : undefined}
                 >
                   {s.value}
                 </span>
-                <span className="mt-1 block text-sm text-zinc-600">{s.label}</span>
+                <span className="mt-1 block text-sm text-slate-600">{s.label}</span>
               </dd>
             </div>
           ))}

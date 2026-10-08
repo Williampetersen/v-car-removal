@@ -52,7 +52,7 @@ export default function GetAQuotePage() {
               </p>
             </QuickAnswer>
             <div className="rounded-2xl border border-ink/10 bg-cream p-7 sm:p-10">
-              <h2 className="heading-xl text-4xl text-ink">
+              <h2 className="heading-xl text-3xl text-ink">
                 Your vehicle details
               </h2>
               <div className="mt-6">

@@ -24,7 +24,7 @@ export function Ticker() {
               {row.map((p, i) => (
                 <li
                   key={`${k}-${i}`}
-                  className="heading-xl flex items-center gap-6 pr-6 text-2xl sm:text-3xl"
+                  className="heading-xl flex items-center gap-6 pr-6 text-xl sm:text-2xl"
                 >
                   {p}
                   <span className="text-ink/60">★</span>

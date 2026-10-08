@@ -8,7 +8,7 @@ export function LastUpdated({ date = site.lastUpdated }: { date?: string }) {
     timeZone: "Australia/Brisbane",
   });
   return (
-    <p className="text-sm text-zinc-500">
+    <p className="text-sm text-slate-500">
       Last updated: <time dateTime={date}>{label}</time>
     </p>
   );

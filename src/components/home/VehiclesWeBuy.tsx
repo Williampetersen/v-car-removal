@@ -50,7 +50,7 @@ export function VehiclesWeBuy() {
               key={v.name}
               data-tilt
               style={{ ["--d" as string]: `${i * 70}ms` }}
-              className="reveal group overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all hover:-translate-y-1 hover:border-ink hover:shadow-[0_8px_0_0_var(--brand)]"
+              className="reveal group overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:shadow-sky-500/20"
             >
               <div className="relative h-32 bg-white sm:h-40">
                 <Image
@@ -62,8 +62,8 @@ export function VehiclesWeBuy() {
                 />
               </div>
               <div className="border-t border-ink/10 p-4 sm:p-5">
-                <h3 className="heading-xl text-2xl text-ink sm:text-3xl">{v.name}</h3>
-                <p className="mt-1 text-sm leading-snug text-zinc-600">{v.description}</p>
+                <h3 className="heading-xl text-xl text-ink sm:text-2xl">{v.name}</h3>
+                <p className="mt-1 text-sm leading-snug text-slate-600">{v.description}</p>
               </div>
             </li>
           ))}
