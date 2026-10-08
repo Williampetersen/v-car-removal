@@ -1,7 +1,6 @@
 import { ReactNode } from "react";
 import Image from "next/image";
 import { Container } from "./Container";
-import { FadeIn } from "./motion/FadeIn";
 
 export function PageHero({
   eyebrow,
@@ -27,7 +26,7 @@ export function PageHero({
       <Container
         className={`relative ${image ? "grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.3fr_1fr]" : ""}`}
       >
-        <FadeIn>
+        <div>
           {eyebrow && (
             <span className="inline-flex items-center rounded-full bg-brand/15 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-ink-soft">
               {eyebrow}
@@ -42,7 +41,7 @@ export function PageHero({
             </p>
           )}
           {children}
-        </FadeIn>
+        </div>
 
         {image && (
           <div className="relative mx-auto hidden aspect-[4/5] w-full max-w-xs overflow-hidden rounded-3xl border border-ink/8 bg-zinc-50 lg:block">

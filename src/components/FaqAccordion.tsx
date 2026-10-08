@@ -5,10 +5,13 @@ import { ChevronRight } from "./Icons";
 export function FaqAccordion({
   items,
   openFirst = true,
+  headingLevel = 3,
 }: {
   items: Faq[];
   openFirst?: boolean;
+  headingLevel?: 2 | 3;
 }) {
+  const Heading = `h${headingLevel}` as "h2" | "h3";
   return (
     <div className="divide-y divide-ink/8 rounded-3xl border border-ink/8 bg-white">
       {items.map((item, index) => (
@@ -18,11 +21,11 @@ export function FaqAccordion({
           open={openFirst && index === 0}
         >
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 [&::-webkit-details-marker]:hidden">
-            <h3 className="font-display text-base font-bold text-ink sm:text-lg">
+            <Heading className="font-display text-base font-bold text-ink sm:text-lg">
               {item.question}
-            </h3>
+            </Heading>
             <ChevronRight
-              className="h-5 w-5 shrink-0 text-ink-soft transition-transform group-open:rotate-90 group-open:text-brand-dark"
+              className="h-5 w-5 shrink-0 text-ink-soft transition-transform group-open:rotate-90 group-open:text-link"
               aria-hidden
             />
           </summary>

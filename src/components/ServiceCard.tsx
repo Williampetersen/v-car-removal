@@ -19,7 +19,7 @@ export function ServiceCard({ service }: { service: Service }) {
       <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-600">
         {service.shortDescription}
       </p>
-      <span className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-ink-soft transition-colors group-hover:text-brand-dark">
+      <span className="mt-5 inline-flex items-center gap-1 text-sm font-bold text-ink-soft transition-colors group-hover:text-link">
         Learn more
         <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
       </span>

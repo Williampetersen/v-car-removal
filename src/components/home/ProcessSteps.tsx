@@ -47,7 +47,7 @@ export function ProcessSteps() {
               key={step.number}
               className="relative rounded-3xl border border-ink/8 bg-white p-7 transition-transform hover:-translate-y-1"
             >
-              <span className="font-display text-4xl font-bold text-brand-dark/50">
+              <span className="font-display text-4xl font-bold text-link">
                 {step.number}
               </span>
               <h3 className="font-display mt-4 text-lg font-bold text-ink">

@@ -10,8 +10,8 @@ import { site } from "@/lib/site";
 import { LastUpdated } from "@/components/LastUpdated";
 
 export const metadata: Metadata = {
-  title: "Car Removal Service Areas: Brisbane, Ipswich, Gold Coast & More",
-  description: `${site.name} buys cars and removes them free across ${site.areasSummary}. Find your area and call ${site.phoneDisplay}.`,
+  title: "Car Removal Service Areas in South East QLD",
+  description: `We buy cars and remove them free in Brisbane, Ipswich, Caboolture, Gold Coast, Logan, Moreton Bay, Redlands, Sunshine Coast and Toowoomba.`,
   alternates: {
     canonical: `${site.url}/locations`,
   },

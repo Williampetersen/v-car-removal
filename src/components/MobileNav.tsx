@@ -41,7 +41,7 @@ export function MobileNav() {
             </div>
             <nav className="mt-8 flex flex-col gap-1">
               {NAV_LINKS.map((link) => (
-                <Link
+                <Link prefetch={false}
                   key={link.href}
                   href={link.href}
                   onClick={() => setOpen(false)}

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
@@ -9,17 +8,6 @@ import { JsonLd } from "@/components/JsonLd";
 import { MetaPixel } from "@/components/MetaPixel";
 import { site } from "@/lib/site";
 import { organizationSchema, websiteSchema } from "@/lib/schema";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -54,7 +42,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-AU"
-      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
       <body className="flex min-h-full flex-col bg-white text-ink">
         <JsonLd data={organizationSchema()} />

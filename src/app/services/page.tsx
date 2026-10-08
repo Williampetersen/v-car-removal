@@ -8,8 +8,8 @@ import { services } from "@/lib/services";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Our Services",
-  description: `Cash for cars, free car removal, scrap car removal, truck and van removal, and car recycling across ${site.areasSummary}.`,
+  title: "Cash For Cars & Free Car Removal Services",
+  description: `Cash for cars, free car removal, scrap car removal, truck, van, 4x4 and motorbike removal across Brisbane and South East QLD.`,
   alternates: {
     canonical: `${site.url}/services`,
   },

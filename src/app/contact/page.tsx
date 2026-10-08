@@ -12,8 +12,8 @@ import { webPageSchema, breadcrumbSchema } from "@/lib/schema";
 import { LastUpdated } from "@/components/LastUpdated";
 
 export const metadata: Metadata = {
-  title: "Contact V Car Removal Brisbane | Phone, Email & Address",
-  description: `Call ${site.phoneDisplay}, email ${site.email} or visit ${site.depots[0].address}. Free quotes for cash for cars and car removal across Brisbane and South East QLD.`,
+  title: "Contact Us | Phone, Email & Address",
+  description: `Call ${site.phoneDisplay}, email ${site.email} or visit ${site.depots[0].address}. Free quotes for cash for cars across Brisbane.`,
   alternates: {
     canonical: `${site.url}/contact`,
   },
@@ -67,7 +67,7 @@ export default function ContactPage() {
                 Call us
               </h3>
               <div className="mt-2 space-y-1 text-sm text-zinc-600">
-                <a href={site.phoneHref} className="block font-semibold text-ink hover:text-brand-dark">
+                <a href={site.phoneHref} className="block font-semibold text-ink hover:text-link">
                   {site.phoneDisplay}
                 </a>
               </div>
@@ -82,7 +82,7 @@ export default function ContactPage() {
               </h3>
               <a
                 href={`mailto:${site.email}`}
-                className="mt-2 block text-sm font-semibold text-ink hover:text-brand-dark"
+                className="mt-2 block text-sm font-semibold text-ink hover:text-link"
               >
                 {site.email}
               </a>

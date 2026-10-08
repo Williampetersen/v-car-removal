@@ -24,7 +24,7 @@ export function GoogleReviews() {
           href={site.googleReviewsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-sm font-bold text-brand-dark transition-colors hover:text-ink"
+          className="text-sm font-bold text-link transition-colors hover:text-ink"
         >
           Read our Google reviews →
         </a>

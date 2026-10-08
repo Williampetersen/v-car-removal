@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useId, useState } from "react";
 import { useRouter } from "next/navigation";
 import { site } from "@/lib/site";
 
@@ -15,6 +15,7 @@ export function ContactForm({
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
+  const uid = useId();
   const router = useRouter();
   const isGlass = variant === "glass";
 
@@ -79,7 +80,7 @@ export function ContactForm({
       label: "Your name",
       node: (
         <input
-          id="your-name"
+          id={`${uid}-your-name`}
           name="your-name"
           type="text"
           required
@@ -93,7 +94,7 @@ export function ContactForm({
       label: "Your phone number",
       node: (
         <input
-          id="your-phone"
+          id={`${uid}-your-phone`}
           name="your-phone"
           type="tel"
           required
@@ -108,7 +109,7 @@ export function ContactForm({
       span: true,
       node: (
         <input
-          id="your-email"
+          id={`${uid}-your-email`}
           name="your-email"
           type="email"
           required
@@ -122,7 +123,7 @@ export function ContactForm({
       label: "Suburb",
       node: (
         <input
-          id="suburb"
+          id={`${uid}-suburb`}
           name="suburb"
           type="text"
           required
@@ -136,7 +137,7 @@ export function ContactForm({
       label: "Postal code",
       node: (
         <input
-          id="postal-code"
+          id={`${uid}-postal-code`}
           name="postal-code"
           type="text"
           required
@@ -151,7 +152,7 @@ export function ContactForm({
       label: "Car brand / model",
       node: (
         <input
-          id="car-model"
+          id={`${uid}-car-model`}
           name="car-model"
           type="text"
           required
@@ -165,7 +166,7 @@ export function ContactForm({
       label: "Car year",
       node: (
         <select
-          id="car-year"
+          id={`${uid}-car-year`}
           name="car-year"
           required
           defaultValue=""
@@ -188,7 +189,7 @@ export function ContactForm({
       span: true,
       node: (
         <textarea
-          id="your-note"
+          id={`${uid}-your-note`}
           name="your-note"
           rows={isGlass ? 2 : 4}
           className={fieldClasses}
@@ -202,7 +203,7 @@ export function ContactForm({
     <form onSubmit={handleSubmit} className={gridClasses}>
       {fields.map((field) => (
         <div key={field.id} className={!isGlass && field.span ? "sm:col-span-2" : undefined}>
-          <label htmlFor={field.id} className={labelClasses}>
+          <label htmlFor={`${uid}-${field.id}`} className={labelClasses}>
             {field.label}
           </label>
           <div className={isGlass ? undefined : "mt-2"}>{field.node}</div>
@@ -210,9 +211,9 @@ export function ContactForm({
       ))}
 
       <div className="hidden" aria-hidden="true">
-        <label htmlFor="company">Leave this field empty</label>
+        <label htmlFor={`${uid}-company`}>Leave this field empty</label>
         <input
-          id="company"
+          id={`${uid}-company`}
           name="company"
           type="text"
           tabIndex={-1}

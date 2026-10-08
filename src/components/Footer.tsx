@@ -16,8 +16,8 @@ export function Footer() {
           <Image
             src="/images/logo/logo.png"
             alt={site.name}
-            width={796}
-            height={313}
+            width={204}
+            height={80}
             className="h-9 w-auto brightness-0 invert"
           />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-zinc-400">
@@ -42,7 +42,7 @@ export function Footer() {
           <ul className="mt-4 space-y-3 text-sm">
             {services.map((s) => (
               <li key={s.slug}>
-                <Link
+                <Link prefetch={false}
                   href={`/services/${s.slug}`}
                   className="text-zinc-400 transition-colors hover:text-brand"
                 >
@@ -60,7 +60,7 @@ export function Footer() {
           <ul className="mt-4 space-y-3 text-sm">
             {allLocations.map((l) => (
               <li key={l.slug}>
-                <Link
+                <Link prefetch={false}
                   href={locationPath(l.slug)}
                   className="text-zinc-400 transition-colors hover:text-brand"
                 >
@@ -108,24 +108,24 @@ export function Footer() {
       </Container>
 
       <div className="border-t border-white/10 py-6">
-        <Container className="flex flex-col items-center justify-between gap-3 text-xs text-zinc-500 sm:flex-row">
+        <Container className="flex flex-col items-center justify-between gap-3 text-xs text-zinc-400 sm:flex-row">
           <p>
             © {year} {site.name}. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link href="/faq" className="hover:text-zinc-300">
+            <Link prefetch={false} href="/faq" className="hover:text-zinc-300">
               FAQ
             </Link>
-            <Link href="/get-a-quote" className="hover:text-zinc-300">
+            <Link prefetch={false} href="/get-a-quote" className="hover:text-zinc-300">
               Get a Quote
             </Link>
-            <Link href="/contact" className="hover:text-zinc-300">
+            <Link prefetch={false} href="/contact" className="hover:text-zinc-300">
               Contact
             </Link>
-            <Link href="/privacy-policy" className="hover:text-zinc-300">
+            <Link prefetch={false} href="/privacy-policy" className="hover:text-zinc-300">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="hover:text-zinc-300">
+            <Link prefetch={false} href="/terms" className="hover:text-zinc-300">
               Terms
             </Link>
           </div>

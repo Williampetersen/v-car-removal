@@ -117,7 +117,7 @@ export default function TermsPage() {
                 Questions about these terms can be sent to{" "}
                 <a
                   href={`mailto:${site.email}`}
-                  className="font-semibold text-brand-dark hover:underline"
+                  className="font-semibold text-link hover:underline"
                 >
                   {site.email}
                 </a>{" "}

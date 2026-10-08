@@ -42,9 +42,9 @@ function resolve(slug: string) {
 
 function metaFor(name: string, suburbs: string[]) {
   return {
-    title: `Cash For Cars ${name} | Free Car Removal & Instant Quote`,
-    description: `Sell your car for cash in ${name}. Free towing, quote before pickup, any make or condition. Serving ${suburbs
-      .slice(0, 4)
+    title: `Cash For Cars ${name} | Free Car Removal`,
+    description: `Sell your car for cash in ${name}. Free towing, quote before pickup, any condition. Serving ${suburbs
+      .slice(0, 3)
       .join(", ")} and more. Call ${site.phoneDisplay}.`,
   };
 }
@@ -193,7 +193,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
             <NapBlock />
             <Link
               href="/locations"
-              className="mt-6 inline-block text-sm font-bold text-brand-dark"
+              className="mt-6 inline-block text-sm font-bold text-link"
             >
               All service areas →
             </Link>

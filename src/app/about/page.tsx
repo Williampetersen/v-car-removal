@@ -14,8 +14,8 @@ import { NapBlock } from "@/components/NapBlock";
 import { webPageSchema, breadcrumbSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "About V Car Removal Brisbane | Local Car Buyers & Removal",
-  description: `${site.name} buys cars for cash and removes them free from our Sherwood depot, serving Brisbane and South East Queensland. Hours, address and how we work.`,
+  title: "About Us | Local Car Buyers & Removal",
+  description: `${site.name} buys cars for cash and removes them free from our Sherwood depot across Brisbane and South East QLD. Hours, address, how we work.`,
   alternates: {
     canonical: `${site.url}/about`,
   },
@@ -159,7 +159,7 @@ export default function AboutPage() {
                   {depot.name}
                 </h3>
                 <p className="mt-2 flex items-center justify-center gap-1.5 text-sm text-zinc-600">
-                  <MapPin className="h-4 w-4 shrink-0 text-brand-dark" aria-hidden />
+                  <MapPin className="h-4 w-4 shrink-0 text-link" aria-hidden />
                   {depot.address}
                 </p>
               </StaggerItem>

@@ -6,10 +6,12 @@ export function Hero() {
   return (
     <section className="relative isolate flex min-h-[520px] flex-col overflow-hidden bg-white sm:min-h-[640px]">
       <Image
-        src="/images/hero/hero.png"
+        src="/images/hero/hero.webp"
         alt="Aerial view of the V Car Removal wrecking yard"
         fill
         priority
+        fetchPriority="high"
+        quality={50}
         className="object-cover"
         sizes="100vw"
       />

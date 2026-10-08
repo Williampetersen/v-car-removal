@@ -9,12 +9,12 @@ export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-ink/5 bg-white/90 backdrop-blur-md">
       <Container className="flex min-h-16 items-center justify-between gap-4 py-3 sm:h-20">
-        <Link href="/" className="flex shrink-0 items-center">
+        <Link prefetch={false} href="/" className="flex shrink-0 items-center">
           <Image
             src="/images/logo/logo.png"
             alt={site.name}
-            width={796}
-            height={313}
+            width={204}
+            height={80}
             priority
             className="h-8 w-auto sm:h-10"
           />
@@ -22,7 +22,7 @@ export function Header() {
 
         <nav className="hidden items-center gap-7 xl:flex">
           {NAV_LINKS.map((link) => (
-            <Link
+            <Link prefetch={false}
               key={link.href}
               href={link.href}
               className="text-sm font-semibold whitespace-nowrap text-ink-soft transition-colors hover:text-ink"
@@ -40,7 +40,7 @@ export function Header() {
             <PhoneCall className="h-3.5 w-3.5" aria-hidden />
             {site.phoneDisplay}
           </a>
-          <Link
+          <Link prefetch={false}
             href="/get-a-quote"
             className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-brand px-4 py-2.5 text-xs font-bold text-ink transition-all hover:-translate-y-0.5 hover:bg-brand-dark sm:px-5 sm:text-sm"
           >

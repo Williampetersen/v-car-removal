@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-// CSS-only reveal (see .reveal in globals.css): no client JavaScript.
+// Plain wrapper: scroll animations were removed because they delayed Largest Contentful Paint.
 export function FadeIn({
   children,
   className = "",
@@ -10,5 +10,5 @@ export function FadeIn({
   delay?: number;
   y?: number;
 }) {
-  return <div className={`reveal ${className}`}>{children}</div>;
+  return <div className={className}>{children}</div>;
 }

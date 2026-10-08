@@ -115,14 +115,14 @@ export default function PrivacyPolicyPage() {
                 your information, contact us at{" "}
                 <a
                   href={`mailto:${site.email}`}
-                  className="font-semibold text-brand-dark hover:underline"
+                  className="font-semibold text-link hover:underline"
                 >
                   {site.email}
                 </a>{" "}
                 or call{" "}
                 <a
                   href={site.phoneHref}
-                  className="font-semibold text-brand-dark hover:underline"
+                  className="font-semibold text-link hover:underline"
                 >
                   {site.phoneDisplay}
                 </a>

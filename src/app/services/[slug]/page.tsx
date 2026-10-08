@@ -98,7 +98,7 @@ export default async function ServiceDetailPage(
               {service.name} is available across {site.areasSummary}.{" "}
               <Link
                 href="/locations"
-                className="font-semibold text-brand-dark hover:underline"
+                className="font-semibold text-link hover:underline"
               >
                 See all service areas →
               </Link>

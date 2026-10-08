@@ -12,7 +12,7 @@ export function StickyCallBar() {
         <PhoneCall className="h-4 w-4 text-brand" aria-hidden />
         Call Now
       </a>
-      <Link
+      <Link prefetch={false}
         href="/get-a-quote"
         className="flex flex-1 items-center justify-center gap-2 bg-brand py-3.5 text-sm font-bold text-ink"
       >

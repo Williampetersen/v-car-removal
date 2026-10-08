@@ -19,8 +19,8 @@ import { faqs } from "@/lib/faqs";
 import { site } from "@/lib/site";
 import { faqSchema, webPageSchema } from "@/lib/schema";
 
-const title = "Cash For Cars Brisbane | Free Car Removal & Same-Day Pickup";
-const description = `Sell your car for cash in Brisbane. Free towing, quote before pickup, any make or condition, up to ${site.cashOfferMax}. Call ${site.phoneDisplay}.`;
+const title = "Cash For Cars Brisbane | Free Car Removal";
+const description = `Sell your car for cash in Brisbane. Free towing, a quote before pickup, any make or condition, up to ${site.cashOfferMax}. Call ${site.phoneDisplay}.`;
 
 export const metadata: Metadata = {
   title: { absolute: `${title} | ${site.shortName}` },

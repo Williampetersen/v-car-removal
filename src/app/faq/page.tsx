@@ -11,7 +11,7 @@ import { LastUpdated } from "@/components/LastUpdated";
 import { faqSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: "Cash For Cars FAQ: Pricing, Pickup, Paperwork & Payment",
+  title: "Cash For Cars FAQ: Pricing, Pickup & Payment",
   description: `How much you get for your car, how fast we collect, what paperwork you need and when you are paid. Answers from ${site.name}.`,
   alternates: {
     canonical: `${site.url}/faq`,
@@ -30,7 +30,7 @@ export default function FaqPage() {
       <section className="py-20 sm:py-28">
         <Container className="max-w-3xl">
           <FadeIn>
-            <FaqAccordion items={faqs} />
+            <FaqAccordion items={faqs} headingLevel={2} />
           </FadeIn>
           <div className="mt-6">
             <LastUpdated />

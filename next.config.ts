@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
     root: path.join(__dirname),
   },
   poweredByHeader: false,
+  experimental: {
+    // Inline critical CSS to remove the render-blocking stylesheet request.
+    inlineCss: true,
+  },
   images: {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 31536000,
@@ -46,25 +50,25 @@ const nextConfig: NextConfig = {
 
     return [
       // Old Jet Car Removal-branded contact URL (and the old /contact-us alias).
-      { source: "/contact-us-jet-car-removal-brisbane", destination: "/contact", permanent: true },
-      { source: "/contact-us", destination: "/contact", permanent: true },
+      { source: "/contact-us-jet-car-removal-brisbane", destination: "/contact", statusCode: 301 },
+      { source: "/contact-us", destination: "/contact", statusCode: 301 },
       // Orphan landing page and test page from WordPress.
-      { source: "/qld-2", destination: "/", permanent: true },
-      { source: "/test", destination: "/", permanent: true },
+      { source: "/qld-2", destination: "/", statusCode: 301 },
+      { source: "/test", destination: "/", statusCode: 301 },
       // Empty WordPress archives.
-      { source: "/project", destination: "/", permanent: true },
-      { source: "/project/:path*", destination: "/", permanent: true },
-      { source: "/category/:path*", destination: "/", permanent: true },
-      { source: "/author/:path*", destination: "/", permanent: true },
-      { source: "/feed", destination: "/", permanent: true },
-      { source: "/sitemap_index.xml", destination: "/sitemap.xml", permanent: true },
-      { source: "/page-sitemap.xml", destination: "/sitemap.xml", permanent: true },
-      { source: "/wp-sitemap.xml", destination: "/sitemap.xml", permanent: true },
+      { source: "/project", destination: "/", statusCode: 301 },
+      { source: "/project/:path*", destination: "/", statusCode: 301 },
+      { source: "/category/:path*", destination: "/", statusCode: 301 },
+      { source: "/author/:path*", destination: "/", statusCode: 301 },
+      { source: "/feed", destination: "/", statusCode: 301 },
+      { source: "/sitemap_index.xml", destination: "/sitemap.xml", statusCode: 301 },
+      { source: "/page-sitemap.xml", destination: "/sitemap.xml", statusCode: 301 },
+      { source: "/wp-sitemap.xml", destination: "/sitemap.xml", statusCode: 301 },
       // Short intermediate URLs used while this site was in development.
       ...citySlugs.map((slug) => ({
         source: `/locations/${slug}`,
         destination: `/cash-for-cars-${slug}`,
-        permanent: true,
+        statusCode: 301,
       })),
     ];
   },
