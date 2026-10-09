@@ -64,7 +64,7 @@ export default function AboutPage() {
         imageAlt="Vehicle loaded on a V Car Removal tow truck"
       />
 
-      <section className="py-20 sm:py-28">
+      <section className="py-12 sm:py-20 lg:py-28">
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:items-center">
           <FadeIn>
             <SectionHeading
@@ -97,9 +97,9 @@ export default function AboutPage() {
             {values.map(({ icon: Icon, title, description }) => (
               <StaggerItem
                 key={title}
-                className="group rounded-3xl border border-ink/8 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-ink/20 hover:shadow-lg"
+                className="group rounded-xl border border-ink/8 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:border-ink/20 hover:shadow-lg"
               >
-                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand/10 text-brand-dark ring-1 ring-brand/15 transition-all group-hover:scale-110 group-hover:bg-brand/20">
+                <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-brand/10 text-brand-dark ring-1 ring-brand/15 transition-all group-hover:scale-110 group-hover:bg-brand/20">
                   <Icon className="h-5 w-5" aria-hidden />
                 </span>
                 <h3 className="font-display mt-4 text-base font-bold text-ink">
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
       <section className="pb-20 sm:pb-28">
         <Container>
-          <FadeIn className="group relative h-80 w-full overflow-hidden rounded-3xl bg-ink shadow-xl shadow-ink/10 sm:h-96">
+          <FadeIn className="group relative h-80 w-full overflow-hidden rounded-xl bg-ink shadow-xl shadow-ink/10 sm:h-96">
             <Image
               src="/images/gallery/car-removal-2.jpg"
               alt="V Car Removal tow truck loading a vehicle for removal"
@@ -155,7 +155,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="bg-zinc-50 py-20 sm:py-28">
+      <section className="bg-cream py-12 sm:py-20 lg:py-28">
         <Container>
           <FadeIn>
             <SectionHeading eyebrow="Visit Us" title="Our location" align="center" />
@@ -163,7 +163,7 @@ export default function AboutPage() {
           {site.depots.map((depot) => (
             <FadeIn
               key={depot.name}
-              className="mx-auto mt-10 grid max-w-5xl grid-cols-1 overflow-hidden rounded-3xl border border-ink/8 bg-white shadow-xl shadow-ink/5 lg:grid-cols-2"
+              className="mx-auto mt-10 grid max-w-5xl grid-cols-1 overflow-hidden rounded-xl border border-ink/8 bg-white shadow-xl shadow-ink/5 lg:grid-cols-2"
             >
               <div className="flex flex-col justify-center gap-6 p-8 sm:p-10">
                 <div className="relative h-10 w-28">

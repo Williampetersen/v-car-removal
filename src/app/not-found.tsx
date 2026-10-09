@@ -4,7 +4,7 @@ import { PrimaryButton, CallButton } from "@/components/Buttons";
 export default function NotFound() {
   return (
     <section className="flex min-h-[70vh] items-center bg-ink">
-      <Container className="flex flex-col items-center py-24 text-center">
+      <Container className="flex flex-col items-center py-14 text-center sm:py-24">
         <p className="font-display text-7xl font-bold text-brand">404</p>
         <h1 className="font-display mt-4 text-3xl font-bold text-white">
           This page has driven off

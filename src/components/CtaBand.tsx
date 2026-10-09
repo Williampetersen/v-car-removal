@@ -1,8 +1,6 @@
 import { Container } from "./Container";
-import { DarkButton } from "./Buttons";
-import { PhoneCall } from "./Icons";
+import { PrimaryButton, CallButton, EmailButton } from "./Buttons";
 import { FadeIn } from "./motion/FadeIn";
-import { site } from "@/lib/site";
 
 export function CtaBand({
   title = "Ready to turn your car into cash today?",
@@ -12,28 +10,29 @@ export function CtaBand({
   description?: string;
 }) {
   return (
-    <section className="relative overflow-hidden bg-brand py-16 sm:py-20">
+    <section className="relative overflow-hidden bg-ink py-12 sm:py-20 lg:py-28">
       <div
-        className="bg-grid pointer-events-none absolute inset-0 opacity-20"
+        className="bg-grid pointer-events-none absolute inset-0 opacity-60"
+        aria-hidden
+      />
+      <div
+        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand/20 blur-3xl"
         aria-hidden
       />
       <FadeIn>
-        <Container className="relative flex flex-col items-center gap-6 text-center">
-          <h2 className="font-display text-balance max-w-2xl text-3xl font-bold text-ink sm:text-4xl">
-            {title}
-          </h2>
-          <p className="max-w-xl text-base leading-relaxed text-ink/80">
-            {description}
-          </p>
-          <div className="mt-2 flex flex-col gap-4 sm:flex-row">
-            <DarkButton href="/contact">Get Your Free Quote</DarkButton>
-            <a
-              href={site.phoneHref}
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink/25 px-6 py-3.5 text-base font-bold text-ink transition-all hover:-translate-y-0.5 hover:border-ink active:translate-y-0"
-            >
-              <PhoneCall className="h-5 w-5" aria-hidden />
-              Call {site.phoneDisplay}
-            </a>
+        <Container className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-[1.5fr_1fr]">
+          <div>
+            <h2 className="font-display text-balance max-w-2xl text-3xl font-bold leading-tight tracking-tight text-white sm:text-5xl">
+              {title}
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-300 sm:text-lg">
+              {description}
+            </p>
+          </div>
+          <div className="flex flex-col gap-4">
+            <PrimaryButton href="/contact">Get Your Free Quote</PrimaryButton>
+            <CallButton />
+            <EmailButton />
           </div>
         </Container>
       </FadeIn>

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+﻿import { ReactNode } from "react";
 import Image from "next/image";
 import { Container } from "./Container";
 import { FadeIn } from "./motion/FadeIn";
@@ -47,10 +47,10 @@ export function PageHero({
         {image && (
           <div className="relative mx-auto w-full max-w-xl lg:max-w-md">
             <div
-              className="absolute inset-0 hidden translate-x-4 translate-y-4 rounded-3xl bg-brand/25 lg:block"
+              className="absolute inset-0 hidden translate-x-4 translate-y-4 rounded-xl bg-brand/25 lg:block"
               aria-hidden
             />
-            <div className="group relative aspect-[16/9] overflow-hidden rounded-2xl bg-zinc-50 shadow-xl shadow-ink/15 ring-1 ring-ink/5 lg:aspect-[4/3] lg:rounded-3xl lg:shadow-2xl">
+            <div className="group relative aspect-[16/9] overflow-hidden rounded-lg bg-cream shadow-xl shadow-ink/15 ring-1 ring-ink/5 lg:aspect-[4/3] lg:rounded-xl lg:shadow-2xl">
               <Image
                 src={image}
                 alt={imageAlt}

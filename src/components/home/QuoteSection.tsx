@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { Container } from "../Container";
 import { ContactForm } from "../ContactForm";
 import { CheckCircle2, Zap } from "../Icons";
@@ -14,14 +14,13 @@ const trustPoints = [
 
 export function QuoteSection() {
   return (
-    <section className="bg-zinc-50 py-12 sm:py-16">
+    <section className="bg-cream py-12 sm:py-16">
       <Container>
-        <div className="relative isolate grid grid-cols-1 gap-10 overflow-hidden rounded-3xl bg-ink px-4 py-10 shadow-2xl sm:px-10 sm:py-16 lg:grid-cols-2 lg:items-center lg:px-14">
+        <div className="relative isolate grid grid-cols-1 gap-10 overflow-hidden rounded-xl bg-ink px-4 py-10 shadow-2xl sm:px-10 sm:py-16 lg:grid-cols-2 lg:items-center lg:px-14">
           <Image
             src="/images/gallery/car-removal-5.jpg"
             alt=""
             fill
-            quality={85}
             className="-z-10 object-cover object-center"
             sizes="(min-width: 1280px) 1200px, 100vw"
           />
@@ -57,7 +56,7 @@ export function QuoteSection() {
             </Stagger>
           </FadeIn>
 
-          <FadeIn className="rounded-3xl border border-ink/8 bg-white p-5 shadow-xl sm:p-9">
+          <FadeIn className="rounded-xl border border-ink/8 bg-white p-5 shadow-xl sm:p-9">
             <div className="flex items-center gap-3">
               <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
                 <Zap className="h-5 w-5" aria-hidden />

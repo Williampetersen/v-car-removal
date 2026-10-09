@@ -222,7 +222,7 @@ export function ContactForm({
         className={
           isGlass
             ? "sm:col-span-2 grid grid-cols-1 gap-3 rounded-xl border border-white/15 bg-white/5 p-3"
-            : "sm:col-span-2 grid grid-cols-1 gap-5 rounded-2xl bg-zinc-50 p-4 sm:grid-cols-2 sm:p-5"
+            : "sm:col-span-2 grid grid-cols-1 gap-5 rounded-lg bg-cream p-4 sm:grid-cols-2 sm:p-5"
         }
       >
         {!isGlass && (

@@ -1,4 +1,4 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import { Container } from "../Container";
 
 const brandNames = [
@@ -16,7 +16,7 @@ const brands = brandNames.map((name) => `/images/brands/${name}.png`);
 
 export function BrandStrip() {
   return (
-    <section className="border-y border-ink/8 bg-zinc-50 py-10">
+    <section className="border-y border-ink/8 bg-cream py-10">
       <Container>
         <p className="text-center text-xs font-bold uppercase tracking-wider text-zinc-500">
           We buy all makes and models

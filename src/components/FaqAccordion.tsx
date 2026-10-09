@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,7 +9,7 @@ export function FaqAccordion({ items }: { items: Faq[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <div className="divide-y divide-ink/8 rounded-3xl border border-ink/8 bg-white">
+    <div className="divide-y divide-ink/8 rounded-xl border border-ink/8 bg-white">
       {items.map((item, index) => {
         const isOpen = openIndex === index;
         return (

@@ -13,7 +13,7 @@ export function Hero() {
         className="object-cover"
         sizes="100vw"
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-ink/75 via-ink/45 to-ink/80" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/60" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
 
       <Container className="relative flex flex-1 flex-col py-8 sm:py-10">

@@ -26,7 +26,7 @@ export default function FaqPage() {
         title="Frequently asked questions"
         description="Can't find what you're looking for? Give our team a call and we'll be happy to help."
       />
-      <section className="py-20 sm:py-28">
+      <section className="py-12 sm:py-20 lg:py-28">
         <Container className="max-w-3xl">
           <FadeIn>
             <FaqAccordion items={faqs} />

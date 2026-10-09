@@ -23,7 +23,7 @@ export default function ServicesPage() {
         title="One team for every vehicle removal need"
         description="From daily drivers to written-off trucks, explore how we can turn your vehicle into cash."
       />
-      <section className="py-20 sm:py-28">
+      <section className="py-12 sm:py-20 lg:py-28">
         <Container>
           <Stagger className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (

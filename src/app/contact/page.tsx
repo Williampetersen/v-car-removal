@@ -3,7 +3,8 @@ import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
 import { ContactForm } from "@/components/ContactForm";
-import { PhoneCall, Mail, Clock, MapPin, Zap, ArrowRight } from "@/components/Icons";
+import { Clock, MapPin, Zap } from "@/components/Icons";
+import { CallButton, EmailButton } from "@/components/Buttons";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { site } from "@/lib/site";
@@ -26,9 +27,9 @@ export default function ContactPage() {
         image="/images/gallery/car-removal-hero.jpg"
       />
 
-      <section className="py-20 sm:py-28">
+      <section className="py-12 sm:py-20 lg:py-28">
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-5">
-          <FadeIn className="relative overflow-hidden rounded-3xl border border-ink/8 bg-white p-7 shadow-xl shadow-ink/5 sm:p-10 lg:col-span-3">
+          <FadeIn className="relative overflow-hidden rounded-xl border border-ink/8 bg-white p-7 shadow-xl shadow-ink/5 sm:p-10 lg:col-span-3">
             <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand via-brand-dark to-brand" aria-hidden />
             <div className="flex items-center gap-3">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
@@ -49,46 +50,14 @@ export default function ContactPage() {
 
           <Stagger className="space-y-5 lg:col-span-2">
             <StaggerItem>
-              <a
-                href={site.phoneHref}
-                className="group flex items-center gap-4 rounded-3xl bg-brand p-6 shadow-lg shadow-brand/25 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-brand/35"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink text-brand">
-                  <PhoneCall className="h-5 w-5" aria-hidden />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block text-xs font-bold uppercase tracking-wider text-ink/70">
-                    Call us now
-                  </span>
-                  <span className="font-display block text-xl font-bold text-ink sm:text-2xl">
-                    {site.phoneDisplay}
-                  </span>
-                </span>
-                <ArrowRight className="h-5 w-5 shrink-0 text-ink transition-transform group-hover:translate-x-1" aria-hidden />
-              </a>
+              <CallButton variant="onLight" className="w-full" />
             </StaggerItem>
 
             <StaggerItem>
-              <a
-                href={`mailto:${site.email}`}
-                className="group flex items-center gap-4 rounded-3xl border border-ink/8 bg-white p-6 transition-all hover:-translate-y-1 hover:border-brand/40 hover:shadow-lg hover:shadow-brand/10"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
-                  <Mail className="h-5 w-5" aria-hidden />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block text-xs font-bold uppercase tracking-wider text-zinc-500">
-                    Email us
-                  </span>
-                  <span className="block truncate text-base font-bold text-ink">
-                    {site.email}
-                  </span>
-                </span>
-                <ArrowRight className="h-5 w-5 shrink-0 text-zinc-400 transition-all group-hover:translate-x-1 group-hover:text-brand-dark" aria-hidden />
-              </a>
+              <EmailButton variant="outline" className="w-full" />
             </StaggerItem>
 
-            <StaggerItem className="rounded-3xl border border-ink/8 bg-white p-7">
+            <StaggerItem className="rounded-xl border border-ink/8 bg-white p-7">
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
                 <Clock className="h-5 w-5" aria-hidden />
               </span>
@@ -104,7 +73,7 @@ export default function ContactPage() {
               </div>
             </StaggerItem>
 
-            <StaggerItem className="rounded-3xl border border-ink/8 bg-white p-7">
+            <StaggerItem className="rounded-xl border border-ink/8 bg-white p-7">
               <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
                 <MapPin className="h-5 w-5" aria-hidden />
               </span>
@@ -114,7 +83,7 @@ export default function ContactPage() {
               <p className="mt-2 text-sm text-zinc-600">{site.areasSummary}</p>
             </StaggerItem>
 
-            <StaggerItem className="rounded-3xl border border-ink/8 bg-white p-7">
+            <StaggerItem className="rounded-xl border border-ink/8 bg-white p-7">
               <h3 className="font-display text-lg font-bold text-ink">
                 Visit us
               </h3>

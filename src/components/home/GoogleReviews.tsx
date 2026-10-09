@@ -1,4 +1,4 @@
-import { Container } from "../Container";
+﻿import { Container } from "../Container";
 import { Star, ArrowRight } from "../Icons";
 import { site } from "@/lib/site";
 
@@ -6,8 +6,8 @@ export function GoogleReviews() {
   const hasRating = site.googleRating !== null;
 
   return (
-    <section className="bg-zinc-50 pb-12">
-      <Container className="flex flex-col items-center justify-center gap-4 rounded-2xl border border-brand/20 bg-gradient-to-r from-brand/10 via-white to-white px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
+    <section className="bg-cream pb-12">
+      <Container className="flex flex-col items-center justify-center gap-4 rounded-lg border border-brand/20 bg-gradient-to-r from-brand/10 via-white to-white px-6 py-6 text-center sm:flex-row sm:justify-between sm:text-left">
         <div className="flex flex-col items-center gap-3 sm:flex-row">
           <div className="flex gap-0.5 text-brand" aria-hidden>
             {[0, 1, 2, 3, 4].map((i) => (

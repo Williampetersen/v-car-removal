@@ -11,7 +11,7 @@ export function Footer() {
 
   return (
     <footer className="bg-ink text-zinc-300">
-      <Container className="grid grid-cols-1 gap-x-10 gap-y-14 py-20 sm:grid-cols-2 lg:grid-cols-4">
+      <Container className="grid grid-cols-1 gap-x-10 gap-y-8 py-12 sm:gap-y-14 sm:py-20 sm:grid-cols-2 lg:grid-cols-4">
         <div>
           <Image
             src="/images/logo/logo.png"

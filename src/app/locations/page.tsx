@@ -24,7 +24,7 @@ export default function LocationsPage() {
         title="Find your nearest car removal service"
         description="We service a wide area across South East Queensland. Select your area below, or call us to check if we cover your suburb."
       />
-      <section className="py-20 sm:py-28">
+      <section className="py-12 sm:py-20 lg:py-28">
         <Container className="space-y-14">
           {regions.map((region) => (
             <div key={region.slug} id={region.slug}>
@@ -44,7 +44,7 @@ export default function LocationsPage() {
                   <Link
                     key={loc.slug}
                     href={`/locations/${loc.slug}`}
-                    className="group relative block aspect-[4/3] overflow-hidden rounded-3xl bg-ink shadow-md transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-brand/15"
+                    className="group relative block aspect-[4/3] overflow-hidden rounded-xl bg-ink shadow-md transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-brand/15"
                   >
                     {loc.heroImage && (
                       <Image

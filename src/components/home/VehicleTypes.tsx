@@ -39,7 +39,7 @@ const vehicles = [
 
 export function VehicleTypes() {
   return (
-    <section className="bg-white py-20 sm:py-28">
+    <section className="bg-white py-12 sm:py-20 lg:py-28">
       <Container>
         <FadeIn>
           <SectionHeading
@@ -49,11 +49,11 @@ export function VehicleTypes() {
             align="center"
           />
         </FadeIn>
-        <Stagger className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-6 sm:grid-cols-3">
+        <Stagger className="mx-auto mt-8 grid max-w-5xl grid-cols-2 gap-3 sm:mt-12 sm:grid-cols-3 sm:gap-6">
           {vehicles.map((vehicle) => (
             <StaggerItem
               key={vehicle.name}
-              className="group relative overflow-hidden rounded-3xl border border-ink/8 bg-zinc-50 p-5 text-center transition-all hover:-translate-y-1 hover:border-brand/40 hover:shadow-xl hover:shadow-brand/10"
+              className="group relative overflow-hidden rounded-xl border border-ink/8 bg-cream p-5 text-center transition-all hover:-translate-y-1 hover:border-brand/40 hover:shadow-xl hover:shadow-brand/10"
             >
               <div
                 className="pointer-events-none absolute left-1/2 top-6 -z-10 h-24 w-24 -translate-x-1/2 rounded-full bg-brand/20 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"

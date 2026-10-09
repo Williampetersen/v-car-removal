@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
         title="Privacy Policy"
         description={`Last updated: ${lastUpdated}`}
       />
-      <section className="py-16 sm:py-20">
+      <section className="py-10 sm:py-16 lg:py-20">
         <Container className="max-w-3xl">
           <div className="space-y-8 text-base leading-relaxed text-zinc-600">
             <p>
