@@ -39,7 +39,7 @@ export const faqs: Faq[] = [
   {
     question: "Which areas do you service?",
     answer:
-      "Our core area is Brisbane, Ipswich, Caboolture, the Gold Coast, Logan, Moreton Bay, Redlands, the Sunshine Coast and Toowoomba, plus the suburbs around them. We also collect by arrangement from larger regional areas: the Scenic Rim, Lockyer Valley, Somerset, Noosa, Gympie, Southern Downs, South Burnett, Western Downs, Fraser Coast and Bundaberg. If you are unsure whether we cover your suburb, call 0422 360 534.",
+      "Our core area is Brisbane, Ipswich, Caboolture, the Gold Coast, Logan, Moreton Bay, Redlands, the Sunshine Coast and Toowoomba, plus the suburbs around them. We also collect by arrangement from 30 larger regions, including the Scenic Rim, Noosa, Gympie, Fraser Coast, Bundaberg, Gladstone, Rockhampton, the Tweed, Byron, Lismore, the Clarence Valley and Armidale. Each has its own page on our locations page. If you are unsure whether we cover your suburb, call 0422 360 534.",
   },
   {
     question: "What happens to my car after it is collected?",
@@ -50,6 +50,11 @@ export const faqs: Faq[] = [
     question: "How does selling my car to V Car Removal Brisbane work?",
     answer:
       "Call 0422 360 534 or send the quote form with your car's make, model, year and suburb. We reply with a cash offer. If you accept, we book a pickup time, tow the car for free and pay you when we collect it.",
+  },
+  {
+    question: "Do you buy vehicles in northern New South Wales, and what paperwork applies?",
+    answer:
+      "Yes. We collect by arrangement from the Tweed, Byron, Ballina, Lismore, Richmond Valley, Kyogle, Clarence Valley, Tenterfield, Glen Innes Severn, Inverell, Coffs Harbour and Armidale areas. In New South Wales you typically need a valid photo ID and proof of ownership, and afterwards you should tell Service NSW that you have sold or disposed of the vehicle. We will explain what you need once we have the vehicle details.",
   },
   {
     question: "What are your opening hours?",
@@ -65,7 +70,7 @@ export const faqs: Faq[] = [
 export function cityFaqs(
   loc: Pick<
     Location,
-    "name" | "council" | "suburbs" | "access" | "vehicles" | "pickup" | "distanceKm" | "faqs" | "tier"
+    "name" | "council" | "suburbs" | "access" | "vehicles" | "pickup" | "distanceKm" | "faqs" | "tier" | "state"
   >
 ): Faq[] {
   const city = loc.name;

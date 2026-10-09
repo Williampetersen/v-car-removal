@@ -1,6 +1,6 @@
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { coreAreas, extendedAreas, locationPath } from "@/lib/locations";
+import { regions, locationPath } from "@/lib/locations";
 import { faqs } from "@/lib/faqs";
 
 export const dynamic = "force-static";
@@ -29,22 +29,16 @@ export function GET() {
       (s) => `- [${s.name}](${site.url}/services/${s.slug}): ${s.shortDescription}`
     ),
     "",
-    "## Core service areas (regular runs from the Sherwood depot)",
-    ...coreAreas.map(
-      (l) =>
-        `- [Cash for cars ${l.name}](${site.url}${locationPath(l.slug)}): ${l.council}; about ${l.distanceKm} km from the depot; ${l.suburbs
-          .slice(0, 6)
-          .join(", ")} and more`
-    ),
-    "",
-    "## Extended regions (collections by arrangement, booked in advance)",
-    ...extendedAreas.map(
-      (l) =>
-        `- [Cash for cars ${l.name}](${site.url}${locationPath(l.slug)}): ${l.council}; about ${l.distanceKm} km from the depot; ${l.suburbs
-          .slice(0, 6)
-          .join(", ")} and more`
-    ),
-    "",
+    ...regions.flatMap((r, i) => [
+      `## ${i === 0 ? "Core service areas (regular runs from the Sherwood depot)" : `${r.name} (collections by arrangement, booked in advance)`}`,
+      ...r.locations.map(
+        (l) =>
+          `- [Cash for cars ${l.name}](${site.url}${locationPath(l.slug)}): ${l.council}${l.state === "NSW" ? ", NSW" : ""}; about ${l.distanceKm} km from the depot; ${l.suburbs
+            .slice(0, 6)
+            .join(", ")} and more`
+      ),
+      "",
+    ]),
     `Full detail for every area, with local FAQs: ${site.url}/llms-full.txt`,
     "",
     "## Key pages",

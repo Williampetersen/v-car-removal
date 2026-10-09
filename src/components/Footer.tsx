@@ -4,7 +4,7 @@ import { Container } from "./Container";
 import { Mail, PhoneCall, MapPin, Clock } from "./Icons";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { coreAreas, locationPath } from "@/lib/locations";
+import { allLocations, coreAreas, locationPath } from "@/lib/locations";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -83,7 +83,7 @@ export function Footer() {
                   href="/locations"
                   className="font-medium text-link hover:underline"
                 >
-                  + 10 more regions →
+                  + {allLocations.length - coreAreas.length} more regions →
                 </Link>
               </li>
             </ul>

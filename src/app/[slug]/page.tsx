@@ -60,7 +60,12 @@ export async function generateMetadata(
   if (!location) return {};
   const { title, description } = metaFor(location.name, location.suburbs);
   return {
-    title: { absolute: `${title} | ${site.shortName}` },
+    title: {
+      absolute:
+        `${title} | ${site.shortName}`.length > 62
+          ? title
+          : `${title} | ${site.shortName}`,
+    },
     description,
     alternates: { canonical: `${site.url}${locationPath(location.slug)}` },
     openGraph: {

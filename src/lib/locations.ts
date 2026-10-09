@@ -20,6 +20,8 @@ export type Location = {
   faqs: Faq[];
   /** Slugs of the geographically nearest service areas (for internal links). */
   nearby: string[];
+  /** State the area is in (defaults to QLD). */
+  state?: "QLD" | "NSW";
   /** core = regular daily runs from the depot; extended = large regions served by arrangement. */
   tier: "core" | "extended";
   /** What we typically collect here. */
@@ -45,6 +47,7 @@ const galleryImages = [
 ];
 
 import { extendedLocationData } from "./locations-extended";
+import { centralQldData, northernNswData } from "./locations-regional";
 
 type CoreInput = Omit<Location, "heroImage" | "region" | "tier" | "vehicles" | "pickup">;
 
@@ -489,10 +492,30 @@ export const regions: Region[] = [
   },
   {
     slug: "extended-regions",
-    name: "Extended regions across Queensland",
+    name: "South East, Darling Downs and Wide Bay regions",
     blurb:
       "Large regional areas from the Scenic Rim to Bundaberg and the Western Downs. Collections here are arranged in advance and confirmed with a day and window when we quote.",
     locations: extendedLocationData.map((loc, i) => ({
+      ...loc,
+      heroImage: galleryImages[i % galleryImages.length],
+    })),
+  },
+  {
+    slug: "northern-nsw",
+    name: "Northern New South Wales",
+    blurb:
+      "Just over the border: the Tweed, Byron, Ballina, Lismore, the Clarence Valley and the New England Tableland. Collections are booked in advance and towing is free when we buy.",
+    locations: northernNswData.map((loc, i) => ({
+      ...loc,
+      heroImage: galleryImages[i % galleryImages.length],
+    })),
+  },
+  {
+    slug: "central-queensland",
+    name: "Central and western Queensland",
+    blurb:
+      "Long-distance regions from the North Burnett and Goondiwindi to Gladstone, Rockhampton and the Capricorn Coast. Collections are planned well in advance.",
+    locations: centralQldData.map((loc, i) => ({
       ...loc,
       heroImage: galleryImages[i % galleryImages.length],
     })),

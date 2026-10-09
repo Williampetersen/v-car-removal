@@ -6,6 +6,7 @@ import {
   coreAreas,
   extendedAreas,
   locationPath,
+  regions,
   type Location,
 } from "@/lib/locations";
 import { MapPin, ChevronRight } from "../Icons";
@@ -75,15 +76,15 @@ export function ServiceAreas({ showExtendedLinks = true }: { showExtendedLinks?:
           <div className="reveal mt-14 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8">
             <p className="font-display text-sm text-link">Extended regions</p>
             <h3 className="heading-xl mt-1 text-2xl sm:text-3xl">
-              Further out? We collect across regional Queensland too
+              Further out? We collect across Queensland and northern NSW too
             </h3>
             <p className="mt-3 max-w-3xl text-base leading-relaxed text-slate-600">
-              Large regions from the Scenic Rim to Bundaberg and the Western
-              Downs are served by arrangement: we book a day, confirm a window
-              and tow for free when we buy.
+              Large regions from the Scenic Rim to Bundaberg, Rockhampton and
+              northern New South Wales are served by arrangement: we book a
+              day, confirm a window and tow for free when we buy.
             </p>
             <ul className="mt-5 flex flex-wrap gap-2.5">
-              {extendedAreas.map((loc) => (
+              {extendedAreas.slice(0, 10).map((loc) => (
                 <li key={loc.slug}>
                   <Link
                     prefetch={false}
@@ -94,6 +95,15 @@ export function ServiceAreas({ showExtendedLinks = true }: { showExtendedLinks?:
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  prefetch={false}
+                  href="/locations#northern-nsw"
+                  className="font-display inline-block rounded-xl border border-sky-200 bg-sky-50 px-4 py-2 text-base text-link transition-colors hover:border-sky-400"
+                >
+                  + {extendedAreas.length - 10} more across Queensland and northern NSW →
+                </Link>
+              </li>
             </ul>
           </div>
         )}
@@ -102,18 +112,26 @@ export function ServiceAreas({ showExtendedLinks = true }: { showExtendedLinks?:
   );
 }
 
-/** Extended regions grid (locations hub). */
+/** Extended regions, one section per region group (locations hub). */
 export function ExtendedAreas() {
   return (
-    <section className="bg-white py-16 sm:py-24">
-      <Container>
-        <SectionHeading
-          eyebrow="Extended regions"
-          title="Regional Queensland, by arrangement"
-          description="Large regions further from our Sherwood depot. We book collections in advance and confirm a day and window when we quote. Towing is still free when we buy."
-        />
-        <AreaCards areas={extendedAreas} />
-      </Container>
-    </section>
+    <>
+      {regions.slice(1).map((region, i) => (
+        <section
+          key={region.slug}
+          id={region.slug}
+          className={`${i % 2 === 0 ? "bg-white" : "bg-cream"} py-16 sm:py-24`}
+        >
+          <Container>
+            <SectionHeading
+              eyebrow="By arrangement"
+              title={region.name}
+              description={region.blurb}
+            />
+            <AreaCards areas={region.locations} />
+          </Container>
+        </section>
+      ))}
+    </>
   );
 }

@@ -190,10 +190,13 @@ export function locationSchema(location: Location) {
           latitude: location.geo.latitude,
           longitude: location.geo.longitude,
         },
-        containedInPlace: {
-          "@type": "AdministrativeArea",
-          name: location.council,
-        },
+        containedInPlace: [
+          { "@type": "AdministrativeArea", name: location.council },
+          {
+            "@type": "AdministrativeArea",
+            name: location.state === "NSW" ? "New South Wales" : "Queensland",
+          },
+        ],
       },
       ...location.suburbs.slice(0, 8).map((name) => ({
         "@type": "Place",

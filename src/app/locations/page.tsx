@@ -7,11 +7,11 @@ import { QuickAnswer } from "@/components/QuickAnswer";
 import { LastUpdated } from "@/components/LastUpdated";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
+import { allLocations } from "@/lib/locations";
 import { breadcrumbSchema, webPageSchema, areaListSchema } from "@/lib/schema";
 
-const title = "Car Removal Service Areas: 19 Queensland Regions";
-const description =
-  "We buy cars and remove them free across Brisbane, Ipswich, the Gold Coast, Sunshine Coast, Toowoomba and 10 more Queensland regions, from the Scenic Rim to Bundaberg.";
+const title = `Car Removal Service Areas: ${allLocations.length} Regions in QLD & NSW`;
+const description = `We buy cars and remove them free across Brisbane, Ipswich, the Gold Coast, Sunshine Coast, Toowoomba and ${allLocations.length - 5} more regions, from the Scenic Rim to Rockhampton and northern NSW.`;
 
 export const metadata: Metadata = {
   title,
@@ -47,10 +47,11 @@ export default function LocationsPage() {
               Logan, Moreton Bay, Redlands, the Sunshine Coast and Toowoomba
               on regular runs from our depot at {site.address.street},{" "}
               {site.address.suburb} {site.address.state}{" "}
-              {site.address.postcode}. We also collect by arrangement from ten
-              larger regions: the Scenic Rim, Lockyer Valley, Somerset, Noosa,
-              Gympie, Southern Downs, South Burnett, Western Downs, Fraser Coast
-              and Bundaberg. Towing is free anywhere in these areas.
+              {site.address.postcode}. We also collect by arrangement from{" "}
+              {allLocations.length - 9} larger regions across South East and
+              central Queensland and northern New South Wales, from the Scenic
+              Rim and Noosa to Bundaberg, Rockhampton, the Tweed and Armidale.
+              Towing is free anywhere in these areas.
             </p>
           </QuickAnswer>
         </Container>
