@@ -152,6 +152,10 @@ export function webPageSchema(opts: {
     isPartOf: { "@id": `${site.url}/#website` },
     about: { "@id": orgId },
     dateModified: site.lastUpdated,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["aside[aria-label]", "h1"],
+    },
   };
 }
 
@@ -172,20 +176,51 @@ export function locationSchema(location: Location) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
+    "@id": `${site.url}${locationPath(location.slug)}#service`,
     serviceType: "Cash for cars and free car removal",
     name: `Cash For Cars ${location.name} | ${site.name}`,
-    description: `Free car removal and cash offers in ${location.name} and surrounding ${location.region} suburbs.`,
+    description: `Free car removal and cash offers in ${location.name}, ${location.council} area. ${location.pickup}`,
     url: `${site.url}${locationPath(location.slug)}`,
-    areaServed: {
-      "@type": "City",
-      name: location.name,
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: location.geo.latitude,
-        longitude: location.geo.longitude,
+    areaServed: [
+      {
+        "@type": "City",
+        name: location.name,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: location.geo.latitude,
+          longitude: location.geo.longitude,
+        },
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: location.council,
+        },
       },
-    },
+      ...location.suburbs.slice(0, 8).map((name) => ({
+        "@type": "Place",
+        name,
+      })),
+    ],
     provider: { "@id": orgId },
+    offers: {
+      "@type": "Offer",
+      description: "Free towing when we buy the vehicle. Price quoted before pickup.",
+      priceCurrency: "AUD",
+    },
+  };
+}
+
+/** ItemList of every service area, for the locations hub. */
+export function areaListSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${site.name} service areas`,
+    itemListElement: allLocations.map((l, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: `Cash for cars ${l.name}`,
+      url: `${site.url}${locationPath(l.slug)}`,
+    })),
   };
 }
 

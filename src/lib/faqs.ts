@@ -1,3 +1,5 @@
+import type { Location } from "./locations";
+
 export type Faq = {
   question: string;
   answer: string;
@@ -37,7 +39,7 @@ export const faqs: Faq[] = [
   {
     question: "Which areas do you service?",
     answer:
-      "We cover Brisbane, Ipswich, Caboolture, the Gold Coast, Logan, Moreton Bay, Redlands, the Sunshine Coast and Toowoomba, plus the suburbs around them. If you are unsure whether we cover your suburb, call 0422 360 534.",
+      "Our core area is Brisbane, Ipswich, Caboolture, the Gold Coast, Logan, Moreton Bay, Redlands, the Sunshine Coast and Toowoomba, plus the suburbs around them. We also collect by arrangement from larger regional areas: the Scenic Rim, Lockyer Valley, Somerset, Noosa, Gympie, Southern Downs, South Burnett, Western Downs, Fraser Coast and Bundaberg. If you are unsure whether we cover your suburb, call 0422 360 534.",
   },
   {
     question: "What happens to my car after it is collected?",
@@ -56,40 +58,34 @@ export const faqs: Faq[] = [
   },
 ];
 
-/** Questions shown on a city page: the standard answers, localised, plus the area-specific ones. */
+/**
+ * Questions shown on an area page. A few shared answers (price, documents, payment) plus questions
+ * answered from that area's own data, so each page carries distinct, citable facts.
+ */
 export function cityFaqs(
-  city: string,
-  extra: Faq[]
+  loc: Pick<
+    Location,
+    "name" | "council" | "suburbs" | "access" | "vehicles" | "pickup" | "distanceKm" | "faqs" | "tier"
+  >
 ): Faq[] {
+  const city = loc.name;
   return [
     {
       question: `How much cash can I get for my car in ${city}?`,
-      answer: `The amount depends on your car's make, model, age, condition and current scrap metal value. We pay up to $9,999 for the best vehicles. Send us your car's details or call 0422 360 534 and we will quote you a price for ${city} before we send a truck. The quoted price is the amount you receive.`,
+      answer: `It depends on the make, model, age, condition and current scrap metal value. We pay up to $9,999 for the best vehicles. Send your car's details or call 0422 360 534 and we will quote you a price for ${city} before we send a truck. The quoted price is the amount you receive.`,
     },
-    ...extra,
+    ...loc.faqs,
     {
-      question: `Do you offer same-day car removal in ${city}?`,
-      answer: `In most cases we can arrange pickup quickly: once you accept the quote, we book the earliest time that suits you. Exact timing depends on tow truck availability and how far ${city} is from our Sherwood depot, and we confirm it when we quote.`,
-    },
-    {
-      question: `What types of vehicles do you buy in ${city}?`,
-      answer: `Cars, SUVs, 4WDs, utes, vans, light trucks and motorbikes, running or not. That includes old, damaged, scrap, unwanted and accident-damaged vehicles.`,
+      question: `Which suburbs and towns do you collect from around ${city}?`,
+      answer: `In the ${loc.council} area we collect from ${loc.suburbs.slice(0, -1).join(", ")} and ${loc.suburbs[loc.suburbs.length - 1]}. If your address is nearby but not listed, call 0422 360 534 and we will confirm.`,
     },
     {
-      question: `Is towing free in ${city}?`,
-      answer: `Yes. Towing and removal in ${city} is free when we buy your vehicle. There are no hidden fees: the quoted price is the cash you receive.`,
+      question: `How do you get to ${city} and how long does pickup take?`,
+      answer: `${loc.access} It is about ${loc.distanceKm} km from our Sherwood depot. ${loc.pickup}`,
     },
     {
-      question: `What documents do I need to sell my car in ${city}?`,
-      answer: `Typically a valid photo ID and proof of ownership. We will guide you through the simple paperwork. After the sale, notify Queensland's Department of Transport and Main Roads that you have disposed of the vehicle.`,
-    },
-    {
-      question: `How quickly will I get paid in ${city}?`,
-      answer: `You are paid when we collect the vehicle, once you have accepted the offer and the paperwork is confirmed. You can choose cash or bank transfer.`,
-    },
-    {
-      question: `What happens to my car after you collect it in ${city}?`,
-      answer: `It is taken to a licensed dismantling and recycling facility, where usable parts are recovered and the remaining materials are recycled responsibly.`,
+      question: `What kinds of vehicles do you usually collect in ${city}?`,
+      answer: `${loc.vehicles} We buy cars, SUVs, 4WDs, utes, vans, light trucks and motorbikes in any condition, and towing is free when we buy.`,
     },
   ];
 }

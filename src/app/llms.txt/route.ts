@@ -1,6 +1,6 @@
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { allLocations, locationPath } from "@/lib/locations";
+import { coreAreas, extendedAreas, locationPath } from "@/lib/locations";
 import { faqs } from "@/lib/faqs";
 
 export const dynamic = "force-static";
@@ -29,13 +29,23 @@ export function GET() {
       (s) => `- [${s.name}](${site.url}/services/${s.slug}): ${s.shortDescription}`
     ),
     "",
-    "## Service areas",
-    ...allLocations.map(
+    "## Core service areas (regular runs from the Sherwood depot)",
+    ...coreAreas.map(
       (l) =>
-        `- [Cash for cars ${l.name}](${site.url}${locationPath(l.slug)}): ${l.suburbs
+        `- [Cash for cars ${l.name}](${site.url}${locationPath(l.slug)}): ${l.council}; about ${l.distanceKm} km from the depot; ${l.suburbs
           .slice(0, 6)
           .join(", ")} and more`
     ),
+    "",
+    "## Extended regions (collections by arrangement, booked in advance)",
+    ...extendedAreas.map(
+      (l) =>
+        `- [Cash for cars ${l.name}](${site.url}${locationPath(l.slug)}): ${l.council}; about ${l.distanceKm} km from the depot; ${l.suburbs
+          .slice(0, 6)
+          .join(", ")} and more`
+    ),
+    "",
+    `Full detail for every area, with local FAQs: ${site.url}/llms-full.txt`,
     "",
     "## Key pages",
     `- [Get a free quote](${site.url}/get-a-quote)`,

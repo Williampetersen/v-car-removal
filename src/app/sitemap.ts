@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locationRoutes: MetadataRoute.Sitemap = allLocations.map((l) => ({
     url: `${site.url}${locationPath(l.slug)}`,
     changeFrequency: "monthly",
-    priority: 0.8,
+    priority: l.tier === "core" ? 0.8 : 0.7,
     lastModified,
   }));
 

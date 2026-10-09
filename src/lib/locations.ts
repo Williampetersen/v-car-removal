@@ -20,6 +20,12 @@ export type Location = {
   faqs: Faq[];
   /** Slugs of the geographically nearest service areas (for internal links). */
   nearby: string[];
+  /** core = regular daily runs from the depot; extended = large regions served by arrangement. */
+  tier: "core" | "extended";
+  /** What we typically collect here. */
+  vehicles: string;
+  /** How pickup timing works here. */
+  pickup: string;
 };
 
 export type Region = {
@@ -38,7 +44,11 @@ const galleryImages = [
   "/images/gallery/car-removal-5.jpg",
 ];
 
-const locationData: Omit<Location, "heroImage" | "region">[] = [
+import { extendedLocationData } from "./locations-extended";
+
+type CoreInput = Omit<Location, "heroImage" | "region" | "tier" | "vehicles" | "pickup">;
+
+const locationData: CoreInput[] = [
   {
     slug: "brisbane",
     name: "Brisbane",
@@ -420,21 +430,78 @@ const locationData: Omit<Location, "heroImage" | "region">[] = [
   },
 ];
 
+const coreExtras: Record<string, { vehicles: string; pickup: string }> = {
+  brisbane: {
+    vehicles: "Everyday cars, second cars, unregistered and written-off vehicles, utes and vans from houses, units and workplaces.",
+    pickup: "Brisbane is our closest area, so same-day pickup is often possible when you accept the quote early in the day.",
+  },
+  ipswich: {
+    vehicles: "Second cars, work utes, family cars and project cars from the Ipswich Motorway corridor and the growth suburbs.",
+    pickup: "Ipswich is about 30 minutes from our depot, so same-day collection is often possible. Tow truck availability decides the exact time.",
+  },
+  caboolture: {
+    vehicles: "Utes, 4WDs and paddock cars from acreage, plus everyday cars from Morayfield, Burpengary and Narangba.",
+    pickup: "Caboolture pickups depend on the day's northern run. We confirm a time when we quote.",
+  },
+  "gold-coast": {
+    vehicles: "Cars left behind after a move, apartment-block cars, rusted coastal cars and everyday second cars.",
+    pickup: "The Gold Coast is a longer run, so we confirm a collection window when we quote rather than promising a time.",
+  },
+  logan: {
+    vehicles: "Commuter cars, work utes, trucks and unregistered vehicles from dense suburbs and semi-rural blocks.",
+    pickup: "Logan is a short run from our depot, so same-day pickup is often possible.",
+  },
+  "moreton-bay": {
+    vehicles: "Beachside and Pine Rivers cars, family SUVs and utes, plus larger blocks around Samford and Dayboro.",
+    pickup: "The Peninsula and Pine Rivers corridor are quick runs. Samford, Dayboro and further out are scheduled in advance.",
+  },
+  redlands: {
+    vehicles: "Family second and third cars, upgraded-from cars and inherited vehicles from bayside suburbs.",
+    pickup: "Mainland Redlands pickups are often possible the same day or next day. Island pickups depend on the barge.",
+  },
+  "sunshine-coast": {
+    vehicles: "Cars left at holiday homes, hinterland utes and 4WDs and older cars from coastal suburbs.",
+    pickup: "Sunshine Coast pickups are grouped by area, so we book you into the next run for your suburb.",
+  },
+  toowoomba: {
+    vehicles: "Farm and work utes, 4WDs, vans and light trucks, plus everyday cars from the city.",
+    pickup: "Toowoomba pickups are booked into a scheduled run, and we confirm the day and time with you.",
+  },
+};
+
+const coreLocations = locationData.map((loc) => ({
+  ...loc,
+  region: "South East Queensland",
+  tier: "core" as const,
+  ...coreExtras[loc.slug],
+}));
+
 export const regions: Region[] = [
   {
     slug: "south-east-queensland",
     name: "Brisbane & South East Queensland",
     blurb:
-      "Free car removal and cash offers across Brisbane and the wider South East Queensland region, plus Toowoomba on the Darling Downs.",
-    locations: locationData.map((loc, i) => ({
+      "Our core service area: regular runs from the Sherwood depot across Brisbane and the wider South East Queensland region, plus Toowoomba on the Darling Downs.",
+    locations: [...coreLocations].map((loc, i) => ({
       ...loc,
-      region: "South East Queensland",
+      heroImage: galleryImages[i % galleryImages.length],
+    })),
+  },
+  {
+    slug: "extended-regions",
+    name: "Extended regions across Queensland",
+    blurb:
+      "Large regional areas from the Scenic Rim to Bundaberg and the Western Downs. Collections here are arranged in advance and confirmed with a day and window when we quote.",
+    locations: extendedLocationData.map((loc, i) => ({
+      ...loc,
       heroImage: galleryImages[i % galleryImages.length],
     })),
   },
 ];
 
 export const allLocations: Location[] = regions.flatMap((r) => r.locations);
+export const coreAreas = allLocations.filter((l) => l.tier === "core");
+export const extendedAreas = allLocations.filter((l) => l.tier === "extended");
 
 /** Public URL path of a city page. Matches the old WordPress URLs. */
 export function locationPath(slug: string) {

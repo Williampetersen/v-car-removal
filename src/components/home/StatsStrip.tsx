@@ -6,7 +6,7 @@ const stats = [
   { value: `Up to ${site.cashOfferMax}`, label: "cash for your vehicle", count: 9999, prefix: "Up to $" },
   { value: "$0", label: "towing and removal" },
   { value: "Mon–Sat", label: "pickups, from 6:30am" },
-  { value: `${allLocations.length}`, label: "areas across SE Queensland", count: allLocations.length, prefix: "" },
+  { value: `${allLocations.length}`, label: "regions across Queensland", count: allLocations.length, prefix: "" },
 ];
 
 export function StatsStrip() {

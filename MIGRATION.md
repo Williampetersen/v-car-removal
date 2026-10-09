@@ -15,7 +15,7 @@ Raw media (92 MB) is in `content/media/` locally and is intentionally not commit
 | `/locations/<city>` (development URL only) | `/cash-for-cars-<city>` |
 
 Unchanged URLs (same slug as WordPress): `/`, `/cash-for-cars-{brisbane,ipswich,caboolture,gold-coast,logan,moreton-bay,redlands,sunshine-coast,toowoomba}`, `/locations`, `/get-a-quote`, `/thanks`.
-New URLs: `/about`, `/faq`, `/contact`, `/services/*`, `/privacy-policy`, `/terms`, `/llms.txt`.
+New URLs: ten extended-region pages `/cash-for-cars-{scenic-rim,lockyer-valley,somerset,noosa,gympie,southern-downs,south-burnett,western-downs,fraser-coast,bundaberg}` (served by arrangement; confirm you can actually service them), `/llms-full.txt`, `/about`, `/faq`, `/contact`, `/services/*`, `/privacy-policy`, `/terms`, `/llms.txt`.
 Trailing slashes (`/cash-for-cars-ipswich/`) redirect to the slash-less canonical URL.
 
 ## Not migrated / needs your input

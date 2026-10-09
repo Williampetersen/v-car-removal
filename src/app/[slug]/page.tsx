@@ -5,7 +5,6 @@ import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
 import { PrimaryButton, CallButton } from "@/components/Buttons";
 import { CtaBand } from "@/components/CtaBand";
-import { ServiceCard } from "@/components/ServiceCard";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { QuickAnswer } from "@/components/QuickAnswer";
 import { LastUpdated } from "@/components/LastUpdated";
@@ -17,7 +16,6 @@ import {
   locationPath,
 } from "@/lib/locations";
 import { cityFaqs } from "@/lib/faqs";
-import { services } from "@/lib/services";
 import { site } from "@/lib/site";
 import {
   locationSchema,
@@ -41,11 +39,16 @@ function resolve(slug: string) {
 }
 
 function metaFor(name: string, suburbs: string[]) {
+  const build = (n: number) =>
+    `Sell your car for cash in ${name}. Free towing, quote before pickup, any condition. Serving ${suburbs
+      .slice(0, n)
+      .join(", ")} and more. Call ${site.phoneDisplay}.`;
+  let description = build(3);
+  if (description.length > 158) description = build(2);
+  if (description.length > 158) description = build(1);
   return {
     title: `Cash For Cars ${name} | Free Car Removal`,
-    description: `Sell your car for cash in ${name}. Free towing, quote before pickup, any condition. Serving ${suburbs
-      .slice(0, 3)
-      .join(", ")} and more. Call ${site.phoneDisplay}.`,
+    description,
   };
 }
 
@@ -70,25 +73,6 @@ export async function generateMetadata(
   };
 }
 
-const steps = [
-  {
-    title: "Tell us about your car",
-    text: "Call or send the quote form with the make, model, year and your suburb.",
-  },
-  {
-    title: "Get your cash offer",
-    text: "We reply with a price before sending a truck. The quoted price is what you receive.",
-  },
-  {
-    title: "We tow it for free",
-    text: "Pick a time that suits you. We come to your address and handle the pickup.",
-  },
-  {
-    title: "Get paid",
-    text: "Payment is made when we collect the vehicle, in cash or by bank transfer.",
-  },
-];
-
 export default async function CityPage(props: PageProps<"/[slug]">) {
   const { slug } = await props.params;
   const location = resolve(slug);
@@ -96,11 +80,11 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
 
   const path = locationPath(location.slug);
   const { title, description } = metaFor(location.name, location.suburbs);
-  const faqs = cityFaqs(location.name, location.faqs);
+  const faqs = cityFaqs(location);
+  const extended = location.tier === "extended";
   const nearby = location.nearby
     .map((s) => getLocationBySlug(s))
     .filter((l): l is NonNullable<typeof l> => Boolean(l));
-  const featuredServices = services.slice(0, 3);
 
   const breadcrumbItems = [
     { name: "Home", path: "/" },
@@ -129,6 +113,7 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
             <dl className="mt-4 divide-y divide-slate-200">
               {[
                 ["From our depot", `about ${location.distanceKm} km`],
+                ["Pickup", extended ? "Booked in advance" : "Often same-day"],
                 ["Towing", "Free"],
                 ["Quote", "Before we send a truck"],
                 ["Payment", "Cash or bank transfer"],
@@ -163,21 +148,22 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
         <Container className="max-w-4xl">
           <QuickAnswer title={`Selling a car in ${location.name}: the short answer`}>
             <p>
-              <strong>{site.name}</strong> buys cars, SUVs, utes, vans, light
-              trucks and motorbikes in {location.name} in any condition and
-              tows them away for free. We pay up to {site.cashOfferMax}{" "}
-              depending on the vehicle, give you the price before we send a
-              truck and pay you when we collect, in cash or by bank transfer.
-            </p>
-            <p>
-              We cover {location.name} and nearby suburbs, working from our
-              depot at {site.address.street}, {site.address.suburb}{" "}
-              {site.address.state} {site.address.postcode} (about{" "}
-              {location.distanceKm} km away). Call{" "}
+              <strong>{site.name}</strong> buys cars, utes, vans, 4WDs and
+              motorbikes in {location.name} ({location.council}), including{" "}
+              {location.suburbs.slice(0, 3).join(", ")}, in any condition, and
+              tows them free. We quote up to {site.cashOfferMax} before we send
+              a truck and pay on collection. {location.name} is about{" "}
+              {location.distanceKm} km from our Sherwood depot (
+              {site.address.street}, {site.address.suburb}{" "}
+              {site.address.state} {site.address.postcode}).{" "}
+              {extended
+                ? "Collections here are booked in advance and confirmed when we quote."
+                : "It is part of our regular service area."}{" "}
+              Call{" "}
               <a href={site.phoneHref} className="font-bold underline">
                 {site.phoneDisplay}
-              </a>{" "}
-              or send the form below.
+              </a>
+              .
             </p>
           </QuickAnswer>
         </Container>
@@ -216,6 +202,51 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
               Not on the list? Call {site.phoneDisplay} and we will confirm
               whether we can collect from your address.
             </p>
+
+            <h2 className="heading-xl mt-12 text-3xl text-ink sm:text-4xl">
+              What we collect in {location.name}
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-700">
+              {location.vehicles}
+            </p>
+            <p className="mt-4 text-base leading-relaxed text-slate-700">
+              A vehicle left on a road or public land is usually a matter for{" "}
+              {location.council}. If it is yours, or on your own property, we
+              can quote it.
+            </p>
+
+            <h2 className="heading-xl mt-12 text-3xl text-ink sm:text-4xl">
+              Pickup timing in {location.name}
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-slate-700">
+              {location.pickup} The trip from our depot is about{" "}
+              {location.distanceKm} km, and we confirm the day and window when
+              we send your quote.
+            </p>
+
+            <h2 className="heading-xl mt-12 text-3xl text-ink sm:text-4xl">
+              {location.name} at a glance
+            </h2>
+            <dl className="mt-5 grid grid-cols-1 overflow-hidden rounded-2xl border border-slate-200 bg-white sm:grid-cols-2">
+              {[
+                ["Area", location.name],
+                ["Council", location.council],
+                ["Region", location.region],
+                ["From our depot", `about ${location.distanceKm} km`],
+                ["Pickup", extended ? "Booked in advance" : "Regular runs, often same-day"],
+                ["Towing", "Free when we buy"],
+                ["Quote", "Before we send a truck"],
+                ["Payment", "Cash or bank transfer on collection"],
+              ].map(([k, v]) => (
+                <div
+                  key={k}
+                  className="flex items-start justify-between gap-4 border-b border-slate-100 px-5 py-3 sm:odd:border-r"
+                >
+                  <dt className="text-sm text-slate-500">{k}</dt>
+                  <dd className="text-right text-sm font-semibold text-slate-900">{v}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
 
           <aside className="h-fit rounded-2xl border border-ink/10 bg-cream p-7 lg:sticky lg:top-28">
@@ -227,45 +258,6 @@ export default async function CityPage(props: PageProps<"/[slug]">) {
               All service areas →
             </Link>
           </aside>
-        </Container>
-      </section>
-
-      <section className="bg-cream py-14 sm:py-20">
-        <Container>
-          <h2 className="heading-xl text-3xl text-ink sm:text-4xl">
-            How selling your car in {location.name} works
-          </h2>
-          <ol className="mt-8 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {steps.map((step, i) => (
-              <li
-                key={step.title}
-                className="rounded-2xl border border-ink/10 bg-white p-6"
-              >
-                <span className="heading-xl flex h-11 w-11 items-center justify-center rounded-xl bg-sky-100 text-xl text-sky-700">
-                  {i + 1}
-                </span>
-                <h3 className="heading-xl mt-4 text-2xl text-ink">
-                  {step.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
-                  {step.text}
-                </p>
-              </li>
-            ))}
-          </ol>
-        </Container>
-      </section>
-
-      <section className="bg-white py-14 sm:py-20">
-        <Container>
-          <h2 className="heading-xl text-3xl text-ink sm:text-4xl">
-            Services available in {location.name}
-          </h2>
-          <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {featuredServices.map((s) => (
-              <ServiceCard key={s.slug} service={s} />
-            ))}
-          </div>
         </Container>
       </section>
 

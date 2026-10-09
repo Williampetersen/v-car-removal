@@ -4,7 +4,7 @@ import { Container } from "./Container";
 import { Mail, PhoneCall, MapPin, Clock } from "./Icons";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
-import { allLocations, locationPath } from "@/lib/locations";
+import { coreAreas, locationPath } from "@/lib/locations";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -66,7 +66,7 @@ export function Footer() {
           <div>
             <h3 className="font-display text-base text-slate-900">Service areas</h3>
             <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm">
-              {allLocations.map((l) => (
+              {coreAreas.map((l) => (
                 <li key={l.slug}>
                   <Link
                     prefetch={false}
@@ -77,6 +77,15 @@ export function Footer() {
                   </Link>
                 </li>
               ))}
+              <li className="col-span-2">
+                <Link
+                  prefetch={false}
+                  href="/locations"
+                  className="font-medium text-link hover:underline"
+                >
+                  + 10 more regions →
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
 import { CtaBand } from "@/components/CtaBand";
-import { ServiceAreas } from "@/components/home/ServiceAreas";
+import { ServiceAreas, ExtendedAreas } from "@/components/home/ServiceAreas";
 import { QuickAnswer } from "@/components/QuickAnswer";
 import { LastUpdated } from "@/components/LastUpdated";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/lib/site";
-import { breadcrumbSchema, webPageSchema } from "@/lib/schema";
+import { breadcrumbSchema, webPageSchema, areaListSchema } from "@/lib/schema";
 
-const title = "Car Removal Service Areas in South East QLD";
+const title = "Car Removal Service Areas: 19 Queensland Regions";
 const description =
-  "We buy cars and remove them free in Brisbane, Ipswich, Caboolture, Gold Coast, Logan, Moreton Bay, Redlands, Sunshine Coast and Toowoomba.";
+  "We buy cars and remove them free across Brisbane, Ipswich, the Gold Coast, Sunshine Coast, Toowoomba and 10 more Queensland regions, from the Scenic Rim to Bundaberg.";
 
 export const metadata: Metadata = {
   title,
@@ -26,6 +26,7 @@ export default function LocationsPage() {
   return (
     <>
       <JsonLd data={webPageSchema({ path: "/locations", name: title, description })} />
+      <JsonLd data={areaListSchema()} />
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", path: "/" },
@@ -43,15 +44,19 @@ export default function LocationsPage() {
           <QuickAnswer title="Where we collect">
             <p>
               We collect from Brisbane, Ipswich, Caboolture, the Gold Coast,
-              Logan, Moreton Bay, Redlands, the Sunshine Coast and Toowoomba,
-              working from our depot at {site.address.street},{" "}
+              Logan, Moreton Bay, Redlands, the Sunshine Coast and Toowoomba
+              on regular runs from our depot at {site.address.street},{" "}
               {site.address.suburb} {site.address.state}{" "}
-              {site.address.postcode}. Towing is free anywhere in these areas.
+              {site.address.postcode}. We also collect by arrangement from ten
+              larger regions: the Scenic Rim, Lockyer Valley, Somerset, Noosa,
+              Gympie, Southern Downs, South Burnett, Western Downs, Fraser Coast
+              and Bundaberg. Towing is free anywhere in these areas.
             </p>
           </QuickAnswer>
         </Container>
       </section>
-      <ServiceAreas />
+      <ServiceAreas showExtendedLinks={false} />
+      <ExtendedAreas />
       <section className="bg-cream pb-10">
         <Container>
           <LastUpdated />

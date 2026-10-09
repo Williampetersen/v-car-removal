@@ -55,7 +55,9 @@ export default function Home() {
               you before we send a truck, and pay you when we collect, in cash
               or by bank transfer. We service Brisbane, Ipswich, Caboolture,
               the Gold Coast, Logan, Moreton Bay, Redlands, the Sunshine Coast
-              and Toowoomba. Same-day pickup is available in most cases.
+              and Toowoomba on regular runs, and ten larger regions from the
+              Scenic Rim to Bundaberg by arrangement. Same-day pickup is often
+              possible near Brisbane.
             </p>
           </QuickAnswer>
         </Container>

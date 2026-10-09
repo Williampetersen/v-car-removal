@@ -4,7 +4,7 @@ export const site = {
   tagline: "Cash For Cars & Free Car Removal in Brisbane",
   cashOfferMax: "$9,999",
   description:
-    "V Car Removal Brisbane pays cash for cars, SUVs, utes, vans, trucks and motorbikes in any condition. Free towing and same-day pickup across Brisbane, Ipswich, Caboolture, Gold Coast, Logan, Moreton Bay, Redlands, Sunshine Coast and Toowoomba.",
+    "V Car Removal Brisbane pays cash for cars, SUVs, utes, vans, trucks and motorbikes in any condition. Free towing across Brisbane, Ipswich, Caboolture, Gold Coast, Logan, Moreton Bay, Redlands, Sunshine Coast and Toowoomba, plus ten more Queensland regions by arrangement.",
   phoneDisplay: "0422 360 534",
   phoneHref: "tel:+61422360534",
   phoneE164: "+61422360534",
@@ -15,7 +15,7 @@ export const site = {
     { days: "Sunday", time: "Closed" },
   ],
   areasSummary:
-    "Brisbane, Ipswich, Caboolture, Gold Coast, Logan, Moreton Bay, Redlands, Sunshine Coast & Toowoomba",
+    "Brisbane, Ipswich, Caboolture, Gold Coast, Logan, Moreton Bay, Redlands, Sunshine Coast & Toowoomba, plus the Scenic Rim, Lockyer Valley, Somerset, Noosa, Gympie, Southern Downs, South Burnett, Western Downs, Fraser Coast & Bundaberg by arrangement",
   url: "https://vcarremoval.com.au",
   address: {
     street: "451 Sherwood Rd",
