@@ -16,7 +16,7 @@ export function CtaBand({
         aria-hidden
       />
       <div
-        className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-brand/20 blur-3xl"
+        className="pointer-events-none absolute -right-24 -top-24 hidden h-80 w-80 rounded-full bg-brand/20 blur-3xl sm:block"
         aria-hidden
       />
       <FadeIn>

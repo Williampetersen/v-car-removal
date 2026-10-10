@@ -53,7 +53,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap"
         />
       </head>
-      <body className="flex min-h-full flex-col bg-white text-ink">
+      <body className="flex min-h-full flex-col overflow-x-clip bg-white text-ink">
         <JsonLd data={organizationSchema()} />
         <TopContactBar />
         <Header />

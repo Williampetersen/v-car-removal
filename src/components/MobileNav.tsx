@@ -62,7 +62,7 @@ export function MobileNav() {
               transition={{ duration: 0.4, ease: easing }}
             >
               <div className="flex items-center justify-between border-b border-ink/10 px-5 py-4">
-                <LogoMark className="h-8" />
+                <LogoMark className="h-6" />
                 <button
                   type="button"
                   onClick={() => setOpen(false)}

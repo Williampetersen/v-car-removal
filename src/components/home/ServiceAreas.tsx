@@ -45,7 +45,7 @@ export function ServiceAreas() {
               className="relative flex scroll-mt-28 flex-col justify-between gap-6 overflow-hidden bg-ink p-5 text-white sm:gap-10 sm:p-8"
             >
               <div
-                className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand/25 blur-3xl"
+                className="pointer-events-none absolute -right-16 -top-16 hidden h-56 w-56 rounded-full bg-brand/25 blur-3xl sm:block"
                 aria-hidden
               />
               <div className="relative">

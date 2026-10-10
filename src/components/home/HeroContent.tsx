@@ -63,7 +63,7 @@ function VehicleStage() {
     <div className="relative mx-auto aspect-[4/3] w-full max-w-[17rem] sm:mt-4 sm:max-w-xl lg:mt-0 lg:max-w-none">
       <motion.div
         aria-hidden
-        className="absolute inset-[8%] rounded-full bg-brand/30 blur-3xl"
+        className="absolute inset-[8%] rounded-full bg-brand/30 blur-2xl sm:blur-3xl"
         initial={{ opacity: 0, scale: 0.6 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: easing }}

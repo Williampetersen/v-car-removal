@@ -13,13 +13,13 @@ export function Header() {
         <Link
           href="/"
           aria-label={`${site.name} home`}
-          className="group relative flex h-12 shrink-0 items-center overflow-hidden rounded-full bg-white px-5 shadow-lg shadow-black/20 ring-1 ring-brand transition-transform duration-300 hover:scale-105 sm:h-14 sm:px-7"
+          className="group relative flex h-10 shrink-0 items-center overflow-hidden rounded-full bg-gradient-to-b from-white to-cream px-4 shadow-lg shadow-black/20 ring-2 ring-brand transition-transform duration-300 hover:scale-105 sm:h-11 sm:px-5"
         >
           <span
             aria-hidden
             className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/4 -skew-x-12 bg-brand/40 transition-transform duration-700 ease-out group-hover:translate-x-[520%]"
           />
-          <LogoMark className="relative h-7 sm:h-9" />
+          <LogoMark className="relative h-4 sm:h-5" />
         </Link>
 
         <nav className="hidden items-center gap-1 xl:flex">

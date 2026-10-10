@@ -16,7 +16,7 @@ export function ServicesSection() {
             description="Whether it's an old daily driver, a written-off ute or a truck that won't start, we'll give you a fair price and take care of everything."
           />
         </FadeIn>
-        <Stagger className="mt-8 grid grid-cols-1 gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
+        <Stagger className="mt-8 grid grid-cols-2 gap-3 sm:mt-12 sm:gap-6 lg:grid-cols-3">
           {services.map((service) => (
             <StaggerItem key={service.slug} className="h-full">
               <ServiceCard service={service} />

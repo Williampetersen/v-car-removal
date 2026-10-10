@@ -47,7 +47,7 @@ function ActionButton({
       whileTap={{ scale: 0.97 }}
       transition={{ type: "spring", stiffness: 180, damping: 22 }}
       className={`group relative inline-flex items-center rounded-full text-left transition-colors ${
-        small ? "gap-2.5 p-1 pr-5" : "gap-3.5 p-1.5 pr-7"
+        small ? "gap-2.5 p-1 pr-5" : "gap-3 p-1 pr-5 sm:gap-3.5 sm:p-1.5 sm:pr-7"
       } ${variantClasses[variant]} ${className}`}
     >
       <span
@@ -63,7 +63,7 @@ function ActionButton({
 
       <span
         className={`relative flex shrink-0 items-center justify-center overflow-hidden rounded-full shadow-lg transition-transform duration-300 group-hover:scale-110 ${
-          small ? "h-9 w-9" : "h-12 w-12"
+          small ? "h-9 w-9" : "h-10 w-10 sm:h-12 sm:w-12"
         } ${
           outline
             ? "bg-ink text-brand shadow-ink/20"
@@ -76,7 +76,7 @@ function ActionButton({
       <span className="relative flex min-w-0 flex-col leading-tight">
         {!small && (
           <span
-            className={`whitespace-nowrap text-[11px] font-semibold uppercase tracking-[0.15em] ${
+            className={`whitespace-nowrap text-[10px] font-semibold uppercase tracking-[0.15em] sm:text-[11px] ${
               outline ? "text-brand-dark" : "text-brand"
             }`}
           >
@@ -86,7 +86,7 @@ function ActionButton({
         <span
           className={
             textClassName ??
-            `font-display font-bold tracking-tight ${small ? "text-sm" : "text-lg"}`
+            `font-display font-bold tracking-tight ${small ? "text-sm" : "text-base sm:text-lg"}`
           }
         >
           {text}
@@ -152,7 +152,7 @@ export function EmailButton({
       size={size}
       className={className}
       textClassName={`truncate font-display font-bold tracking-tight ${
-        size === "sm" ? "text-sm" : "text-base"
+        size === "sm" ? "text-sm" : "text-sm sm:text-base"
       }`}
     />
   );
