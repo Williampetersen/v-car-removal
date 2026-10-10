@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { TopContactBar } from "@/components/TopContactBar";
@@ -10,17 +9,6 @@ import { JsonLd } from "@/components/JsonLd";
 import { MetaPixel } from "@/components/MetaPixel";
 import { site } from "@/lib/site";
 import { organizationSchema } from "@/lib/schema";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -54,10 +42,17 @@ const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html
-      lang="en-AU"
-      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
-    >
+    <html lang="en-AU" className="h-full antialiased">
+      <head>
+        {/* Loaded by the browser (not next/font) so it also works where the dev server cannot reach Google Fonts. */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-page-custom-font -- root layout applies to every page */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600;700;800&display=swap"
+        />
+      </head>
       <body className="flex min-h-full flex-col bg-white text-ink">
         <JsonLd data={organizationSchema()} />
         <TopContactBar />

@@ -18,9 +18,8 @@ export const site = {
   url: "https://vcarremoval.com.au",
   // ABN not published on the WordPress site — set the real one to show it on the legal pages.
   abn: null as string | null,
-  // Leave null until copied from the real Google Business Profile; showing an
-  // unverified rating risks breaching Australian Consumer Law.
-  googleRating: null as number | null,
+  // Rating supplied by the business owner; keep in sync with the Google Business Profile.
+  googleRating: 4.8 as number | null,
   googleReviewCount: null as number | null,
   googleReviewsUrl:
     "https://www.google.com/maps/search/?api=1&query=V+Car+Removal+Brisbane+reviews",

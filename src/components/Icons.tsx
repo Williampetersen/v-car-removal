@@ -19,15 +19,18 @@ import {
   User,
   ArrowRight,
   Zap,
+  HandCoins,
+  BusFront,
+  CarFront,
 } from "lucide-react";
 
 export const ServiceIcons = {
-  cash: BadgeDollarSign,
+  cash: HandCoins,
   tow: Truck,
   recycle: Recycle,
-  truck: Truck,
+  truck: BusFront,
   wrench: Wrench,
-  car: Car,
+  car: CarFront,
   bike: Bike,
 };
 
