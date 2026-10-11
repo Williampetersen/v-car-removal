@@ -30,13 +30,13 @@ export default function ContactPage() {
 
       <section className="py-12 sm:py-20 lg:py-28">
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-5">
-          <FadeIn className="relative overflow-hidden rounded-xl border border-ink/8 bg-white p-7 shadow-xl shadow-ink/5 sm:p-10 lg:col-span-3">
+          <FadeIn className="relative overflow-hidden rounded-xl border border-ink/8 bg-white p-4 shadow-xl shadow-ink/5 sm:p-10 lg:col-span-3">
             <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-brand via-brand-dark to-brand" aria-hidden />
             <div className="flex items-center gap-3">
               <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand/15 text-brand-dark">
-                <Zap className="h-5 w-5" aria-hidden />
+                <Zap className="zap-charge h-5 w-5" aria-hidden />
               </span>
-              <h2 className="font-display text-2xl font-bold text-ink">
+              <h2 className="text-shimmer font-display text-2xl font-bold">
                 Get Cash Offer Now
               </h2>
             </div>
@@ -44,7 +44,7 @@ export default function ContactPage() {
               Fill in your vehicle and contact details below and we&apos;ll
               get back to you with a cash offer as soon as possible.
             </p>
-            <div className="mt-8">
+            <div className="mt-4 sm:mt-8">
               <ContactForm />
             </div>
           </FadeIn>
@@ -130,7 +130,7 @@ export default function ContactPage() {
                       href={`https://www.google.com/maps/search/?api=1&query=${depot.mapQuery}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-bold text-ink transition-colors duration-300 hover:bg-white"
+                      className="btn-anim group mt-4 inline-flex items-center gap-2 rounded-full bg-brand px-4 py-2 text-sm font-bold text-ink hover:bg-white"
                     >
                       Get directions
                       <ArrowRight

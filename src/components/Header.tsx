@@ -38,7 +38,7 @@ export function Header() {
           <HeaderPhoneBadge />
           <Link
             href="/contact"
-            className="inline-flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full bg-brand px-4 text-xs font-bold text-ink transition-all hover:bg-white sm:h-11 sm:px-6 sm:text-sm"
+            className="btn-anim inline-flex h-10 items-center gap-1.5 whitespace-nowrap rounded-full bg-brand px-4 text-xs font-bold text-ink hover:bg-white sm:h-11 sm:px-6 sm:text-sm"
           >
             <PhoneCall className="h-3.5 w-3.5 sm:hidden" aria-hidden />
             Free Quote

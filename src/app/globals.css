@@ -46,6 +46,161 @@ body {
   background-size: 40px 40px;
 }
 
+/* Ambient, slow motion used across the quote section. */
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes spin-angle {
+  to { --angle: 360deg; }
+}
+@keyframes kenburns {
+  from { transform: scale(1) translate3d(0, 0, 0); }
+  to { transform: scale(1.1) translate3d(-1.5%, -1%, 0); }
+}
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes glow-soft {
+  0%, 100% { box-shadow: 0 8px 22px -8px rgba(255, 210, 63, 0.45); }
+  50% { box-shadow: 0 12px 34px -6px rgba(255, 210, 63, 0.85); }
+}
+@keyframes nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+@keyframes soft-ping {
+  0% { opacity: 0; transform: scale(1); }
+  30% { opacity: 0.45; }
+  100% { opacity: 0; transform: scale(1.7); }
+}
+@keyframes shimmer-text {
+  0% { background-position: 180% 0; }
+  55%, 100% { background-position: -80% 0; }
+}
+@keyframes zap-charge {
+  0%, 36%, 100% { transform: scale(1) rotate(0deg); }
+  8% { transform: scale(1.2) rotate(-9deg); }
+  16% { transform: scale(1.05) rotate(7deg); }
+  24% { transform: scale(1.14) rotate(-3deg); }
+}
+.text-shimmer {
+  background-image: linear-gradient(110deg, var(--ink) 38%, var(--sky) 50%, var(--ink) 62%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-text 5s ease-in-out infinite;
+}
+.zap-charge {
+  transform-origin: center;
+  animation: zap-charge 4.5s ease-in-out infinite;
+}
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-5px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(3px); }
+}
+.shake { animation: shake 0.45s ease-in-out; }
+.border-spin {
+  background: conic-gradient(from var(--angle), var(--brand), #ffffff, var(--sky), var(--brand));
+  animation: spin-angle 7s linear infinite;
+}
+.animate-kenburns { animation: kenburns 26s ease-in-out infinite alternate; }
+.animate-glow { animation: glow-soft 3.6s ease-in-out infinite; }
+.animate-nudge { animation: nudge 2.4s ease-in-out infinite; }
+.soft-ping { animation: soft-ping 3.4s ease-out infinite; }
+.stagger-children > * { animation: rise-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.stagger-children > *:nth-child(1) { animation-delay: 0.04s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.12s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.28s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.36s; }
+@media (prefers-reduced-motion: reduce) {
+  .border-spin, .animate-kenburns, .animate-glow, .animate-nudge, .soft-ping, .stagger-children > *,
+  .text-shimmer, .zap-charge {
+    animation: none;
+  }
+  .text-shimmer {
+    background: none;
+    color: var(--ink);
+  }
+}
+
+/* Quote form: steps slide in softly, success check draws itself. */
+@keyframes step-in-right {
+  from { opacity: 0; transform: translateX(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes step-in-left {
+  from { opacity: 0; transform: translateX(-18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes check-draw {
+  to { stroke-dashoffset: 0; }
+}
+.step-in-right { animation: step-in-right 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.step-in-left { animation: step-in-left 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.check-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: check-draw 0.8s 0.25s ease forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .step-in-right, .step-in-left { animation: none; }
+  .check-draw { animation: none; stroke-dashoffset: 0; }
+}
+
+/* Shared soft button motion: gentle lift, one slow shine sweep, press-in on click. */
+.btn-anim {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease,
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.btn-anim::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 38%, rgba(255, 255, 255, 0.4) 50%, transparent 62%);
+  transform: translateX(-130%);
+  transition: transform 0.9s ease;
+}
+
+.btn-anim:hover {
+  transform: translateY(-2px);
+}
+
+.btn-anim:hover::after {
+  transform: translateX(130%);
+}
+
+.btn-anim:active {
+  transform: translateY(0) scale(0.97);
+  transition-duration: 0.15s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-anim,
+  .btn-anim::after {
+    transition: none;
+  }
+  .btn-anim:hover,
+  .btn-anim:active {
+    transform: none;
+  }
+}
+
 .text-balance {
   text-wrap: balance;
 }

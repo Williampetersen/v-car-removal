@@ -59,7 +59,7 @@ export function GoogleReviews() {
               href={site.googleReviewsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2.5 rounded-full bg-ink px-5 py-3 text-sm font-bold text-white transition-colors duration-300 hover:bg-ink-soft"
+              className="btn-anim group inline-flex items-center gap-2.5 rounded-full bg-ink px-4 py-2.5 text-sm font-bold text-white hover:bg-ink-soft sm:px-5 sm:py-3"
             >
               <GoogleG className="h-5 w-5" />
               Read our Google reviews

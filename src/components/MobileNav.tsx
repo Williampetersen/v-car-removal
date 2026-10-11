@@ -38,7 +38,7 @@ export function MobileNav() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Open menu"
-        className="flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white transition-colors hover:border-brand hover:text-brand"
+        className="btn-anim flex h-11 w-11 items-center justify-center rounded-full border border-white/20 text-white hover:border-brand hover:text-brand"
       >
         <Menu className="h-5 w-5" aria-hidden />
       </button>
@@ -67,7 +67,7 @@ export function MobileNav() {
                   type="button"
                   onClick={() => setOpen(false)}
                   aria-label="Close menu"
-                  className="flex h-10 w-10 items-center justify-center rounded-full bg-ink text-white transition-transform active:scale-90"
+                  className="btn-anim flex h-10 w-10 items-center justify-center rounded-full bg-ink text-white"
                 >
                   <X className="h-5 w-5" aria-hidden />
                 </button>

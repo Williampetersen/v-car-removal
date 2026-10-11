@@ -16,7 +16,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/60" />
       <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent" />
 
-      <Container className="relative flex flex-1 flex-col py-8 sm:py-10">
+      <Container className="relative flex flex-1 flex-col pb-14 pt-8 sm:pb-20 sm:pt-10">
         <HeroContent />
       </Container>
     </section>

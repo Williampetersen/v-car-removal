@@ -22,6 +22,8 @@ import {
   HandCoins,
   BusFront,
   CarFront,
+  Calendar,
+  ChevronDown,
 } from "lucide-react";
 
 export const ServiceIcons = {
@@ -55,4 +57,7 @@ export {
   User,
   ArrowRight,
   Zap,
+  Calendar,
+  ChevronDown,
+  CarFront,
 };
