@@ -10,18 +10,17 @@ export function ServiceCard({ service }: { service: Service }) {
       href={`/services/${service.slug}`}
       className="group relative flex h-full flex-col overflow-hidden rounded-xl bg-white p-4 shadow-md shadow-ink/5 ring-1 ring-ink/8 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-ink/15 hover:ring-brand sm:p-7"
     >
-      <Icon
-        className="pointer-events-none absolute -right-6 -top-6 hidden h-36 w-36 rotate-12 stroke-[1.2] text-brand/15 transition-all duration-700 ease-out group-hover:-rotate-6 group-hover:scale-110 group-hover:text-brand/30 sm:block"
+      <span
+        className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gradient-to-br from-brand/25 to-sky-400/10 blur-2xl transition-all duration-700 group-hover:scale-125 group-hover:from-brand/40"
         aria-hidden
       />
 
-      <span className="relative flex h-12 w-12 items-center justify-center sm:h-16 sm:w-16">
-        <span
-          className="absolute inset-0 rotate-6 rounded-xl bg-brand/40 transition-transform duration-500 ease-out group-hover:rotate-12 group-hover:scale-105"
-          aria-hidden
-        />
-        <span className="relative flex h-12 w-12 items-center justify-center rounded-xl bg-ink text-brand shadow-lg shadow-ink/25 transition-all duration-500 ease-out group-hover:-rotate-3 group-hover:bg-brand group-hover:text-ink sm:h-16 sm:w-16">
-          <Icon className="h-6 w-6 stroke-[1.7] sm:h-8 sm:w-8" aria-hidden />
+      <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand/30 to-brand/5 p-[5px] ring-1 ring-brand/30 transition-all duration-500 group-hover:ring-brand sm:h-[4.5rem] sm:w-[4.5rem]">
+        <span className="flex h-full w-full items-center justify-center rounded-xl bg-gradient-to-br from-[#1d4f91] to-ink text-brand shadow-lg shadow-ink/30 transition-all duration-500 ease-out group-hover:from-brand group-hover:to-brand group-hover:text-ink">
+          <Icon
+            className="h-6 w-6 stroke-[1.8] transition-transform duration-500 group-hover:scale-110 sm:h-8 sm:w-8"
+            aria-hidden
+          />
         </span>
       </span>
 

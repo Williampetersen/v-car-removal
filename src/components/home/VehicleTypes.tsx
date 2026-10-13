@@ -53,27 +53,39 @@ export function VehicleTypes() {
           {vehicles.map((vehicle) => (
             <StaggerItem
               key={vehicle.name}
-              className="group relative overflow-hidden rounded-xl border border-ink/8 bg-cream p-5 text-center transition-all hover:-translate-y-1 hover:border-brand/40 hover:shadow-xl hover:shadow-brand/10"
+              className="group relative overflow-hidden rounded-2xl bg-white text-center shadow-md shadow-ink/5 ring-1 ring-ink/8 transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-ink/15 hover:ring-brand"
             >
-              <div
-                className="pointer-events-none absolute left-1/2 top-6 -z-10 h-24 w-24 -translate-x-1/2 rounded-full bg-brand/20 opacity-0 blur-2xl transition-opacity duration-300 group-hover:opacity-100"
-                aria-hidden
-              />
-              <div className="relative mx-auto h-20 w-full">
-                <Image
-                  src={vehicle.image}
-                  alt={vehicle.name}
-                  fill
-                  className="object-contain"
-                  sizes="160px"
+              <div className="relative bg-gradient-to-b from-sky-50 via-sky-50/60 to-white px-4 pb-2 pt-6 sm:pt-8">
+                <div
+                  className="pointer-events-none absolute left-1/2 top-1/2 h-24 w-40 -translate-x-1/2 -translate-y-1/3 rounded-full bg-brand/0 blur-2xl transition-colors duration-500 group-hover:bg-brand/30"
+                  aria-hidden
+                />
+                <div className="relative mx-auto h-24 w-full sm:h-32">
+                  <Image
+                    src={vehicle.image}
+                    alt={vehicle.name}
+                    fill
+                    className="object-contain drop-shadow-[0_10px_8px_rgba(15,40,80,0.22)] transition-transform duration-500 ease-out group-hover:scale-110 group-hover:-translate-y-1"
+                    sizes="(min-width: 640px) 260px, 45vw"
+                  />
+                </div>
+                <div
+                  className="mx-auto mt-1 h-2 w-3/5 rounded-[50%] bg-ink/10 blur-md transition-all duration-500 group-hover:w-2/3 group-hover:bg-ink/15"
+                  aria-hidden
                 />
               </div>
-              <h3 className="font-display mt-4 text-sm font-bold text-ink">
-                {vehicle.name}
-              </h3>
-              <p className="mt-1 text-xs leading-relaxed text-zinc-500">
-                {vehicle.description}
-              </p>
+              <div className="px-4 pb-5 pt-3 sm:pb-6">
+                <h3 className="font-display text-base font-bold text-ink sm:text-lg">
+                  {vehicle.name}
+                </h3>
+                <span
+                  className="mx-auto mt-2 block h-1 w-8 rounded-full bg-brand transition-all duration-500 group-hover:w-14"
+                  aria-hidden
+                />
+                <p className="mt-2.5 text-xs leading-relaxed text-ink/65 sm:text-sm">
+                  {vehicle.description}
+                </p>
+              </div>
             </StaggerItem>
           ))}
         </Stagger>

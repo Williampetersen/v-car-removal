@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Container } from "../Container";
 import { ContactForm } from "../ContactForm";
 import { RevealText } from "../RevealText";
@@ -15,26 +14,29 @@ const trustPoints = [
 
 export function QuoteSection() {
   return (
-    <section className="relative isolate z-10 -mt-7 overflow-hidden rounded-t-[1.75rem] bg-ink py-10 shadow-[0_-14px_34px_-10px_rgba(0,0,0,0.35)] sm:-mt-12 sm:rounded-t-[2.75rem] sm:py-16 lg:py-20">
-      <div className="absolute inset-0 -z-10 overflow-hidden" aria-hidden>
-        <Image
-          src="/images/gallery/car-removal-5.jpg"
-          alt=""
-          fill
-          className="animate-kenburns object-cover object-center"
-          sizes="100vw"
-        />
-      </div>
+    <section className="relative isolate overflow-hidden bg-ink pb-10 sm:pb-16 lg:pb-20">
       <div
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-ink/95 via-ink/80 to-ink/55"
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-ink via-ink to-[#1d4f91]"
+        aria-hidden
+      />
+      <div
+        className="absolute right-[8%] top-[28%] -z-10 h-80 w-80 rounded-full bg-sky-400/15 blur-3xl"
+        aria-hidden
+      />
+      <div
+        className="absolute bottom-[8%] left-[4%] -z-10 h-72 w-72 rounded-full bg-brand/10 blur-3xl"
         aria-hidden
       />
 
       <Container className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
         <div>
           <FadeIn>
-            <span className="inline-flex items-center rounded-full bg-brand px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-ink">
-              Free, No-Obligation Quote
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-semibold tracking-wide text-white/90 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2" aria-hidden>
+                <span className="soft-ping absolute inset-0 rounded-full bg-brand" />
+                <span className="relative h-2 w-2 rounded-full bg-brand" />
+              </span>
+              Free, no-obligation quote
             </span>
           </FadeIn>
           <h2 className="font-display mt-4 text-3xl font-bold leading-tight text-white sm:mt-5 sm:text-4xl lg:text-5xl">

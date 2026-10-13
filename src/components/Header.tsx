@@ -27,9 +27,13 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap text-zinc-300 transition-colors hover:bg-white/10 hover:text-white"
+              className="group relative rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap text-zinc-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:text-white"
             >
               {link.label}
+              <span
+                aria-hidden
+                className="absolute inset-x-4 bottom-1 h-0.5 origin-center scale-x-0 rounded-full bg-brand transition-transform duration-300 ease-out group-hover:scale-x-100"
+              />
             </Link>
           ))}
         </nav>
