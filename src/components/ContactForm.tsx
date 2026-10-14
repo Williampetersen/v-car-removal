@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, ReactNode, useRef, useState } from "react";
+import { FileText } from "lucide-react";
 import { site } from "@/lib/site";
 import {
   User,
@@ -66,7 +67,6 @@ export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [step, setStep] = useState<1 | 2>(1);
   const [dir, setDir] = useState<"fwd" | "back">("fwd");
-  const [showNote, setShowNote] = useState(false);
   const [year, setYear] = useState("");
   const [yearOpen, setYearOpen] = useState(false);
   const [yearError, setYearError] = useState(false);
@@ -177,7 +177,6 @@ export function ContactForm() {
           onClick={() => {
             setStatus("idle");
             setStep(1);
-            setShowNote(false);
             setYear("");
             setYearOpen(false);
             setYearError(false);
@@ -302,31 +301,27 @@ export function ContactForm() {
           </div>
         </div>
 
-        {showNote ? (
-          <div className="relative">
-            <textarea
-              id="your-note"
-              name="your-note"
-              rows={2}
-              placeholder=" "
-              className="peer w-full resize-none rounded-lg border border-ink/15 bg-white px-3.5 pb-2 pt-6 text-sm font-semibold text-ink outline-none transition-all duration-300 hover:border-ink/30 focus:border-brand focus:ring-4 focus:ring-brand/25"
-            />
-            <label
-              htmlFor="your-note"
-              className="pointer-events-none absolute left-3.5 top-1.5 text-[10px] font-bold text-ink/55 peer-focus:text-brand-dark"
-            >
-              Condition, location notes (optional)
-            </label>
-          </div>
-        ) : (
-          <button
-            type="button"
-            onClick={() => setShowNote(true)}
-            className="text-xs font-bold text-brand-dark transition-opacity hover:opacity-70"
+        <div className="relative">
+          <textarea
+            id="your-note"
+            name="your-note"
+            rows={3}
+            placeholder=" "
+            className="peer w-full resize-none rounded-lg border border-ink/15 bg-white pb-2 pl-10 pr-3.5 pt-6 text-sm font-semibold text-ink outline-none transition-all duration-300 hover:border-ink/30 focus:border-brand focus:ring-4 focus:ring-brand/25"
+          />
+          <label
+            htmlFor="your-note"
+            className="pointer-events-none absolute left-10 top-1.5 text-[10px] font-bold text-ink/55 peer-focus:text-brand-dark"
           >
-            + Add condition or location notes
-          </button>
-        )}
+            Condition, location notes (optional)
+          </label>
+          <span
+            className="pointer-events-none absolute left-3 top-4 text-ink/40 transition-colors duration-300 peer-focus:text-brand-dark"
+            aria-hidden
+          >
+            <FileText className="h-4 w-4" />
+          </span>
+        </div>
       </div>
 
       <div ref={step2} className={step === 2 ? "stagger-children space-y-3" : "hidden"}>

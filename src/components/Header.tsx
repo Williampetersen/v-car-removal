@@ -22,17 +22,17 @@ export function Header() {
           <LogoMark className="relative h-4 sm:h-5" />
         </Link>
 
-        <nav className="hidden items-center gap-1 xl:flex">
+        <nav className="hidden items-center lg:flex xl:gap-1">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="group relative rounded-full px-4 py-2 text-sm font-semibold whitespace-nowrap text-zinc-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:text-white"
+              className="group relative rounded-full px-2.5 py-2 text-sm xl:px-4 font-semibold whitespace-nowrap text-zinc-300 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:text-white"
             >
               {link.label}
               <span
                 aria-hidden
-                className="absolute inset-x-4 bottom-1 h-0.5 origin-center scale-x-0 rounded-full bg-brand transition-transform duration-300 ease-out group-hover:scale-x-100"
+                className="absolute inset-x-2.5 bottom-1 xl:inset-x-4 h-0.5 origin-center scale-x-0 rounded-full bg-brand transition-transform duration-300 ease-out group-hover:scale-x-100"
               />
             </Link>
           ))}
