@@ -6,10 +6,11 @@ const REQUIRED_FIELDS = [
   "name",
   "phone",
   "email",
-  "suburb",
-  "postalCode",
-  "carModel",
+  "carBrand",
   "carYear",
+  "location",
+  "pickupDate",
+  "pickupTime",
 ] as const;
 
 const MAX_FIELD_LENGTH = 200;
@@ -69,7 +70,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const { name, phone, email, suburb, postalCode, carModel, carYear, note } =
+  const { name, phone, email, carBrand, carYear, location, pickupDate, pickupTime, note } =
     body as QuotePayload;
 
   if (!EMAIL_PATTERN.test(email.trim())) {
@@ -101,15 +102,16 @@ export async function POST(request: Request) {
       from,
       to,
       replyTo: email.trim(),
-      subject: `New quote request — ${name} — ${carModel} (${carYear})`.replace(/[\r\n]+/g, " "),
+      subject: `New quote request — ${name} — ${carBrand} (${carYear})`.replace(/[\r\n]+/g, " "),
       html: `
         <h2>New quote request</h2>
         <p><strong>Name:</strong> ${escapeHtml(name)}</p>
         <p><strong>Phone:</strong> ${escapeHtml(phone)}</p>
         <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Suburb:</strong> ${escapeHtml(suburb)}</p>
-        <p><strong>Postal code:</strong> ${escapeHtml(postalCode)}</p>
-        <p><strong>Car:</strong> ${escapeHtml(carModel)} (${escapeHtml(carYear)})</p>
+        <p><strong>Car:</strong> ${escapeHtml(carBrand)} (${escapeHtml(carYear)})</p>
+        <p><strong>Pick-up location:</strong> ${escapeHtml(location)}</p>
+        <p><strong>Pick-up date:</strong> ${escapeHtml(pickupDate)}</p>
+        <p><strong>Pick-up time:</strong> ${escapeHtml(pickupTime)}</p>
         <p><strong>Extra details:</strong><br/>${escapeHtml(note || "—").replace(/\n/g, "<br/>")}</p>
       `,
     });

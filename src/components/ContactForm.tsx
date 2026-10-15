@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, ReactNode, useRef, useState } from "react";
+import { FormEvent, ReactNode, useState } from "react";
 import { FileText } from "lucide-react";
 import { site } from "@/lib/site";
 import {
@@ -11,17 +11,29 @@ import {
   ArrowRight,
   CarFront,
   Calendar,
+  Clock,
   ChevronDown,
 } from "./Icons";
 
 const currentYear = new Date().getFullYear();
-const carYears = Array.from({ length: currentYear - 1989 }, (_, i) => currentYear - i);
+const carYears = Array.from({ length: currentYear - 1989 }, (_, i) => String(currentYear - i));
+
+const carBrands = [
+  "Audi", "BMW", "Chevrolet", "Chrysler", "Citroen", "Daewoo", "Dodge", "Ford",
+  "Holden", "Honda", "Hyundai", "Isuzu", "Jaguar", "Jeep", "Kia", "Land Rover",
+  "Lexus", "Mazda", "Mercedes-Benz", "Mini", "Mitsubishi", "Nissan", "Peugeot",
+  "Renault", "Subaru", "Suzuki", "Toyota", "Volkswagen", "Volvo", "Other",
+];
+
+const pickupTimes = [
+  "Morning (8am – 12pm)",
+  "Afternoon (12pm – 5pm)",
+  "Evening (5pm – 7pm)",
+  "Any time",
+];
 
 const inputBase =
-  "peer h-12 w-full rounded-lg border border-ink/15 bg-white pl-10 pr-3 pt-4 text-sm font-semibold text-ink outline-none transition-all duration-300 hover:border-ink/30 focus:border-brand focus:ring-4 focus:ring-brand/25";
-
-const floatLabel =
-  "pointer-events-none absolute left-10 top-3.5 origin-left text-sm text-ink/55 transition-all duration-300 peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:font-bold peer-focus:text-brand-dark peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-[10px] peer-[:not(:placeholder-shown)]:font-bold";
+  "peer h-12 w-full rounded-lg border border-ink/15 bg-white pl-10 pr-3 text-sm font-semibold text-ink outline-none transition-all duration-300 placeholder:font-medium placeholder:text-ink/50 hover:border-ink/30 focus:border-brand focus:ring-4 focus:ring-brand/25";
 
 const iconWrap =
   "pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink/40 transition-colors duration-300 peer-focus:text-brand-dark";
@@ -34,6 +46,7 @@ function Field({
   inputMode,
   autoComplete,
   className = "",
+  min,
 }: {
   id: string;
   label: string;
@@ -42,6 +55,7 @@ function Field({
   inputMode?: "numeric" | "tel" | "email" | "text";
   autoComplete?: string;
   className?: string;
+  min?: string;
 }) {
   return (
     <div className={`relative ${className}`}>
@@ -52,65 +66,68 @@ function Field({
         required
         inputMode={inputMode}
         autoComplete={autoComplete}
-        placeholder=" "
+        placeholder={label}
+        aria-label={label}
+        min={min}
         className={inputBase}
       />
-      <label htmlFor={id} className={floatLabel}>
-        {label}
-      </label>
       <span className={iconWrap}>{icon}</span>
+    </div>
+  );
+}
+
+function SelectField({
+  id,
+  label,
+  icon,
+  options,
+  className = "",
+}: {
+  id: string;
+  label: string;
+  icon: ReactNode;
+  options: string[];
+  className?: string;
+}) {
+  return (
+    <div className={`relative ${className}`}>
+      <select
+        id={id}
+        name={id}
+        required
+        defaultValue=""
+        aria-label={label}
+        className={`${inputBase} appearance-none pr-10 invalid:font-medium invalid:text-ink/50`}
+      >
+        <option value="" disabled>
+          {label}
+        </option>
+        {options.map((option) => (
+          <option key={option} value={option} className="font-semibold text-ink">
+            {option}
+          </option>
+        ))}
+      </select>
+      <span className={iconWrap}>{icon}</span>
+      <ChevronDown
+        className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/50"
+        aria-hidden
+      />
     </div>
   );
 }
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
-  const [step, setStep] = useState<1 | 2>(1);
-  const [dir, setDir] = useState<"fwd" | "back">("fwd");
-  const [year, setYear] = useState("");
-  const [yearOpen, setYearOpen] = useState(false);
-  const [yearError, setYearError] = useState(false);
-  const step1 = useRef<HTMLDivElement>(null);
-  const step2 = useRef<HTMLDivElement>(null);
-
-  function stepIsValid(scope: HTMLDivElement | null) {
-    if (!scope) return true;
-    const fields = scope.querySelectorAll<HTMLInputElement>("input:not([type=hidden])");
-    for (const field of fields) {
-      if (!field.checkValidity()) {
-        field.reportValidity();
-        return false;
-      }
-    }
-    if (scope === step1.current && !year) {
-      setYearError(true);
-      setYearOpen(true);
-      return false;
-    }
-    return true;
-  }
-
-  function goNext() {
-    if (!stepIsValid(step1.current)) return;
-    setDir("fwd");
-    setStep(2);
-  }
-
-  function goBack() {
-    setDir("back");
-    setStep(1);
-  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    if (step === 1) {
-      goNext();
+    const currentForm = event.currentTarget;
+    if (!currentForm.checkValidity()) {
+      currentForm.reportValidity();
       return;
     }
-    if (!stepIsValid(step1.current) || !stepIsValid(step2.current)) return;
-
-    const currentForm = event.currentTarget;
     const form = new FormData(currentForm);
 
     // Honeypot: real visitors never see or fill this field.
@@ -123,13 +140,14 @@ export function ContactForm() {
     setStatus("sending");
 
     const payload = {
-      name: String(form.get("your-name") ?? ""),
-      phone: String(form.get("your-phone") ?? ""),
-      email: String(form.get("your-email") ?? ""),
-      suburb: String(form.get("suburb") ?? ""),
-      postalCode: String(form.get("postal-code") ?? ""),
-      carModel: String(form.get("car-model") ?? ""),
+      carBrand: String(form.get("car-brand") ?? ""),
       carYear: String(form.get("car-year") ?? ""),
+      location: String(form.get("location") ?? ""),
+      pickupDate: String(form.get("pickup-date") ?? ""),
+      pickupTime: String(form.get("pickup-time") ?? ""),
+      name: String(form.get("your-name") ?? ""),
+      email: String(form.get("your-email") ?? ""),
+      phone: String(form.get("your-phone") ?? ""),
       note: String(form.get("your-note") ?? ""),
     };
 
@@ -174,13 +192,7 @@ export function ContactForm() {
         </p>
         <button
           type="button"
-          onClick={() => {
-            setStatus("idle");
-            setStep(1);
-            setYear("");
-            setYearOpen(false);
-            setYearError(false);
-          }}
+          onClick={() => setStatus("idle")}
           className="btn-anim mt-5 rounded-full border-2 border-ink/15 px-5 py-2 text-sm font-bold text-ink hover:border-ink"
         >
           Send another request
@@ -189,158 +201,50 @@ export function ContactForm() {
     );
   }
 
-  const slide = dir === "fwd" ? "step-in-right" : "step-in-left";
+  const today = new Date().toISOString().slice(0, 10);
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-4">
-      <div>
-        <div className="flex items-center gap-3">
-          <div className="flex flex-1 gap-1.5" aria-hidden>
-            <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-ink/10">
-              <span className="block h-full w-full rounded-full bg-brand" />
-            </span>
-            <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-ink/10">
-              <span
-                className={`block h-full rounded-full bg-brand transition-all duration-700 ease-out ${
-                  step === 2 ? "w-full" : "w-0"
-                }`}
-              />
-            </span>
-          </div>
-          <span className="text-xs font-bold text-ink/60">Step {step} of 2</span>
-        </div>
-        <p
-          key={step}
-          className={`${slide} font-display mt-3 text-base font-bold text-ink sm:text-lg`}
-        >
-          {step === 1 ? "Tell us about your car" : "Where should we send your offer?"}
-        </p>
-      </div>
-
-      <div ref={step1} className={step === 1 ? "stagger-children space-y-3" : "hidden"}>
+    <form onSubmit={handleSubmit} noValidate className="space-y-3">
+      <SelectField
+        id="car-brand"
+        label="Car Brand"
+        options={carBrands}
+        icon={<CarFront className="h-4 w-4" aria-hidden />}
+      />
+      <SelectField
+        id="car-year"
+        label="Car Year"
+        options={carYears}
+        icon={<Calendar className="h-4 w-4" aria-hidden />}
+      />
+      <Field
+        id="location"
+        label="Car Location for Pick-Up"
+        autoComplete="street-address"
+        icon={<MapPin className="h-4 w-4" aria-hidden />}
+      />
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Field
-          id="car-model"
-          label="Car make & model"
-          icon={<CarFront className="h-4 w-4" aria-hidden />}
+          id="pickup-date"
+          label="Pick Up Date"
+          type="date"
+          min={today}
+          icon={<Calendar className="h-4 w-4" aria-hidden />}
         />
-        <div>
-          <input type="hidden" name="car-year" value={year} />
-          <button
-            type="button"
-            id="car-year"
-            aria-haspopup="listbox"
-            aria-expanded={yearOpen}
-            onClick={() => setYearOpen((open) => !open)}
-            className={`group relative h-12 w-full rounded-lg border bg-white pl-10 pr-10 pt-4 text-left text-sm font-semibold outline-none transition-all duration-300 focus-visible:ring-4 focus-visible:ring-brand/25 ${
-              yearError
-                ? "shake border-red-400 ring-4 ring-red-100"
-                : yearOpen
-                  ? "border-brand ring-4 ring-brand/25"
-                  : "border-ink/15 hover:border-ink/30"
-            } ${year ? "text-ink" : "text-ink/50"}`}
-          >
-            <span
-              className={`pointer-events-none absolute left-10 top-1.5 text-[10px] font-bold ${
-                yearOpen ? "text-brand-dark" : yearError ? "text-red-500" : "text-ink/55"
-              }`}
-            >
-              {yearError ? "Please choose the year" : "Year of manufacture"}
-            </span>
-            {year || "Select year"}
-            <span
-              className={`pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 transition-colors duration-300 ${
-                yearOpen ? "text-brand-dark" : "text-ink/40"
-              }`}
-            >
-              <Calendar className="h-4 w-4" aria-hidden />
-            </span>
-            <ChevronDown
-              className={`pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink/50 transition-transform duration-500 ${
-                yearOpen ? "rotate-180" : ""
-              }`}
-              aria-hidden
-            />
-          </button>
-          <div
-            className={`grid transition-[grid-template-rows,margin] duration-500 ease-out ${
-              yearOpen ? "mt-2 grid-rows-[1fr]" : "grid-rows-[0fr]"
-            }`}
-          >
-            <div className="overflow-hidden">
-              <div
-                role="listbox"
-                aria-label="Year of manufacture"
-                className="grid max-h-44 grid-cols-4 gap-1.5 overflow-y-auto rounded-lg bg-cream p-2 sm:grid-cols-5"
-              >
-                {carYears.map((optionYear) => {
-                  const selected = String(optionYear) === year;
-                  return (
-                    <button
-                      key={optionYear}
-                      type="button"
-                      role="option"
-                      aria-selected={selected}
-                      tabIndex={yearOpen ? 0 : -1}
-                      onClick={() => {
-                        setYear(String(optionYear));
-                        setYearError(false);
-                        setYearOpen(false);
-                      }}
-                      className={`rounded-md py-2 text-sm font-bold transition-all duration-200 active:scale-95 ${
-                        selected
-                          ? "bg-ink text-brand shadow-md"
-                          : "bg-white text-ink hover:-translate-y-0.5 hover:bg-brand hover:shadow-md"
-                      }`}
-                    >
-                      {optionYear}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative">
-          <textarea
-            id="your-note"
-            name="your-note"
-            rows={3}
-            placeholder=" "
-            className="peer w-full resize-none rounded-lg border border-ink/15 bg-white pb-2 pl-10 pr-3.5 pt-6 text-sm font-semibold text-ink outline-none transition-all duration-300 hover:border-ink/30 focus:border-brand focus:ring-4 focus:ring-brand/25"
-          />
-          <label
-            htmlFor="your-note"
-            className="pointer-events-none absolute left-10 top-1.5 text-[10px] font-bold text-ink/55 peer-focus:text-brand-dark"
-          >
-            Condition, location notes (optional)
-          </label>
-          <span
-            className="pointer-events-none absolute left-3 top-4 text-ink/40 transition-colors duration-300 peer-focus:text-brand-dark"
-            aria-hidden
-          >
-            <FileText className="h-4 w-4" />
-          </span>
-        </div>
+        <SelectField
+          id="pickup-time"
+          label="Pick Up Time"
+          options={pickupTimes}
+          icon={<Clock className="h-4 w-4" aria-hidden />}
+        />
       </div>
-
-      <div ref={step2} className={step === 2 ? "stagger-children space-y-3" : "hidden"}>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <Field
-            id="your-name"
-            label="Your name"
-            autoComplete="name"
-            icon={<User className="h-4 w-4" aria-hidden />}
-          />
-          <Field
-            id="your-phone"
-            label="Phone number"
-            type="tel"
-            inputMode="tel"
-            autoComplete="tel"
-            icon={<PhoneCall className="h-4 w-4" aria-hidden />}
-          />
-        </div>
+      <Field
+        id="your-name"
+        label="Your Name"
+        autoComplete="name"
+        icon={<User className="h-4 w-4" aria-hidden />}
+      />
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         <Field
           id="your-email"
           label="Email address"
@@ -349,22 +253,30 @@ export function ContactForm() {
           autoComplete="email"
           icon={<Mail className="h-4 w-4" aria-hidden />}
         />
-        <div className="grid grid-cols-5 gap-3">
-          <Field
-            id="suburb"
-            label="Suburb"
-            className="col-span-3"
-            icon={<MapPin className="h-4 w-4" aria-hidden />}
-          />
-          <Field
-            id="postal-code"
-            label="Postcode"
-            className="col-span-2"
-            inputMode="numeric"
-            autoComplete="postal-code"
-            icon={<MapPin className="h-4 w-4" aria-hidden />}
-          />
-        </div>
+        <Field
+          id="your-phone"
+          label="Your Phone Number"
+          type="tel"
+          inputMode="tel"
+          autoComplete="tel"
+          icon={<PhoneCall className="h-4 w-4" aria-hidden />}
+        />
+      </div>
+      <div className="relative">
+        <textarea
+          id="your-note"
+          name="your-note"
+          rows={3}
+          placeholder="Note"
+          aria-label="Note"
+          className="peer w-full resize-none rounded-lg border border-ink/15 bg-white py-3 pl-10 pr-3.5 text-sm font-semibold text-ink outline-none transition-all duration-300 placeholder:font-medium placeholder:text-ink/50 hover:border-ink/30 focus:border-brand focus:ring-4 focus:ring-brand/25"
+        />
+        <span
+          className="pointer-events-none absolute left-3 top-3.5 text-ink/40 transition-colors duration-300 peer-focus:text-brand-dark"
+          aria-hidden
+        >
+          <FileText className="h-4 w-4" />
+        </span>
       </div>
 
       <div className="hidden" aria-hidden="true">
@@ -373,46 +285,26 @@ export function ContactForm() {
       </div>
 
       <div>
-        {step === 1 ? (
-          <button
-            type="button"
-            onClick={goNext}
-            className="btn-anim animate-glow group flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-bold text-ink hover:bg-ink hover:text-brand sm:text-base"
-          >
-            Next: your details
-            <ArrowRight className="animate-nudge h-4 w-4" aria-hidden />
-          </button>
-        ) : (
-          <div className="flex gap-3">
-            <button
-              type="button"
-              onClick={goBack}
-              className="btn-anim rounded-full border-2 border-ink/15 px-5 py-3 text-sm font-bold text-ink hover:border-ink"
-            >
-              Back
-            </button>
-            <button
-              type="submit"
-              disabled={status === "sending"}
-              className="btn-anim animate-glow group flex flex-1 items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-bold text-ink hover:bg-ink hover:text-brand disabled:cursor-not-allowed disabled:opacity-60 sm:text-base"
-            >
-              {status === "sending" ? (
-                <>
-                  <span
-                    className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink"
-                    aria-hidden
-                  />
-                  Sending…
-                </>
-              ) : (
-                <>
-                  Get my cash offer
-                  <ArrowRight className="animate-nudge h-4 w-4" aria-hidden />
-                </>
-              )}
-            </button>
-          </div>
-        )}
+        <button
+          type="submit"
+          disabled={status === "sending"}
+          className="btn-anim animate-glow group flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3 text-sm font-bold uppercase tracking-wide text-ink hover:bg-ink hover:text-brand disabled:cursor-not-allowed disabled:opacity-60 sm:text-base"
+        >
+          {status === "sending" ? (
+            <>
+              <span
+                className="h-4 w-4 animate-spin rounded-full border-2 border-ink/30 border-t-ink"
+                aria-hidden
+              />
+              Sending…
+            </>
+          ) : (
+            <>
+              Send your quote
+              <ArrowRight className="animate-nudge h-4 w-4" aria-hidden />
+            </>
+          )}
+        </button>
         <p className="mt-2.5 text-center text-[11px] font-semibold text-ink/50">
           Free, no-obligation quote
         </p>
