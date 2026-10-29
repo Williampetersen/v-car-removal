@@ -104,7 +104,8 @@ export async function POST(request: Request) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return bad("Invalid email address.");
   if (!/^[0-9+()\-\s]{8,20}$/.test(phone)) return bad("Invalid phone number.");
 
-  // Sent through the business mailbox (cPanel SMTP, port 465 / SSL).
+  // Sent through the business mailbox (cPanel SMTP, port 465 / SSL). The bare domain points at Vercel, and the
+  // mail server's certificate only covers its own hostname, so connect to that host rather than mail.<domain>.
   const smtpPassword = process.env.SMTP_PASSWORD;
   if (!smtpPassword) {
     console.error("SMTP_PASSWORD is not configured: quote request was not emailed.");
@@ -112,7 +113,7 @@ export async function POST(request: Request) {
   }
   const smtpUser = process.env.SMTP_USER || site.email;
   const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST || "vcarremoval.com.au",
+    host: process.env.SMTP_HOST || "sh00097.cd.ds.network",
     port: Number(process.env.SMTP_PORT || 465),
     secure: (process.env.SMTP_PORT || "465") === "465",
     auth: { user: smtpUser, pass: smtpPassword },
