@@ -1,5 +1,5 @@
 import { Container } from "./Container";
-import { ContactForm } from "./ContactForm";
+import { QuoteCard } from "./QuoteCard";
 import { PhoneCall, CheckCircle2 } from "./Icons";
 import { site } from "@/lib/site";
 
@@ -51,12 +51,7 @@ export function CtaBand({
             {site.phoneDisplay}
           </a>
         </div>
-        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl shadow-sky-900/10 sm:p-8">
-          <h3 className="heading-xl text-2xl">Get your free quote</h3>
-          <div className="mt-5">
-            <ContactForm variant="light" />
-          </div>
-        </div>
+        <QuoteCard backdrop />
       </Container>
     </section>
   );

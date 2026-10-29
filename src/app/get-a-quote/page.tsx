@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
-import { ContactForm } from "@/components/ContactForm";
+import { QuoteCard } from "@/components/QuoteCard";
 import { QuickAnswer } from "@/components/QuickAnswer";
 import { NapBlock } from "@/components/NapBlock";
 import { LastUpdated } from "@/components/LastUpdated";
@@ -51,14 +51,7 @@ export default function GetAQuotePage() {
                 Sunshine Coast and Toowoomba.
               </p>
             </QuickAnswer>
-            <div className="rounded-2xl border border-ink/10 bg-cream p-7 sm:p-10">
-              <h2 className="heading-xl text-3xl text-ink">
-                Your vehicle details
-              </h2>
-              <div className="mt-6">
-                <ContactForm />
-              </div>
-            </div>
+            <QuoteCard backdrop />
           </div>
           <div className="space-y-6 lg:col-span-2">
             <div className="rounded-2xl border border-ink/10 bg-white p-7">

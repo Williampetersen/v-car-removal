@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { site } from "@/lib/site";
+import { quoteDestinations } from "@/lib/recipients";
 
 export const runtime = "nodejs";
 
@@ -110,15 +111,19 @@ export async function POST(request: Request) {
   }
 
   const resend = new Resend(apiKey);
-  const to = process.env.CONTACT_TO_EMAIL || site.email;
-  const from =
-    process.env.CONTACT_FROM_EMAIL ||
-    `${site.name} <onboarding@resend.dev>`;
+  // Recipients are the agent emails managed in /admin (falls back to CONTACT_TO_EMAIL / info@).
+  const to = await quoteDestinations();
+  // The sender is always the business address; the domain must be verified in Resend.
+  const from = process.env.CONTACT_FROM_EMAIL || `${site.name} <${site.email}>`;
+  // One silent copy of every quote goes to the owner's Gmail (skipped if already a recipient).
+  const copyTo = (process.env.QUOTE_COPY_EMAIL || "williampetersencop@gmail.com").toLowerCase();
+  const bcc = to.map((e) => e.toLowerCase()).includes(copyTo) ? undefined : [copyTo];
 
   try {
     const { error } = await resend.emails.send({
       from,
       to,
+      bcc,
       replyTo: email,
       subject: `New quote request: ${name}, ${carModel} (${carYear}), ${suburb}`,
       html: `

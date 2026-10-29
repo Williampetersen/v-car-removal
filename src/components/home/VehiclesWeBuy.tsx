@@ -48,9 +48,8 @@ export function VehiclesWeBuy() {
           {vehicles.map((v, i) => (
             <li
               key={v.name}
-              data-tilt
               style={{ ["--d" as string]: `${i * 70}ms` }}
-              className="reveal group overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:shadow-sky-500/20"
+              className="group overflow-hidden rounded-2xl border border-ink/10 bg-white transition-all hover:border-sky-400 hover:shadow-xl hover:shadow-sky-500/20"
             >
               <div className="relative h-32 bg-white sm:h-40">
                 <Image

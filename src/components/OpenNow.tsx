@@ -46,7 +46,6 @@ export function OpenNow() {
   return (
     <p className="inline-flex min-h-8 items-center gap-2.5 rounded-full border border-slate-200 bg-white px-3.5 py-1.5 text-sm font-medium text-slate-700 shadow-sm">
       <span className={`relative flex h-2.5 w-2.5 ${dot}`} aria-hidden>
-        <span className={`ping absolute inset-0 rounded-full ${open === null ? "hidden" : ""}`} />
         <span className="relative h-2.5 w-2.5 rounded-full bg-current" />
       </span>
       {label}

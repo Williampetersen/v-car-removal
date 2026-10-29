@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/PageHero";
 import { Container } from "@/components/Container";
-import { ContactForm } from "@/components/ContactForm";
+import { QuoteCard } from "@/components/QuoteCard";
 import { PhoneCall, Mail, Clock, MapPin } from "@/components/Icons";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
@@ -45,17 +45,8 @@ export default function ContactPage() {
 
       <section className="py-20 sm:py-28">
         <Container className="grid grid-cols-1 gap-14 lg:grid-cols-5">
-          <FadeIn className="rounded-2xl border border-ink/10 bg-cream p-7 sm:p-10 lg:col-span-3">
-            <h2 className="heading-xl text-3xl text-ink">
-              Get Cash Offer Now
-            </h2>
-            <p className="mt-2 text-sm text-slate-600">
-              Fill in your vehicle and contact details below and we&apos;ll
-              get back to you with a cash offer as soon as possible.
-            </p>
-            <div className="mt-8">
-              <ContactForm />
-            </div>
+          <FadeIn className="lg:col-span-3">
+            <QuoteCard backdrop />
           </FadeIn>
 
           <Stagger className="space-y-5 lg:col-span-2">

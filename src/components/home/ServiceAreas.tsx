@@ -17,14 +17,13 @@ function AreaCards({ areas }: { areas: Location[] }) {
       {areas.map((loc, i) => (
         <li
           key={loc.slug}
-          className="reveal"
+          className=""
           style={{ ["--d" as string]: `${(i % 3) * 90}ms` }}
         >
           <Link
             prefetch={false}
-            data-tilt
             href={locationPath(loc.slug)}
-            className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6 transition-all hover:-translate-y-1 hover:border-sky-400 hover:shadow-xl hover:shadow-sky-500/20"
+            className="group flex h-full flex-col rounded-2xl border border-ink/10 bg-white p-6 transition-all hover:border-sky-400 hover:shadow-xl hover:shadow-sky-500/20"
           >
             <span className="flex items-center gap-2 text-sm text-link">
               <MapPin className="h-4 w-4" aria-hidden />
@@ -44,7 +43,7 @@ function AreaCards({ areas }: { areas: Location[] }) {
             <span className="font-display mt-4 inline-flex items-center gap-1 text-base text-ink">
               View area
               <ChevronRight
-                className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                className="h-4 w-4"
                 aria-hidden
               />
             </span>
@@ -73,7 +72,7 @@ export function ServiceAreas({ showExtendedLinks = true }: { showExtendedLinks?:
         <AreaCards areas={coreAreas} />
 
         {showExtendedLinks && (
-          <div className="reveal mt-14 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8">
+          <div className="mt-14 rounded-3xl border border-slate-200 bg-white p-6 sm:p-8">
             <p className="font-display text-sm text-link">Extended regions</p>
             <h3 className="heading-xl mt-1 text-2xl sm:text-3xl">
               Further out? We collect across Queensland and northern NSW too

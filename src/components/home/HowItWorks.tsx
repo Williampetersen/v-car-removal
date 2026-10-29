@@ -41,9 +41,8 @@ export function HowItWorks() {
           {steps.map((step, i) => (
             <li
               key={step.number}
-              data-tilt
               style={{ ["--d" as string]: `${i * 120}ms` }}
-              className="reveal relative overflow-hidden rounded-2xl border border-ink/10 bg-white p-7"
+              className="relative overflow-hidden rounded-2xl border border-ink/10 bg-white p-7"
             >
               <span className="heading-xl relative text-4xl text-link">
                 {step.number}

@@ -4,7 +4,6 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { StickyCallBar } from "@/components/StickyCallBar";
-import { Effects } from "@/components/Effects";
 import { FloatingCall } from "@/components/FloatingCall";
 import { JsonLd } from "@/components/JsonLd";
 import { MetaPixel } from "@/components/MetaPixel";
@@ -47,7 +46,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className="h-full antialiased"
     >
       <body className="flex min-h-full flex-col bg-white text-ink">
-        <div id="scroll-progress" aria-hidden />
         <JsonLd data={organizationSchema()} />
         <JsonLd data={websiteSchema()} />
         <Header />
@@ -55,7 +53,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Footer />
         <StickyCallBar />
         <FloatingCall />
-        <Effects />
         <MetaPixel />
         {gaId && <GoogleAnalytics gaId={gaId} />}
       </body>

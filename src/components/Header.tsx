@@ -57,7 +57,7 @@ export function Header() {
                 prefetch={false}
                 key={link.href}
                 href={link.href}
-                className="nav-link font-display px-3 py-2 text-base text-ink-soft transition-colors hover:text-ink"
+                className="font-display px-3 py-2 text-base text-ink-soft transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
@@ -73,13 +73,10 @@ export function Header() {
               {site.phoneDisplay}
             </a>
             <span className="relative inline-flex">
-              <span className="pulse-ring" aria-hidden />
               <Link
                 prefetch={false}
                 href="/get-a-quote"
-                data-ripple
-                data-magnetic
-                className="font-display shine relative inline-flex items-center rounded-xl bg-brand px-4 py-2.5 text-base text-ink transition-transform hover:bg-sky-300 active:scale-95 sm:px-5 sm:text-base"
+                className="font-display relative inline-flex items-center rounded-xl bg-brand px-4 py-2.5 text-base text-ink hover:bg-sky-300 sm:px-5 sm:text-base"
               >
                 Free Quote
               </Link>

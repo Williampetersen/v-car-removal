@@ -51,3 +51,6 @@ next-env.d.ts
 
 # raw WordPress media (92 MB, kept locally; optimised copies go in public/)
 /content/media/
+
+# local admin data (agent emails in dev)
+/.data/

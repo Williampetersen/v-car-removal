@@ -43,9 +43,8 @@ export function WhyUs() {
           {reasons.map(({ icon: Icon, title, description }, i) => (
             <div
               key={title}
-              data-tilt
               style={{ ["--d" as string]: `${i * 100}ms` }}
-              className="reveal rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-sky-300"
+              className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-sky-300"
             >
               <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-sky-400 to-indigo-500 text-white shadow-lg shadow-sky-500/30">
                 <Icon className="h-6 w-6" aria-hidden />
