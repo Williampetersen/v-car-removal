@@ -21,7 +21,7 @@ export function Hero() {
       <HeroScene />
 
       <Container className="relative grid grid-cols-1 items-center gap-8 pb-14 pt-10 sm:pb-20 sm:pt-14 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:pb-24 lg:pt-20">
-        {/* On phones this block fills the first screen so the video is seen clearly before the form. */}
+        {/* On phones this block fills the first screen so the photo is seen clearly before the form. */}
         <div className="flex min-h-[68svh] flex-col justify-center lg:min-h-0">
           <div>
             <OpenNow />

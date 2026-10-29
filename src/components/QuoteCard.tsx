@@ -1,7 +1,7 @@
 import { ContactForm } from "./ContactForm";
 
 /**
- * The one-step "Get Cash Offer Now" white card. In the hero it floats over the video; everywhere
+ * The one-step "Get Cash Offer Now" white card. In the hero it floats over the photo; everywhere
  * else pass `backdrop` to sit it on the same blue photo so it looks the same.
  */
 export function QuoteCard({
@@ -26,7 +26,7 @@ export function QuoteCard({
     <div className="relative isolate overflow-hidden rounded-[2rem] p-3 sm:p-6">
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"
-        style={{ backgroundImage: "url(/video/hero-mobile-poster.jpg)" }}
+        style={{ backgroundImage: "url(/images/hero/hero.webp)" }}
         aria-hidden
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-sky-600/60 to-slate-900/70" aria-hidden />
