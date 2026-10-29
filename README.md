@@ -19,10 +19,10 @@ Copy `.env.example` to `.env.local` and fill in the values you have — the site
 runs without any of them, but the quote form, analytics and pixel tracking
 stay inactive until configured:
 
-- `RESEND_API_KEY` / `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL` — required for
-  the contact form (`src/app/api/quote/route.ts`) to actually email quote
-  requests. Sign up at [resend.com](https://resend.com) and verify a sending
-  domain.
+- `SMTP_PASSWORD` (plus optional `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER`) — the
+  info@vcarremoval.com.au mailbox login; required for the quote form
+  (`src/app/api/quote/route.ts`) to email requests. Recipients are managed at
+  `/admin` (`ADMIN_PASSWORD`), with `CONTACT_TO_EMAIL` as the fallback.
 - `NEXT_PUBLIC_GA_ID` — Google Analytics 4 measurement ID.
 - `NEXT_PUBLIC_META_PIXEL_ID` — Meta (Facebook) Pixel ID.
 

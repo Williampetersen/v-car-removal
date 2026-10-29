@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 import { site } from "@/lib/site";
 import { quoteDestinations } from "@/lib/recipients";
 
@@ -104,23 +104,30 @@ export async function POST(request: Request) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return bad("Invalid email address.");
   if (!/^[0-9+()\-\s]{8,20}$/.test(phone)) return bad("Invalid phone number.");
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("RESEND_API_KEY is not configured: quote request was not emailed.");
+  // Sent through the business mailbox (cPanel SMTP, port 465 / SSL).
+  const smtpPassword = process.env.SMTP_PASSWORD;
+  if (!smtpPassword) {
+    console.error("SMTP_PASSWORD is not configured: quote request was not emailed.");
     return bad("Email delivery is not configured yet.", 500);
   }
+  const smtpUser = process.env.SMTP_USER || site.email;
+  const transporter = nodemailer.createTransport({
+    host: process.env.SMTP_HOST || "vcarremoval.com.au",
+    port: Number(process.env.SMTP_PORT || 465),
+    secure: (process.env.SMTP_PORT || "465") === "465",
+    auth: { user: smtpUser, pass: smtpPassword },
+  });
 
-  const resend = new Resend(apiKey);
   // Recipients are the agent emails managed in /admin (falls back to CONTACT_TO_EMAIL / info@).
   const to = await quoteDestinations();
-  // The sender is always the business address; the domain must be verified in Resend.
-  const from = process.env.CONTACT_FROM_EMAIL || `${site.name} <${site.email}>`;
+  // The sender is always the business mailbox the SMTP login belongs to.
+  const from = process.env.CONTACT_FROM_EMAIL || `${site.name} <${smtpUser}>`;
   // One silent copy of every quote goes to the owner's Gmail (skipped if already a recipient).
   const copyTo = (process.env.QUOTE_COPY_EMAIL || "williampetersencop@gmail.com").toLowerCase();
   const bcc = to.map((e) => e.toLowerCase()).includes(copyTo) ? undefined : [copyTo];
 
   try {
-    const { error } = await resend.emails.send({
+    await transporter.sendMail({
       from,
       to,
       bcc,
@@ -138,11 +145,6 @@ export async function POST(request: Request) {
         <p style="color:#888">Sent from ${escapeHtml(page || "website")}</p>
       `,
     });
-
-    if (error) {
-      console.error("Resend error:", error);
-      return bad("Failed to send email.", 502);
-    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
