@@ -19,7 +19,7 @@ import { faqs } from "@/lib/faqs";
 import { site } from "@/lib/site";
 import { faqSchema, webPageSchema } from "@/lib/schema";
 
-const title = "Cash For Cars Brisbane | Free Car Removal";
+const title = "Cash For Cars & Free Car Removal Brisbane";
 const description = `Sell your car for cash in Brisbane. Free towing, a quote before pickup, any make or condition, up to ${site.cashOfferMax}. Call ${site.phoneDisplay}.`;
 
 export const metadata: Metadata = {

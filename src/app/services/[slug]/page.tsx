@@ -26,7 +26,7 @@ export async function generateMetadata(
   const service = getServiceBySlug(slug);
   if (!service) return {};
   return {
-    title: `${service.name} Brisbane | Free Pickup, Any Condition`,
+    title: `${service.name} Brisbane | Free Pickup`,
     description: `${service.shortDescription} Free towing across ${site.areasSummary.split(",").slice(0, 4).join(",")} and more. Call ${site.phoneDisplay}.`.slice(0, 160),
     alternates: {
       canonical: `${site.url}/services/${slug}`,

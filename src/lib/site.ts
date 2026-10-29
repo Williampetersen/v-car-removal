@@ -32,7 +32,7 @@ export const site = {
   googleReviewsUrl:
     "https://www.google.com/maps/search/?api=1&query=V+Car+Removal+Brisbane+451+Sherwood+Rd+Sherwood+QLD",
   // Date the content was last reviewed (shown as "Last updated" and used in sitemap/schema).
-  lastUpdated: "2026-10-08",
+  lastUpdated: "2026-10-29",
   depots: [
     {
       name: "V Car Removal Brisbane",

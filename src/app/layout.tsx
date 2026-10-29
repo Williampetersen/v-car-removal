@@ -30,6 +30,13 @@ export const metadata: Metadata = {
     locale: "en_AU",
     type: "website",
   },
+  // Search Console / Bing Webmaster ownership tokens (set in Vercel env; omitted when blank).
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} | ${site.tagline}`,

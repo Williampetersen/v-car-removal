@@ -10,8 +10,8 @@ import { site } from "@/lib/site";
 import { allLocations } from "@/lib/locations";
 import { breadcrumbSchema, webPageSchema, areaListSchema } from "@/lib/schema";
 
-const title = `Car Removal Service Areas: ${allLocations.length} Regions in QLD & NSW`;
-const description = `We buy cars and remove them free across Brisbane, Ipswich, the Gold Coast, Sunshine Coast, Toowoomba and ${allLocations.length - 5} more regions, from the Scenic Rim to Rockhampton and northern NSW.`;
+const title = `Car Removal Areas: ${allLocations.length} Regions in QLD & NSW`;
+const description = `Free car removal and cash for cars across Brisbane, Ipswich, the Gold Coast, Sunshine Coast, Toowoomba and ${allLocations.length - 5} more regions in QLD and northern NSW.`;
 
 export const metadata: Metadata = {
   title,

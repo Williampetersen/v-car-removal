@@ -50,6 +50,13 @@ const nextConfig: NextConfig = {
     ];
 
     return [
+      // One canonical host: www and the vercel.app alias 301 to the bare domain (as on the old site).
+      ...["www.vcarremoval.com.au", "v-car-removal.vercel.app"].map((host) => ({
+        source: "/:path*",
+        has: [{ type: "host" as const, value: host }],
+        destination: "https://vcarremoval.com.au/:path*",
+        statusCode: 301,
+      })),
       // Old Jet Car Removal-branded contact URL (and the old /contact-us alias).
       { source: "/contact-us-jet-car-removal-brisbane", destination: "/contact", statusCode: 301 },
       { source: "/contact-us", destination: "/contact", statusCode: 301 },

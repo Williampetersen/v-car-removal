@@ -17,15 +17,14 @@ const aiCrawlers = [
   "Googlebot",
 ];
 
+// Named groups replace the "*" group for that crawler, so every group gets the same disallow list.
+const disallow = ["/api/", "/admin", "/thanks"];
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-      { userAgent: "*", allow: "/", disallow: ["/api/", "/admin", "/thanks"] },
-      ...aiCrawlers.map((userAgent) => ({
-        userAgent,
-        allow: "/",
-        disallow: ["/api/", "/admin"],
-      })),
+      { userAgent: "*", allow: "/", disallow },
+      ...aiCrawlers.map((userAgent) => ({ userAgent, allow: "/", disallow })),
     ],
     sitemap: `${site.url}/sitemap.xml`,
     host: site.url,
